@@ -1,3 +1,8 @@
+## 【ruanyifeng】
+```javascript
+Chinease: http://www.ruanyifeng.com/blog/archives.html
+```
+
 ## 【webpack】
 ```javascript
 Englisn:  https://webpack.js.org
@@ -22,6 +27,11 @@ Chinease: http://www.uprogrammer.cn/react-router-cn/
 ```javascript
 English:  http://redux.js.org/
 Chinease: http://www.redux.org.cn/
+```
+
+## 【react-flux】
+```javascript
+English: https://github.com/facebook/flux
 ```
 
 ## 【Nodejs】
