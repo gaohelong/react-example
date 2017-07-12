@@ -12,7 +12,7 @@
 [Chinease](http://es6.ruanyifeng.com)
 
 ## 【react】
-[English[(https://facebook.github.io/react/)
+[English](https://facebook.github.io/react/)
 
 ## 【react-router】
 [English](https://reacttraining.com/react-router/)
