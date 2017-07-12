@@ -1,6 +1,6 @@
 ## 【ruanyifeng】
 ```javascript
-Chinease: http://www.ruanyifeng.com/blog/archives.html
+Chinease: http://www.ruanyifeng.com/blog/javascript/
 ```
 
 ## 【webpack】
