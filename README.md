@@ -31,3 +31,19 @@
 
 ## 【npm】
 [English](https://www.npmjs.com)
+
+
+#### ---------------------------------------------------------------
+
+## 【react开发】
+```javascript
+注：ubunut下使用的时候找不到create-react-app时需要做软链
+sudo ln -s /var/gaohelong/soft/nodejs/nodejs/bin/create-react-app /usr/local/bin
+
+＃ 创建项目.
+npm install -g create-react-app
+create-react-app hl-react-app
+
+cd hl-react-app
+npm start
+```
