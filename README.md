@@ -1,52 +1,33 @@
 ## 【ruanyifeng】
-```javascript
-Chinease: http://www.ruanyifeng.com/blog/javascript/
-```
+[Chinease](http://www.ruanyifeng.com/blog/javascript/)
 
 ## 【webpack】
-```javascript
-Englisn:  https://webpack.js.org
-Chinease: https://doc.webpack-china.org/
-```
+[Englisn](https://webpack.js.org)
+[Chinease](https://doc.webpack-china.org/)
+
 ## 【Babel】
-```javascript
-English: http://babeljs.io/
-```
+[English](http://babeljs.io/)
 
 ## 【ES6】
-```javascript
-Chinease: http://es6.ruanyifeng.com
-```
+[Chinease](http://es6.ruanyifeng.com)
 
 ## 【react】
-```javascript
-English: https://facebook.github.io/react/
-```
+[English[(https://facebook.github.io/react/)
 
 ## 【react-router】
-```javascript
-English:  https://reacttraining.com/react-router/
-Chinease: http://www.uprogrammer.cn/react-router-cn/
-```
+[English](https://reacttraining.com/react-router/)
+[Chinease](http://www.uprogrammer.cn/react-router-cn/)
+
 ## 【react-redux】
-```javascript
-English:  http://redux.js.org/
-Chinease: http://www.redux.org.cn/
-```
+[English](http://redux.js.org/)
+[Chinease](http://www.redux.org.cn/)
 
 ## 【react-flux】
-```javascript
-English: https://github.com/facebook/flux
-```
+[English](https://github.com/facebook/flux)
 
 ## 【Nodejs】
-```javascript
-English:  https://nodejs.org
-Chinease: http://nodejs.cn/
-```
-
+[English](https://nodejs.org)
+[Chinease](http://nodejs.cn/)
 
 ## 【npm】
-```javascript
-English: https://www.npmjs.com
-```
+[English](https://www.npmjs.com)
