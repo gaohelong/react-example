@@ -13,6 +13,11 @@ Chinease: https://doc.webpack-china.org/
 English: http://babeljs.io/
 ```
 
+## 【ES6】
+```javascript
+Chinease: http://es6.ruanyifeng.com
+```
+
 ## 【react】
 ```javascript
 English: https://facebook.github.io/react/
