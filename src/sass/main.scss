@@ -1,0 +1,17 @@
+@charset "utf-8";
+
+// Core variables and mixins.
+@import "variables/variables";      // 加载variables/_variables.scss
+@import "mixins/mixins";            // 加载mixins/_mixins.scss
+
+// Core CSS.
+@import "reboot";                   // 给html元素设置默认值……
+
+// Function.
+@import "functions/functions";      // 加载自定义函数.
+
+// Components.
+@import "components/components";    // 加载组件.
+
+// Themes.
+@import "themes/default";           // 加载默认主题.

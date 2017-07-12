@@ -1,0 +1,26 @@
+@charset "utf-8";
+
+/* botton */
+.#{$prefix}-btn-common {
+    width:                  245px;
+    height:                 18px;
+    padding:                14px 20px;
+    margin-top:             6px;
+    text-align:             center;
+    color:                  $white;
+    font-size:              14px;
+    letter-spacing:         1.6px;
+    background-color:       $login-input;
+    @include                box-sizing(content);
+}
+
+.#{$prefix}-userMenu-btn {
+    display:            inline-block;
+    height:             56px;
+    line-height:        56px;
+    width:              50%;
+}
+.#{$prefix}-setpwd-btn {
+    width:          98px;
+    height:         31px;
+}

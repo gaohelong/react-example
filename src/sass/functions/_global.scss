@@ -1,0 +1,11 @@
+@charset "utf-8";
+
+// 根据列数和总宽度计算列宽.
+@function row-width($rowCnt, $width) {
+    @return ($width / $rowCnt)px;
+}
+
+// 计算角度.
+@function degVal($i: 1, $deg: 60deg) {
+    @return $i * $deg;
+} 

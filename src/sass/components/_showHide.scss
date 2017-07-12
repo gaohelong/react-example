@@ -1,0 +1,7 @@
+@charset "utf-8";
+
+/* show、hide */
+.#{$prefix}-show   { display:    block; }
+.#{$prefix}-v-show { visibility: visible; }
+.#{$prefix}-hide   { display:    none; }
+.#{$prefix}-v-hide { visibility: hidden; }

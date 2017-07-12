@@ -40,13 +40,33 @@ sudo ln -s /var/gaohelong/soft/nodejs/nodejs/bin/create-react-app /usr/local/bin
 # 创建项目官方手册.
 # https://github.com/facebookincubator/create-react-app
 
-＃ 创建新项目.
-npm install -g create-react-app
-create-react-app hl-react-app
+# 创建新项目.
+$ npm install -g create-react-app
+$ create-react-app hl-react-app
 
-cd hl-react-app
-npm start
+$ cd hl-react-app
+$ npm start
 
 # 添加到已有项目.
+$ npm install react react-dom --save
+$ npm install jsx-loader --save-dev
+$ npm install babel-preset-react babel-preset-es2015 --save-dev
+$ npm install babel-loader babel-core --save-dev
+$ npm install babel-preset-env --save-dev
+$ npm install babel-plugin-transform-class-properties babel-plugin-transform-decorators-legacy --save-dev
+$ npm install babel-preset-react-hmre babel-preset-stage-0 --save-dev
+
+.babelrc
+{
+    "presets": [
+        "react",
+        "es2015",
+        "stage-0",
+    ],
+    "plugins": [
+        "transform-decorators-legacy",
+        "transform-class-properties"
+    ]
+}
 
 ```

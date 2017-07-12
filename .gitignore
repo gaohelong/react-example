@@ -1,0 +1,4 @@
+*.swp
+*.map
+dist/
+node_modules/

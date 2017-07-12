@@ -1,0 +1,8 @@
+@charset "utf-8";
+
+// Core variables and mixins.
+@import "../variables/variables";      // 加载variables/_variables.scss
+@import "../mixins/mixins";            // 加载mixins/_mixins.scss
+
+// Function.
+@import "../functions/functions";      // 加载自定义函数.

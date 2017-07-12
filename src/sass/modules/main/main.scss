@@ -1,0 +1,11 @@
+@charset "utf-8";
+@import "../core";
+
+$img-nav-url:   #{$img-url}#{'nav/'}      !default;
+$img-login-url: #{$img-url}#{'login/'}    !default;
+
+/* index */
+.#{$prefix}-container {
+    color:              $blue;
+    font-size:          16px;
+}

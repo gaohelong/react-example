@@ -1,0 +1,1063 @@
+@charset "utf-8";
+@import "../core";
+
+$img-nav-url:   #{$img-url}#{'nav/'}      !default;
+$img-login-url: #{$img-url}#{'login/'}    !default;
+.#{$prefix}-container {
+    // 登录
+    #login {
+        position:                   absolute;
+        top:                        0;
+        bottom:                     0;
+        z-index:                    1;
+        width:                      100%;
+        max-width:                  1920px;
+        min-width:                  1280px;
+        min-height:                 600px;
+        background-color:           #818388;
+        background-image:           url(#{$img-login-url}login_bg_2x.png);
+        background-attachment:      fixed;
+        background-repeat:          no-repeat;
+        background-origin:          content-box;
+        background-size:            cover;
+        overflow:                   hidden;
+
+        #login-logo {
+            position:               absolute;
+            top:                    62px;
+            left:                   88px;
+        }
+
+        ##{$prefix}-login-bg {
+            position: absolute;
+            z-index: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .#{$prefix}-circle-line {
+            position: absolute;
+            margin: 30px;
+            width: calc(100% - 60px);
+            height: calc(100% - 60px);
+            z-index: 1;
+            border: 1px solid rgba(255, 255, 255, .4);
+            $height: calc(100% - 2px);
+            .slide-rect {
+                width: 8.2%;;
+                height: 4px;
+                background-color: $white;
+            }
+            #rect-up {
+                position: relative;
+                float: right;
+                right: 14.2%;
+                margin-top: -3px;
+                @include    animation(borderTop_animation 50s linear 0s infinite);
+            }
+            #rect-down {
+                position: relative;
+                left: 6.2%;
+                top: $height;
+                @include    animation(borderBottom_animation 50s linear 0s infinite);
+            }
+        }
+
+        .#{$prefix}-login-center {
+            position:                   absolute;
+            top:                        145px;
+            left:                       50%;
+            margin-left:                -142px;
+            z-index:                    2;
+            width:                      285px;
+            height:                     360px;
+            text-align:                 center;
+            background-color:           transparent;
+
+            .login-title {
+                position:               absolute;
+                width:                  398px;
+                height:                 32px;
+                line-height:            32px;
+                font-size:              24px;
+                letter-spacing:         1px;
+                text-align:             center;
+                color: $white;
+                @include                translateX(-56.5px);
+
+                // & span:nth-child(1) {
+                //     @include opacity(0.7);
+                // }
+
+                // & span:nth-child(2) {
+                //     @include opacity(0.3);
+                // }
+            }
+
+            ##{$prefix}-login-form {
+                margin-top: 83px;
+
+                ##{$prefix}-login-username {
+                    & {
+                        @include input-placeholder {
+                            color: $white;
+                        }
+                    }
+                }
+
+                ##{$prefix}-login-password {
+                    & {
+                        @include input-placeholder {
+                            color: $white;
+                        }
+                    }
+                }
+
+                ##{$prefix}-login-btn {
+                    background-color:           rgba($login-submit, 0.9);
+                    margin-top:                 6px;
+                    @include                    transition(background-color .2s linear);
+
+                    &:hover {
+                        opacity:                1;
+                        background-color:       rgba($login-submit, 1);
+                    }
+                }
+
+                ##{$prefix}-login-error {
+                    line-height:            18px;
+                    margin-top:             14px;
+                    margin-left:            10px;
+                    text-align:             left;
+                    color:                  #e03a00;
+
+                    img {
+                        margin-right:       14px;
+                    }
+                }
+            }
+        }
+
+        // 登录切换.
+        .#{$prefix}-login-toggle {
+            margin-top:             14px;
+            padding-left:           10px;
+            padding-right:          10px;
+        }
+
+        // 记住密码.
+        ##{$prefix}-save-pwd {
+            float:              left;
+            line-height:        20px;
+            cursor:             pointer;
+
+            #save_pwd {
+                margin-right:               8px;
+                cursor:                     pointer;
+            }
+        }
+
+        // 语言切换.
+        ##{$prefix}-lang-toggle {
+            position:           relative;
+            float:              right;
+            width:              88px;
+            line-height:        20px;
+            cursor:             pointer;
+
+            img:nth-child(1) {
+                float:              left;
+                margin-top:         3px;
+            }
+
+            img:nth-child(2) {
+                float:              right;
+                margin-top:         8px;
+            }
+
+            #sso-cur-lang {
+                position:           absolute;
+                left:               22px;
+            }
+
+            #sso-lang-cn {
+                position:           absolute;
+                top:                22px;
+                left:               22px;
+                color:              #fff;
+            }
+
+            #sso-lang-en {
+                @extend             #sso-lang-cn;
+                top:                44px;
+            }
+       }
+    }
+
+    // 首页.
+    #nav {
+        position:               absolute;
+        top:                    0;
+        bottom:                 0;
+        z-index:                2;
+        width:                  100%;
+        max-width:              1920px;
+        min-width:              1280px;
+        min-height:             600px;
+        // background-color: $body-bg;
+        background-image:       url(#{$img-nav-url}nav_bg.png);
+        background-attachment:  fixed;
+        background-repeat:      no-repeat;
+        background-origin:      content-box;
+        background-size:        cover;
+        overflow:               hidden;
+
+        #nav-logo {
+            position:           absolute;
+            left:               0;
+        }
+
+        // 头部.
+        #header {
+            position:   relative;
+            top:        -12%;
+            height:     12%;
+
+            // 标题.
+            #title {
+                position:       absolute;
+                top:            24%;
+                left:           4.6%;
+                padding-left:   66px;
+                line-height:    49px;
+                opacity:        0.8;
+                font-size:      20px;
+                font-weight:    500;
+                letter-spacing: 0.8px;
+                color:          $light-black;
+            }
+
+            // 搜索.
+            .search-icon {
+                float:              right;
+                width:              24px;
+                height:             24px;
+                cursor:             pointer;
+                background-image:   url(#{$img-global-url}search.svg);
+            }
+
+            #search {
+                position:       absolute;
+                top:            37%;
+                left:           24.6%;
+                width:          51.4%;
+
+                i {
+                    @extend     .search-icon;
+                }
+            }
+
+            #search-switch {
+                position:       absolute;
+                top:            100%;
+                left:           4.6%;
+                width:          71.4%;
+                line-height:    24px;
+                opacity:        0;
+                letter-spacing: 0.8px;
+
+                #search-icon {
+                    @extend     .search-icon;
+                    float:      left;
+                }
+
+                #search-input {
+                    width:              70%;
+                    line-height:        24px;
+                    margin-left:        50px;
+                    color:              #333;
+                    font-size:          17px;
+                    letter-spacing:     0.7px;
+                    background-color:   transparent;
+                }
+
+                #search-close {
+                    float:              right;
+                    width:              24px;
+                    height:             24px;
+                    opacity:            0;
+                    cursor:             pointer;
+                    background-image:   url(#{$img-global-url}close.svg);
+                }
+            }
+
+            .search-switch-animation {
+                @include    animation(search_switch_animation .8s ease-out forwards);
+            }
+
+            .search-switch-close-animation {
+                @include    animation(search_switch_close_animation .6s ease-out forwards);
+            }
+
+            // 用户信息.
+            #user-info {
+                z-index:        1;
+                position:       absolute;
+                width:          14.6%;
+                min-width:      215px;
+                height:         calc(100% - 2px);
+                right:          3%;
+                cursor:         pointer;
+
+                &:hover {
+                    #arrow {
+                        @include rotate(180deg);
+                    }
+                }
+
+                .user-info-outer {
+                    height: 100%;
+
+                    span {
+                        display:        block;
+                        position:       relative;
+                        top:            24%;
+
+                        // 头像.
+                        #avatar {
+                            float:          left;
+                            margin-right:   7.2%;
+                            @include        border-radius(50%);
+                        }
+
+                        // 邮箱前缀.
+                        #email-prefix {
+                            float:          left;
+                            width:          70%;
+                            line-height:    22px;
+                            font-size:      17px;
+                            color:          #3d4a53;
+                        }
+
+                        // 邮箱后缀.
+                        #email-suffix {
+                            float:          left;
+                            width:          70%;
+                            line-height:    16px;
+                            font-size:      13px;
+                            color:          #abaebb;
+                        }
+
+                        // 箭头.
+                        #arrow {
+                            position:           absolute;
+                            top:                27px;
+                            left:               170px;
+                            width:              0;
+                            height:             0;
+                            opacity:            0.5;
+                            @include            border-radius(3px);
+                            border-top:         6px solid $light-black;
+                            border-left:        6px solid transparent;
+                            border-right:       6px solid transparent;
+                            @include            transition(.3s linear);
+                        }
+                    }
+                }
+
+                // 菜单.
+                .user-menu {
+                    padding-top:        2px;
+                    padding-right:      36px;
+                    padding-left:       36px;
+                    width:              100%;
+                    min-width:          215px;
+                    font-size:          12px;
+                    letter-spacing:     0.5px;
+                    color:              rgba(255, 255, 255, .7);
+                    cursor:             default;
+                    background-color:   $light-black;
+
+                    // 设置，退出按钮.
+                    li {
+                        width:          40%;
+                        cursor:         pointer;
+                    }
+
+                    #setting {
+                        float:          left;
+                        padding-left:   30px;
+                        background:     url(#{$img-global-url}set.svg) no-repeat 0;
+
+                    }
+
+                    #exit {
+                        float:          right;
+                        padding-left:   30px;
+                        background:     url(#{$img-global-url}exit.svg) no-repeat 0;
+                    }
+                }
+            }
+
+            // 搜索遮罩.
+            #search-user-info-mask {
+                position:           absolute;
+                top:                0;
+                right:              3%;
+                z-index:            99;
+                width:              14.6%;
+                min-width:          215px;
+                height:             calc(100% - 2px);
+                background-color:   rgba(247, 247, 248, 0.85);
+            }
+
+            #split-line {
+                position:           absolute;
+                bottom:             0;
+                left:               3.1%;
+                width:              93.8%;
+                height:             2px;
+                opacity:            0.4;
+                background-color:   #d8d8d8;
+            }
+        }
+
+        // 头部动画.
+        .header-animation {
+            @include    animation(header_animation 0.8s ease-in-out .5s forwards);
+        }
+
+        // 搜索内容.
+        #search-content {
+            position:           absolute;
+            top:                12%;
+            bottom:             0;
+            z-index:            99;
+            width:              100%;
+            padding-top:        79px;
+            padding-left:       5%;
+            padding-right:      5%;
+            background-color:   rgba(#f7f7f8, 0.9);
+
+            .all-sys {
+                display:            none;
+                position:           absolute;
+                top:                50px;
+                font-size:          17px;
+                letter-spacing:     2px;
+                color:              #4b545c;
+            }
+
+            .search-item {
+                display:            none;
+                float:              left;
+                width:              287px;
+                line-height:        66px;
+                padding-left:       76px;
+                margin-top:         20px;
+                margin-right:       20px;
+                font-size:          14px;
+            }
+
+            .search-item-double-row {
+                height:                 66px;
+                line-height:            23px;
+                padding-top:            10px;
+            }
+
+            $search-item-imgs: oa hboss bbd_boss boss crm finance_calculation full_budget money_sys hr assets_operation 400 
+                               data_modeling_platform exchange_and_sharing_platform data_service_platform data_management_platform;
+            @for $search-item-i from 1 to 16 {
+                ##{$prefix}-search-item-#{$search-item-i} {
+                    @include    transition(.2s linear);
+                    background: url(#{$img-nav-url}#{nth($search-item-imgs, $search-item-i)}_22x22.svg) no-repeat 36px 22px $light-black;
+
+                    &:hover {
+                        color:              $deep-red;
+                        background-image:   url(#{$img-nav-url}#{nth($search-item-imgs, $search-item-i)}_blue_22x22.svg);
+                    }
+                }
+            }
+
+            .search-null {
+                display:        none;
+                position:       absolute;
+                top:            20%;
+                left:           50%;
+                text-align:     center;
+                @include        translateX(-50%);
+
+                #search-null-text {
+                    line-height:        40px;
+                    font-size:          14px;
+                    letter-spacing:     1.6px;
+                    color:              #4b5359;
+                }
+            }
+        }
+
+        // 主体.
+        #main {
+            height:             78%;
+            overflow:           hidden;
+
+            #scroll-area {
+                height:         120%;
+                overflow-y:     hidden;
+                overflow-x:     auto;
+            }
+
+            // 列表.
+            #list {
+                position:           relative;
+                width:              2624px;
+                padding-top:        11%;
+                padding-left:       80px;
+
+                // 系统.
+                .sys {
+                    position:           relative;
+                    left:               100%;
+                    float:              left;
+                    margin-right:       50px;
+                    width:              268px;
+                    height:             335px;
+                    overflow:           hidden;
+                    @include            border-top-left-radius(20px);
+                    @include            border-bottom-right-radius(20px);
+                    @include            transition(.2s ease);
+                }
+
+                .sys-hover {
+                    @include simple-transform($scale: 1.1, $trans-y: -15px);
+                }
+
+                // 阴影及系统名称.
+                .gradient {
+                    float:              left;
+                    width:              268px;
+                    height:             335px;
+                    @include            border-top-left-radius(20px);
+                    @include            border-bottom-right-radius(20px);
+                    background-image:   linear-gradient(to bottom, rgba(30, 38, 46, 0), $light-black);
+
+                    .sys-simple {
+                        position:           absolute;
+                        bottom:             0;
+                        width:              100%;
+                        height:             70px;
+                        padding-left:       10%;
+
+                        .left {
+                            float:          left;
+
+                            & div:nth-child(1) {
+                                line-height:            26px;
+                                font-size:              17px;
+                                letter-spacing:         0.7px;
+                            }
+
+                            & div:nth-child(2) {
+                                line-height:            16px;
+                                opacity:                0.42;
+                                font-size:              13px;
+                                letter-spacing:         0.5px;
+                            }
+                        }
+
+                        .left-s2 {
+                            float:          left;
+
+                            & div:nth-child(1) {
+                                position:               absolute;
+                                top:                    -26px;
+                                width:                  157px;
+                                line-height:            24px;
+                                font-size:              17px;
+                                letter-spacing:         0.7px;
+                            }
+
+                            & div:nth-child(2) {
+                                margin-top:             26px;
+                                line-height:            16px;
+                                opacity:                0.42;
+                                font-size:              13px;
+                                letter-spacing:         0.5px;
+                            }
+                        }
+
+                        .sys-english-name {
+                            position:       absolute;
+                            right:          20px;
+                            width:          60px;
+                            line-height:    26px;
+                            opacity:        0.6;
+                            font-size:      17px;
+                            letter-spacing: 0.7px;
+                            text-align:     center;
+                        }
+
+                        i {
+                            position:           absolute;
+                            top:                32px;
+                            right:              30px;
+                            height:             3px;
+                            width:              40px;
+                            background-color:   $deep-red;
+                        }
+                    }
+                }
+
+                // 阴影及系统详情.
+                .sys-detail-bg {
+                    position:           absolute;
+                    top:                100%;
+                    width:              268px;
+                    height:             335px;
+                    opacity:            0.8;
+                    background-color:   $light-black;
+                    @include            border-top-left-radius(20px);
+                    @include            border-bottom-right-radius(20px);
+                    @include            box-shadow(0 26px 35px 0 rgba(30, 38, 46, 0.32));
+                }
+
+                .sys-detail {
+                    display:            none;
+                    position:           absolute;
+                    top:                0;
+                    width:              268px;
+                    height:             335px;
+                    padding-top:        19%;
+                    padding-right:      12%;
+                    padding-bottom:     19%;
+                    padding-left:       12%;
+                    @include            border-top-left-radius(20px);
+                    @include            border-bottom-right-radius(20px);
+                    @include            box-shadow(0 26px 35px 0 rgba(30, 38, 46, 0.32));
+
+                    .top {
+                        height:         106px;
+
+                        & div:nth-child(1) {
+                            line-height:            26px;
+                            font-size:              18px;
+                            text-align:             center;
+                            letter-spacing:         0.7px;
+                        }
+
+                        & div:nth-child(2) {
+                            line-height:            20px;
+                            opacity:                0.42;
+                            font-size:              14.3px;
+                            text-align:             center;
+                            letter-spacing:         0.6px;
+                        }
+
+                        & div:nth-child(3) {
+                            width:              40px;
+                            height:             3px;
+                            margin-top:         18px;
+                            margin-left:        82px;
+                            background-color:   $white;
+                        }
+                    }
+
+                    .split-line {
+                        height:             1px;
+                        opacity:            0.2;
+                        background-color:   $white;
+                    }
+
+                    .footer-s1 {
+                        display:        block;
+                        height:         70px;
+                        cursor:         pointer;
+
+                        &:hover .icon {
+                            background:         url(#{$img-nav-url}oa_blue_34x34.svg) no-repeat;
+                        }
+
+                        &:hover div {
+                            color:              $link-hover-color;
+                        }
+
+                        & .icon {
+                            display:            block;
+                            width:              34px;
+                            height:             34px;
+                            margin-top:         51px;
+                            margin-left:        85px;
+                            background:         url(#{$img-nav-url}oa_34x34.svg) no-repeat;
+                            @include            transition(.2s linear);
+                        }
+
+                        & div {
+                            position:           relative;
+                            line-height:        22px;
+                            margin-top:         14px;
+                            font-size:          14px;
+                            text-align:         center;
+                            letter-spacing:     0.6px;
+                            overflow:           hidden;
+                            @include            transition(.2s linear);
+
+                            .arrow-right {
+                                display:            none;
+                                position:           absolute;
+                                top:                5.5px;
+                                right:              10px;
+                            }
+                        }
+
+                        // 系统单icon
+                        $sys-s-icon-names: crm hr assets_operation 400;
+                        @for $sys-s-icon-i from 1 to 5 {
+                            & ##{$prefix}_#{nth($sys-s-icon-names, $sys-s-icon-i)} {
+                                background:         url(#{$img-nav-url}#{nth($sys-s-icon-names, $sys-s-icon-i)}_34x34.svg) no-repeat;
+                            }
+
+                            &:hover ##{$prefix}_#{nth($sys-s-icon-names, $sys-s-icon-i)} {
+                                background:         url(#{$img-nav-url}#{nth($sys-s-icon-names, $sys-s-icon-i)}_blue_34x34.svg) no-repeat;
+                            }
+                        }
+                    }
+
+                    .footer-s2 {
+                        display:        block;
+                        line-height:    24px;
+                        margin-bottom:  23px;
+                        cursor:         pointer;
+
+                        &:hover div {
+                            color:              $link-hover-color;
+                        }
+
+                        & .icon {
+                            float:              left;
+                            width:              22px;
+                            height:             22px;
+                            margin-left:        13px;
+                            background:         url(#{$img-nav-url}hboss_22x22.svg) no-repeat;
+                            @include            transition(.2s linear);
+                        }
+
+                        & div {
+                            position:           relative;
+                            float:              left;
+                            line-height:        22px;
+                            margin-left:        16px;
+                            font-size:          13px;
+                            text-align:         center;
+                            letter-spacing:     0.5px;
+                            @include            transition(.2s linear);
+
+                            .arrow-right {
+                                display:            none;
+                                position:           absolute;
+                                top:                5.5px;
+                                right:              -18px;
+                            }
+                        }
+                    }
+
+                    .footer-s3 {
+                        display:        block;
+                        margin-bottom:  13px;
+                        cursor:         pointer;
+
+                        &:hover div {
+                            color:              $link-hover-color;
+                        }
+
+                        & .icon {
+                            float:              left;
+                            width:              22px;
+                            height:             22px;
+                            margin-top:         6px;
+                            margin-left:        13px;
+                            background:         url(#{$img-nav-url}hboss_22x22.svg) no-repeat;
+                            @include            transition(.2s linear);
+                        }
+
+                        & div {
+                            position:           relative;
+                            float:              left;
+                            line-height:        18px;
+                            margin-left:        16px;
+                            font-size:          13px;
+                            text-align:         left;
+                            letter-spacing:     0.5px;
+                            @include            transition(.2s linear);
+
+                            .arrow-right {
+                                display:            none;
+                                position:           absolute;
+                                top:                13.5px;
+                                right:              -18px;
+                            }
+                        }
+                    }
+
+                    .footer-s2-1 {
+                        margin-bottom:              13px;
+                    }
+                }
+
+                // sys-detail.
+                .sys-detail-s1 {
+                    padding-top:                40px;
+                }
+
+                // 系统多icon
+                $sys-icon-names: hboss bbd_boss boss finance_calculation full_budget money_sys data_modeling_platform exchange_and_sharing_platform data_service_platform data_management_platform;
+                @for $sys-icon-i from 1 to 11 {
+                    ##{$prefix}_#{nth($sys-icon-names, $sys-icon-i)} .icon {
+                        background:         url(#{$img-nav-url}#{nth($sys-icon-names, $sys-icon-i)}_22x22.svg) no-repeat;
+                    }
+                    ##{$prefix}_#{nth($sys-icon-names, $sys-icon-i)}:hover .icon {
+                        background:         url(#{$img-nav-url}#{nth($sys-icon-names, $sys-icon-i)}_blue_22x22.svg) no-repeat; 
+                    }
+                }
+
+                // 系统详情动画.
+                .sys-detail-animation {
+                    @include animation(sys_detail_animation .3s ease forwards);
+                }
+
+                // 系统图片
+                $sys-i: 1;
+                $sys-imgs: 'work_sys_1x.png',
+                           'business_management_sys_1x.png',
+                           'customer_management_sys_1x.png',
+                           'financial_management_sys_1x.png',
+                           'hr_sys_1x.png',
+                           'land_management_sys_1x.png',
+                           'customservice_management_sys_1x.png',
+                           'bigdata_1x.png';
+
+                @for $sys-i from 1 to 9 {
+                    #sys-#{$sys-i} {
+                        background: url(#{$img-nav-url}#{nth($sys-imgs, $sys-i)});
+                    }
+                }
+            }
+
+            // list media
+            @media (min-height:0px) and (max-height:720px) {
+                #list {
+                    padding-top:    6%;
+                }
+            }
+        }
+
+        // 主体动画.
+        $sys-animation-second: 0s;
+        @for $sys-animation-i from 1 to 9 {
+            $sys-animation-second: $sys-animation-second + 0.1;
+            .sys-animation-#{$sys-animation-i} {
+                @if $sys-animation-i == 1 {
+                    @include animation(sys_animation 1.55s cubic-bezier(0.77, 0, 0.175, 1) forwards);
+                } @else {
+                    @include animation(sys_animation 1.55s cubic-bezier(0.77, 0, 0.175, 1) $sys-animation-second forwards);
+                }
+            }
+        }
+
+        // 底部.
+        #footer {
+            position:   relative;
+            height:     10%;
+
+            #split-line {
+                width:              100%;
+                height:             2px;
+                opacity:            0.4;
+                background-color:   #d8d8d8;
+            }
+
+            #scoll-mark {
+                position:           absolute;
+                top:                -2px;
+                left:               0;
+                width:              10%;
+                height:             4px;
+                opacity:            0.25;
+                background-color:   $light-black;
+            }
+        }
+    }
+
+    // 设置密码.
+    #set {
+        position: relative;
+        z-index: 4;
+
+        //设置密码弹框.
+        .set-password {
+            left: 50%;
+            position: absolute;
+            width: 460px;
+            background-color: $white;
+            margin-left: -230px;
+            margin-top: 145px;
+            box-shadow: 0 10px 35px 0 rgba(30, 38, 46, 0.1);
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            color: #333333;
+
+            // 表头.
+            .title {
+                height: 59px;
+                line-height: 59px;
+
+                // 表头文字.
+                span {
+                    font-size: 13px;
+                    letter-spacing: 0.5px;
+                    color: #333333;
+                    margin-left: 30px;
+                    display: inline-block;
+                }
+
+                // 关闭icon.
+                img {
+                    width: 20px;
+                    float: right;
+                    margin-top: 20px;
+                    margin-right: 30px;
+                    cursor: pointer;
+                }
+            }
+
+            // 设置密码form表单.
+            #set-password-form {
+                margin:             21px 15px;
+                width:              430px;
+
+                .help-block {
+                    padding-left:           153px;
+                }
+
+                .form-group {
+                    margin-bottom:          15px;
+                    padding-right:          65px;
+                    text-align:             right;
+
+                    label {
+                        width:              120px;
+                        text-align:         right;
+                        i {color: red;}
+                        span {
+                            margin-left:        5px;
+                            font-size:          12px;
+                            font-weight:        100;
+                            letter-spacing:     0.5px;
+                            color:              #333;
+                        }
+
+                    }
+
+                    .pwdInputP {
+                        .#{$prefix}-form-control {
+                            width:              215px;
+                            height:             31px;
+                            border:             solid 1px #ddd;
+                            margin-left:        25px;
+                            padding-left:       10px;
+                            @include input-placeholder {
+                                font-size:          12px;
+                                letter-spacing:     0.5px;
+                                color:              rgba(153, 153, 153, 0.5);
+                            }
+                        }
+                    }
+
+                    // button.
+                    &:last-child {
+                        margin-top:             35px;
+                        padding-right:          0px;
+                        text-align:             center;
+                    }
+
+                    #setPwd-confirm-btn {
+                        margin-right:           10px;
+                        background-color:       rgba($login-submit, 0.9);
+                        color:                  $white;
+                        @include                box-shadow(0 3px 20px 0 rgba($login-submit, 0.45));
+                        @include                transition(background-color .2s linear);
+
+                        &:hover {
+                            background-color:   rgba($login-submit, 1);
+                        }
+                    }
+
+                    #setPwd-cancel-btn {
+                        border:                 solid 1px #eee;
+                        color:                  #b8c2c9;
+                        background-color:       $white;
+                        @include                transition(background-color .2s linear);
+
+                        &:hover {
+                            color:              #4d4d4d;
+                            background-color:   #eee;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+//【animation】
+// 头部.
+@include keyframes(header_animation) {
+    0%   { top: -12%; }
+    50%  { top: 6%; }
+    100% { top: 0; }
+}
+
+// 系统.
+@include keyframes(sys_animation) {
+    0%      { left: 100%; }
+    100%    { left: 0%; }
+}
+
+@include keyframes(sys_detail_animation) {
+    0%      { top: 100%; }
+    100%    { top: 0%; }
+}
+
+// 登录滑块.
+@include keyframes(borderTop_animation) {
+    0%   { right: 14.2%;}
+    50%  { right: 77.6%;}
+    100% { right: 14.2%;}
+}
+@include keyframes(borderBottom_animation) {
+    0%   { left: 6.2%;}
+    50%  { left: 85.6%;}
+    100% { left: 6.2%;}
+}
+
+// 搜索.
+@include keyframes(search_switch_animation) {
+    0%    {
+        top:        100%;
+        opacity:    0;
+    }
+    30% {
+        top:        75%;
+        opacity:    0;
+    }
+    100%  {
+        top:        39%;
+        opacity:    1;
+    }
+}
+
+// 搜索关闭按钮显示.
+@include keyframes(search_switch_close_animation) {
+    100%    { opacity: 1; }
+    0%      { opacity: 0; }
+}

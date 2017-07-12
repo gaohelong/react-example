@@ -1,0 +1,30 @@
+@charset "utf-8";
+
+/* alert */
+.#{$prefix}-alert {
+    position:           fixed;
+    top:                160px;
+    left:               50%;
+    z-index:            10;
+    min-width:          152px;
+    max-width:          300px;
+    opacity:            0.97;
+    padding:            17px 10px;
+    word-wrap:          break-word;
+    word-break:         break-word;
+    color:              $white;
+    text-align:         center;
+    letter-spacing:     1.4px;
+    @include            border-radius(6px);
+    @include            translateX(-50%);
+}
+
+.#{$prefix}-alert-success {
+    @extend             .#{$prefix}-alert;
+    background-color:   #1ec9ff;
+}
+
+.#{$prefix}-alert-error {
+    @extend             .#{$prefix}-alert;
+    background-color:   #e46500;
+}

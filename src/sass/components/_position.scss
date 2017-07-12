@@ -1,0 +1,6 @@
+@charset "utf-8";
+
+/* position */
+.#{$prefix}-p-a { position: absolute; }
+.#{$prefix}-p-r { position: relative; }
+.#{$prefix}-p-f { position: fixed; }

@@ -1,0 +1,53 @@
+@charset "utf-8";
+
+// Core variables and mixins.
+@import "variables/variables";      // 加载variables/_variables.scss
+@import "mixins/mixins";            // 加载mixins/_mixins.scss
+
+// Function.
+@import "functions/functions";      // 加载自定义函数.
+
+// ie.
+.ie-support-alert {
+    padding:        20px;
+    color:          $black;
+    text-align:     center;
+}
+
+.#{$prefix}-container {
+    #nav {
+        // 头部.
+        #header {
+            top:        0;
+
+            #search-switch {
+                display:        none;
+                top:            39%;
+                opacity:        1;
+            }
+
+            #search-switch.search-switch-animation {
+                display:        block;
+
+                #search-close {
+                    opacity:    1;
+                }
+            }
+        }
+
+        // 主体.
+        #main {
+            #list {
+                // 系统.
+                .sys {
+                    left:   0%;
+                }
+
+                // 系统详情.
+                .sys-detail-animation {
+                    top:    0%;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,10 @@
+@charset "utf-8";
+
+@mixin box-shadow($shadow...) {
+    @if $enable-shadows {
+        box-shadow:         $shadow;
+        -ms-box-shadow:     $shadow;
+        -moz-box-shadow:    $shadow;
+        -webkit-box-shadow: $shadow;
+    }
+}

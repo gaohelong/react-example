@@ -1,0 +1,38 @@
+@charset "utf-8";
+
+// Core variables and mixins. 
+@import "variables/variables";      // 加载variables/_variables.scss
+@import "mixins/mixins";            // 加载mixins/_mixins.scss
+            
+// Function.
+@import "functions/functions";      // 加载自定义函数.
+
+
+.#{$prefix}-container {
+    // 导航
+    #nav {
+        // 主体.
+        #main {
+            #list {
+                .sys-detail {
+                    .footer-s1 {
+                        div {
+                            .arrow-right {
+                                // top:    7px;
+                            }
+                        }
+
+                    }
+
+                    .footer-s2 {
+                        div {
+                            .arrow-right {
+                                top:    7px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
