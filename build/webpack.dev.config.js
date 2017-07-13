@@ -23,6 +23,14 @@ const extractCss = new ExtractTextPlugin({
     // disable: process.env.NODE_ENV === "development" // true: 禁用，这是css在当前页面的<style></style>中. 如果为false: 启用，则单独生成css文件. 默认为false.
 });
 
+// DefinePlugin 允许创建一个在编译时可以配置的全局常量。这可能会对开发模式和发布模式的构建允许不同的行为非常有用。
+var definePluginConfig = new webpack.DefinePlugin({
+    'process.env': {
+        NODE_ENV: JSON.stringify('development')
+    },
+    '__PROD__': JSON.stringify('dev')
+});
+
 module.exports = function(env) {
     // publicPath
     var publicPath = (env == 'dev') ? 'http://hl.react.com/' : 'http://localhost:8080/';
@@ -191,6 +199,9 @@ module.exports = function(env) {
                 filename: 'map/[name].js.map', // 输出到map目录下
                 exclude: ['vendor.js'] // 排除vendor.js
             }),
+
+            // DefinePlugin 允许创建一个在编译时可以配置的全局常量。这可能会对开发模式和发布模式的构建允许不同的行为非常有用。
+            definePluginConfig,
 
             // 提取成单独的css文件.
             extractGlobalSass,
