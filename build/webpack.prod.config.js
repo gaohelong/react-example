@@ -146,7 +146,7 @@ module.exports = {
         // 生成html.
         new HtmlWebpackPlugin({
             title: 'react + webpack',
-            template: './src/views/app.html',
+            template: './src/template/app.html',
         }),
     ]
 };

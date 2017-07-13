@@ -5,12 +5,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 /* sass */
-require('./sass/main');
-require('./sass/modules/main/main');
+// require('./sass/main');
+import './sass/main';
+// require('./sass/modules/main/main');
+import './sass/modules/main/main';
 
 
+/*--- 编译后，JSX表达成为JavaScript对象 ---*/
 
-/*** 编译后，JSX表达成为JavaScript对象 ***/
+/*---------- QUICK START - Introducing JSX ----------*/
 
 /**
  * @desc 最简单的例子.
@@ -178,12 +181,99 @@ const element2 = {
 
 
 
+/*---------- QUICK STARTR - endering Elements ----------*/
+
+/* Elements是构建React应用程序的最小模块 */
+
 /**
- * @desc
+ * @desc 每一秒render一次整个页面. 实际的项目中我们只render一次整个页面，然后用状态来局部更新.
+ * @other 虚拟DOM、MVVM.
+ */
+// let tick = () => {
+//     const element = (
+//         <div>
+//             <h1>Hello, world!</h1>
+//             <h2>It is {new Date().toLocaleTimeString()}.</h2>
+//         </div>
+//     );
+//
+//     ReactDOM.render(
+//         element,
+//         document.getElementById('app')
+//     );
+// }
+//
+// setInterval(tick, 1000);
+
+
+
+/*---------- QUICK STARTR - Components and Props ----------*/
+
+/**
+ * @desc 最简单的组件是一个function.
+ */
+// const props = {
+//     name: 'Long Cloud!'
+// };
+//
+// let Welcome = (props) => {
+//     return <h1>Hello, {props.name}</h1>;
+// }
+//
+// let element = (
+//     <div>
+//         {Welcome(props)}
+//     </div>
+// );
+//
+// ReactDOM.render(
+//     element, document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc welcome组件, 并给组件传递props.
+ */
+// import Welcome from './containers/examples/welcome';
+// ReactDOM.render(
+//     <Welcome name="Long Cloud" />, document.getElementById('app')
+// );
+
+
+/**
+ * @desc 给组件传递props
+ * @other Let's recap what happens in this example:
+ *      1、We call ReactDOM.render() with the <Welcome name="Sara" /> element.
+ *      2、React calls the Welcome component with {name: 'Sara'} as the props.
+ *      3、Our Welcome component returns a <h1>Hello, Sara</h1> element as the result.
+ *      4、React DOM efficiently updates the DOM to match <h1>Hello, Sara</h1>.
+ * @caveat 组件名以大写字母开头.
  */
 
+/* 实例1: 默认使用隐示传递props */
+// let Welcome = (props) => {
+//     return <h1>Hello, {props.name}</h1>;
+// }
+//
+// const element = <Welcome name="Sara" />;
+//
+// ReactDOM.render(
+//     element,
+//     document.getElementById('app')
+// );
+
+/* 实例2: 传递一个对象 */
+let Welcome = (props) => {
+    return <h1>Hello, {props.data.name}! age: {props.data.age}</h1>;
+}
+
+let data = {name: 'cloud long', age: 18};
+const element = <Welcome data={data} />;
+
 ReactDOM.render(
-    element, document.getElementById('app')
+    element,
+    document.getElementById('app')
 );
 
 
