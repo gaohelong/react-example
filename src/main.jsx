@@ -8,6 +8,8 @@ import ReactDOM from 'react-dom';
 require('./sass/main');
 require('./sass/modules/main/main');
 
+
+
 /*** 编译后，JSX表达成为JavaScript对象 ***/
 
 /**
@@ -106,18 +108,79 @@ require('./sass/modules/main/main');
 /**
  * @desc html属性、自定义属性.
  */
-import avatar from './assets/images/global/boss_22x22.png'; // 导入图片.
-const element1 = <div tabIndex="0">tabIndex attr</div>;
-const element2 = (
-    <img src={avatar} />
-);
+// import avatar from './assets/images/global/boss_22x22.png'; // 导入图片.
+// const element1 = <div tabIndex="0" data-type="1">tabIndex attr</div>;
+// const element2 = (
+//     <img src={avatar} />
+// );
+//
+// let element = (
+//     <div>
+//         {element1}
+//         {element2}
+//     </div>
+// );
+//
+// ReactDOM.render(
+//     element, document.getElementById('app')
+// );
 
-let element = (
-    <div>
-        {element1}
-        {element2}
-    </div>
-);
+
+
+/**
+ * @desc 避免xss攻击.
+ */
+// const title = escape('<a href="http://www.163.com">163</a>');
+// const element = <h1>{title}</h1>; // This is safe:
+//
+// ReactDOM.render(
+//     element, document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc 在jsx中class要写成className, 下面element1和element2最终结果是相同的.
+ * @other React.createElement()会做语法检查提醒我们哪里写错了.
+ */
+// const element1 = (
+//     <h1 className="greeting">
+//         Hello, world!
+//     </h1>
+// );
+//
+// const element2 = React.createElement(
+//     'h1',
+//     {className: 'greeting'},
+//     'Hello, world 1!'
+// );
+//
+// let element = (
+//     <div>
+//         {element1}
+//         {element2}
+//     </div>
+// );
+//
+// ReactDOM.render(
+//     element, document.getElementById('app')
+// );
+
+/* 上面element2使用React.createElement()实际是创建了如下对象.
+const element2 = {
+    type: 'h1',
+    props: {
+        className: 'greeting',
+        children: 'Hello, world'
+    }
+};
+*/
+
+
+
+/**
+ * @desc
+ */
 
 ReactDOM.render(
     element, document.getElementById('app')
