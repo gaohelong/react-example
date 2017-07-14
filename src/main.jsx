@@ -429,6 +429,569 @@ const element2 = {
 
 
 
+/*---------- QUICK START - State and Lifecycle ----------*/
+
+/**
+ * @desc 组件使用状态和生命周期制作时钟.
+ *
+ * @other Let's quickly recap what's going on and the order in which the methods are called:
+ *
+ *      1) When <Clock /> is passed to ReactDOM.render(), React calls the constructor of the Clock component.
+ *         Since Clock needs to display the current time, it initializes this.state with an object including the current time. We will later update this state.
+ *
+ *      2) React then calls the Clock component's render() method. This is how React learns what should be displayed on the screen.
+ *         React then updates the DOM to match the Clock's render output.
+ *
+ *      3) When the Clock output is inserted in the DOM, React calls the componentDidMount() lifecycle hook.
+ *         Inside it, the Clock component asks the browser to set up a timer to call tick() once a second.
+ *
+ *      4) Every second the browser calls the tick() method. Inside it, the Clock component schedules a UI update by calling setState() with an object containing the current time.
+ *         Thanks to the setState() call, React knows the state has changed, and calls render() method again to learn what should be on the screen.
+ *         This time, this.state.date in the render() method will be different, and so the render output will include the updated time. React updates the DOM accordingly.
+ *
+ *      5) If the Clock component is ever removed from the DOM, React calls the componentWillUnmount() lifecycle hook so the timer is stopped.
+ */
+// class Clock extends React.Component {
+//     // use constructor init state.
+//     constructor(props) {
+//         super(props); // Class components should always call the base constructor with props.
+//         this.state = {date: new Date()};
+//     }
+//
+//     // 
+//     componentDidMount() {
+//         this.timerID = setInterval(
+//             () => this.tick(),
+//             1000
+//         );
+//     }
+//
+//     // 
+//     componentWillUnmount() {
+//         clearInterval(this.timerID);
+//     }
+//
+//     // 
+//     tick() {
+//         // Wrong: unable update state.
+//         // this.state.date = new Date();
+// 
+//         // Correct: use this.setState() update state.
+//         this.setState({
+//             date: new Date()
+//         });
+//     }
+//
+//     render() {
+//         return (
+//             <div>
+//                 <h1>Hello, world!</h1>
+//                 <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+//             </div>
+//         );
+//     }
+// }
+//
+// ReactDOM.render(
+//     <Clock />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc 计数器(State Updates May Be Asynchronous)
+ */
+// class Counter extends React.Component {
+//     constructor(props) {
+//         super(props);
+//         this.state = {
+//             counter: 0
+//         };
+//     }
+// 
+//     //
+//     componentDidMount() {
+//         this.CounterClear = setInterval(
+//             () => this.add(),
+//             1000
+//         );
+//     }
+// 
+//     //
+//     componentWillUnmount() {
+//         clearInterval(this.CounterClear);
+//     }
+// 
+//     //
+//     add() {
+//         // Wrong
+//         // this.setState({
+//         //     counter: this.state.counter + step,
+//         // });
+// 
+//         // Correct
+//         let prevState = this.state;
+//         let props = this.props;
+//         this.setState((prevState, porps) => ({counter: Number(prevState.counter) + Number(props.step)}));
+//     }
+// 
+//     render() {
+//         return (
+//             <div>
+//                 计数: {this.state.counter}
+//             </div>
+//         );
+//     }
+// }
+// 
+// /* 每个组件都是独立的互不影响 */
+// let App = () => {
+//     return (
+//         <div>
+//             <Counter step="1" />
+//             <Counter step="2" />
+//             <Counter step="3" />
+//         </div>
+//     );
+// };
+// 
+// ReactDOM.render(
+//     <App />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc state update meger
+ * 
+constructor(props) {
+    super(props);
+    this.state = {
+        posts: [],
+        comments: []
+    };
+}
+
+componentDidMount() {
+    fetchPosts().then(response => {
+        this.setState({
+            posts: response.posts
+        });
+    });
+
+    fetchComments().then(response => {
+        this.setState({
+            comments: response.comments
+        });
+    });
+}*/
+
+
+
+/*---------- QUICK START - Handling Events ----------*/
+
+/**
+ * @desc 简单的事件处理.
+ */
+// function ActionLink() {
+//     function handleClick(e) {
+//         e.preventDefault();
+//         console.log('The link was clicked.');
+//     }
+// 
+//     return (
+//         <a href="#" onClick={handleClick}>
+//             Click me
+//         </a>
+//     );
+// }
+// 
+// ReactDOM.render(
+//     <ActionLink />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc 使用es6 class定义组件并绑定事件(使用属性初始化语法)
+ */
+// class Toggle extends React.Component {
+//     constructor(props) {
+//         super(props);
+//         this.state = {
+//             isToggleOn: true
+//         };
+// 
+//         // This binding is necessary to make `this` work in the callback
+//         this.handleClick = this.handleClick.bind(this); // using property initializer syntax.
+//     }
+// 
+//     handleClick() {
+//         console.log(this.props.desc);
+//         this.setState(prevState => ({
+//             isToggleOn: !prevState.isToggleOn
+//         }));
+//     }
+// 
+//     render() {
+//         return (
+//             <button onClick={this.handleClick}>
+//                 {this.state.isToggleOn ? 'ON' : 'OFF'}
+//             </button>
+//         );
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <Toggle desc="别点我" />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc 使用es6 class定义组件并绑定事件(使用箭头回调函数).
+ *       If you aren't using property initializer syntax, you can use an arrow function in the callback
+ *
+ * other 推荐使用属性初始化语法.
+ *       if this callback is passed as a prop to lower components, those components might do an extra re-rendering.
+ *       We generally recommend binding in the constructor or using the property initializer syntax, to avoid this sort of performance problem
+ */
+// class Toggle extends React.Component {
+//     constructor(props) {
+//         super(props);
+//         this.state = {
+//             isToggleOn: true
+//         };
+//     }
+// 
+//     handleClick(e) {
+//         console.log(e, e.target);
+//         console.log(this.props.desc);
+//         this.setState(prevState => ({
+//             isToggleOn: !prevState.isToggleOn
+//         }));
+//     }
+// 
+//     render() {
+//         // use an arrow function in the callback: <button onClick={(e) => this.handleClick(e)}>
+//         return (
+//             <button onClick={(e) => this.handleClick(e)}>
+//                 {this.state.isToggleOn ? 'ON' : 'OFF'}
+//             </button>
+//         );
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <Toggle desc="别点我" />,
+//     document.getElementById('app')
+// );
+
+
+
+/*---------- QUICK START - Conditional Rendering ----------*/
+
+/**
+ * @desc 根据是否登录(条件)呈现不同的问候语.
+ */
+// function UserGreeting(props) {
+//     return <h1>Welcome back!</h1>;
+// }
+// 
+// function GuestGreeting(props) {
+//     return <h1>Please sign up.</h1>;
+// }
+// 
+// function Greeting(props) {
+//     const isLoggedIn = props.isLoggedIn;
+// 
+//     if (isLoggedIn) {
+//         return <UserGreeting />;
+//     }
+// 
+//     return <GuestGreeting />;
+// }
+// 
+// ReactDOM.render(
+//     // Try changing to isLoggedIn={true}:
+//     <Greeting isLoggedIn={false} />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc 元素变量：登录、退出.
+ */
+// class LoginControl extends React.Component {
+//     constructor(props) {
+//         super(props);
+// 
+//         this.handleLoginClick = this.handleLoginClick.bind(this);
+//         this.handleLogoutClick = this.handleLogoutClick.bind(this);
+// 
+//         this.state = {isLoggedIn: false};
+//     }
+// 
+//     handleLoginClick() {
+//         this.setState({isLoggedIn: true});
+//     }
+// 
+//     handleLogoutClick() {
+//         this.setState({isLoggedIn: false});
+//     }
+// 
+//     render() {
+//         const isLoggedIn = this.state.isLoggedIn;
+// 
+//         let button = null; // 使用变量存储元素.
+//         if (isLoggedIn) {
+//             button = <LogoutButton onClick={this.handleLogoutClick} />;
+//         } else {
+//             button = <LoginButton onClick={this.handleLoginClick} />;
+//         }
+// 
+//         return (
+//             <div>
+//                 <Greeting isLoggedIn={isLoggedIn} />
+//                 {button}
+//             </div>
+//         );
+//     }
+// }
+// 
+// function UserGreeting(props) {
+//     return <h1>Welcome back!</h1>;
+// }
+// 
+// function GuestGreeting(props) {
+//     return <h1>Please sign up.</h1>;
+// }
+// 
+// function Greeting(props) {
+//     const isLoggedIn = props.isLoggedIn;
+//     if (isLoggedIn) {
+//         return <UserGreeting />;
+//     }
+//     return <GuestGreeting />;
+// }
+// 
+// function LoginButton(props) {
+//     return (
+//         <button onClick={props.onClick}>
+//             Login
+//         </button>
+//     );
+// }
+// 
+// function LogoutButton(props) {
+//     return (
+//         <button onClick={props.onClick}>
+//             Logout
+//         </button>
+//     );
+// }
+// 
+// ReactDOM.render(
+//     <LoginControl />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc 在jsx的{}中可以写任何表达式.
+ */
+// function Mailbox(props) {
+//     const unreadMessages = props.unreadMessages;
+//     return (
+//         <div>
+//             <h1>Hello!</h1>
+//             {unreadMessages.length > 0 &&
+//                 <h2>
+//                     You have {unreadMessages.length} unread messages.
+//                 </h2>
+//             }
+//         </div>
+//     );
+// }
+// 
+// const messages = ['React', 'Re: React', 'Re:Re: React'];
+// ReactDOM.render(
+//     <Mailbox unreadMessages={messages} />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc 使用三目运算符.
+ */
+// class LoginController extends React.Component {
+//     constructor(props) {
+//         super(props);
+//         
+//         this.state = {
+//             isLoggedIn: false
+//         }
+//     }
+//     
+//     render() {
+//         const isLoggedIn = this.state.isLoggedIn;
+//         return (
+//             <div>
+//                 The user is <b>{isLoggedIn ? 'currently' : 'not'}</b> logged in.
+//             </div>
+//         );
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <LoginController />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc 使用算目运算符.
+ */
+// class LoginControl extends React.Component {
+//     constructor(props) {
+//         super(props);
+// 
+//         this.handleLoginClick = this.handleLoginClick.bind(this);
+//         this.handleLogoutClick = this.handleLogoutClick.bind(this);
+// 
+//         this.state = {isLoggedIn: false};
+//     }
+// 
+//     handleLoginClick() {
+//         this.setState({isLoggedIn: true});
+//     }
+// 
+//     handleLogoutClick() {
+//         this.setState({isLoggedIn: false});
+//     }
+// 
+//     render() {
+//         const isLoggedIn = this.state.isLoggedIn;
+//         return (
+//             <div>
+//                 <Greeting isLoggedIn={isLoggedIn} />
+//                 {isLoggedIn ? (
+//                     <LogoutButton onClick={this.handleLogoutClick} />
+//                 ) : (
+//                     <LoginButton onClick={this.handleLoginClick} />
+//                 )}
+//             </div>
+//         );
+//     }
+// }
+// 
+// function UserGreeting(props) {
+//     return <h1>Welcome back!</h1>;
+// }
+// 
+// function GuestGreeting(props) {
+//     return <h1>Please sign up.</h1>;
+// }
+// 
+// function Greeting(props) {
+//     const isLoggedIn = props.isLoggedIn;
+//     if (isLoggedIn) {
+//         return <UserGreeting />;
+//     }
+//     return <GuestGreeting />;
+// }
+// 
+// function LoginButton(props) {
+//     return (
+//         <button onClick={props.onClick}>
+//             Login
+//         </button>
+//     );
+// }
+// 
+// function LogoutButton(props) {
+//     return (
+//         <button onClick={props.onClick}>
+//             Logout
+//         </button>
+//     );
+// }
+// 
+// ReactDOM.render(
+//     <LoginControl />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc
+ */
+function WarningBanner(props) {
+    if (!props.warn) {
+        return null;
+    }
+
+    return (
+        <div className="warning">
+            Warning!
+        </div>
+    );
+}
+
+class Page extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {showWarning: true}
+        this.handleToggleClick = this.handleToggleClick.bind(this);
+    }
+
+    handleToggleClick() {
+        this.setState(prevState => ({
+            showWarning: !prevState.showWarning
+        }));
+    }
+
+    render() {
+        return (
+            <div>
+                <WarningBanner warn={this.state.showWarning} />
+                <button onClick={this.handleToggleClick}>
+                    {this.state.showWarning ? 'Hide' : 'Show'}
+                </button>
+            </div>
+        );
+    }
+}
+
+ReactDOM.render(
+    <Page />,
+    document.getElementById('app')
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* 常量调用 */
 console.log(process.env.NODE_ENV);
 console.log(__PROD__);
