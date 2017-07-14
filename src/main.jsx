@@ -233,7 +233,8 @@ const element2 = {
 
 
 /**
- * @desc welcome组件, 并给组件传递props.
+ * @desc 使用es6 class编写组件.
+ *       welcome组件, 并给组件传递props.
  */
 // import Welcome from './containers/examples/welcome';
 // ReactDOM.render(
@@ -251,7 +252,7 @@ const element2 = {
  * @caveat 组件名以大写字母开头.
  */
 
-/* 实例1: 默认使用隐示传递props */
+/* 实例1 */
 // let Welcome = (props) => {
 //     return <h1>Hello, {props.name}</h1>;
 // }
@@ -264,17 +265,167 @@ const element2 = {
 // );
 
 /* 实例2: 传递一个对象 */
-let Welcome = (props) => {
-    return <h1>Hello, {props.data.name}! age: {props.data.age}</h1>;
-}
+// let Welcome = (props) => {
+//     return <h1>Hello, {props.data.name}! age: {props.data.age}</h1>;
+// }
+//
+// let data = {name: 'cloud long', age: 18};
+// const element = <Welcome data={data} />;
+//
+// ReactDOM.render(
+//     element,
+//     document.getElementById('app')
+// );
 
-let data = {name: 'cloud long', age: 18};
-const element = <Welcome data={data} />;
 
-ReactDOM.render(
-    element,
-    document.getElementById('app')
-);
+/**
+ * @desc Components can refer to other components in their output.
+ *       This lets us use the same component abstraction for any level of detail.
+ *       A button, a form, a dialog, a screen: in React apps, all those are commonly expressed as components.
+ *
+ * @other Components must return a single root element. This is why we added a <div> to contain all the <Welcome /> elements.
+ */
+/* 实例1 */
+// function Welcome(props) {
+//     return <h1>Hello, {props.name}</h1>;
+// }
+//
+// function App() {
+//     return (
+//         <div>
+//             <Welcome name="Sara" />
+//             <Welcome name="Cahal" />
+//             <Welcome name="Edite" />
+//         </div>
+//     );
+// }
+//
+// ReactDOM.render(
+//     <App />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc Extracting Components
+ */
+/* 实例1 */
+// function formatDate(date) {
+//     return date.toLocaleDateString();
+// }
+//
+// function Comment(props) {
+//     return (
+//         <div className="Comment">
+//             <div className="UserInfo">
+//                 <img className="Avatar"
+//                     src={props.author.avatarUrl}
+//                     alt={props.author.name}
+//                 />
+//                 <div className="UserInfo-name">
+//                     {props.author.name}
+//                 </div>
+//             </div>
+//             <div className="Comment-text">
+//                 {props.text}
+//             </div>
+//             <div className="Comment-date">
+//                 {formatDate(props.date)}
+//             </div>
+//         </div>
+//     );
+// }
+//
+// const comment = {
+//     date: new Date(),
+//     text: 'I hope you enjoy learning React!',
+//     author: {
+//         name: 'Hello Kitty',
+//         avatarUrl: 'http://placekitten.com/g/64/64'
+//     }
+// };
+//
+// ReactDOM.render(
+//     <Comment
+//         date={comment.date}
+//         text={comment.text}
+//         author={comment.author}
+//     />,
+//     document.getElementById('app')
+// );
+
+/* 实例2: 将实例1拆分成更小的组件 */
+// function Avatar(props) {
+//     return (
+//         <img className="Avatar"
+//             src={props.user.avatarUrl}
+//             alt={props.user.name}
+//         />
+//     );
+// }
+//
+// function UserInfo(props) {
+//     return (
+//         <div className="UserInfo">
+//             <Avatar user={props.user} />
+//             <div className="UserInfo-name">
+//                 {props.user.name}
+//             </div>
+//         </div>
+//     );
+// }
+//
+// function formatDate(date) {
+//     return date.toLocaleDateString();
+// }
+//
+// function Comment(props) {
+//     return (
+//         <div className="Comment">
+//             <UserInfo user={props.author} />
+//             <div className="Comment-text">
+//                 {props.text}
+//             </div>
+//             <div className="Comment-date">
+//                 {formatDate(props.date)}
+//             </div>
+//         </div>
+//     );
+// }
+//
+// const comment = {
+//     date: new Date(),
+//     text: 'I hope you enjoy learning React!',
+//     author: {
+//         name: 'Hello Kitty',
+//         avatarUrl: 'http://placekitten.com/g/64/64'
+//     }
+// };
+//
+// ReactDOM.render(
+//     <Comment
+//         date={comment.date}
+//         text={comment.text}
+//         author={comment.author}
+//     />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc Props are Read-Only
+ */
+// let Welcome = props => {
+//     // props.name = 'Saber'; // error writing, props ares readonly.
+//     return <h1>Hello, {props.name}</h1>
+// };
+//
+// ReactDOM.render(
+//     <Welcome name="Long Cloud" />,
+//     document.getElementById('app')
+// );
 
 
 
