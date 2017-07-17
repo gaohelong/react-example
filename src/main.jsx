@@ -1695,22 +1695,132 @@ componentDidMount() {
 
 
 
-/*---------- QUICK START -  ----------*/
+
+
+
+/*---------- ADVANCED GUIDES - JSX In Depth ----------*/
 
 /**
  * @desc
  */
 
 
+/**
+ * @desc Functions as Children.
+ */
+// Calls the children callback numTimes to produce a repeated component
+// function Repeat(props) {
+//     let items = [];
+//     for (let i = 0; i < props.numTimes; i++) {
+//         items.push(props.children(i));
+//     }
+//     return <div>{items}</div>;
+// }
+// 
+// function ListOfTenThings() {
+//     return (
+//         <Repeat numTimes={10}>
+//             {(index) => <div key={index}>This is item {index} in the list</div>}
+//         </Repeat>
+//     );
+// }
+// 
+// ReactDOM.render(
+//     <ListOfTenThings />,
+//     document.getElementById('app')
+// );
 
 
 
+/**
+ * @desc 布尔值、null、未定义将被忽略.
+ */
+// false, null, undefined, and true are valid children. They simply don't render. These JSX expressions will all render to the same thing.
+// function Test() {
+//     return (
+//         <div>
+//             <div />
+//             <div></div>
+//             <div>{false}</div>
+//             <div>{null}</div>
+//             <div>{undefined}</div>
+//             <div>{true}</div>
+//         </div>
+//     );
+// }
+// 
+// ReactDOM.render(
+//     <Test />,
+//     document.getElementById('app')
+// );
 
 
 
+/**
+ * @desc 当show为true: 显示Test1组件; false: 不显示Test1组件，只有值为false、null、undefined时才不显示 
+ */
+// function Test() {
+//     let show = true;
+//     return (
+//         <div>
+//             {
+//                 show && <Test1 /> 
+//             }
+//         </div>
+//     );
+// }
+// 
+// function Test1() {
+//     return <div>gogogo</div>;
+// }
+// 
+// ReactDOM.render(
+//     <Test />,
+//     document.getElementById('app')
+// );
 
 
 
+/**
+ * @desc props.list.length如果等于0将会输出0并且不会显示Test1组件,为了解决这个问题可以想下面这样写.
+ */
+// function Test(props) {
+//     return (
+//         <div>
+//             {
+//                 props.list.length > 0 && <Test1 /> 
+//             }
+//         </div>
+//     );
+// }
+// 
+// function Test1() {
+//     return <div>gogogo</div>;
+// }
+// 
+// ReactDOM.render(
+//     <Test list={[]} />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc 如果希望在输出中出现false、true、null或undefined的值，则必须首先将其转换为字符串
+ */
+function Test(props) {
+    const myVariable = undefined;
+    return (
+        <div>
+             My JavaScript variable is {String(myVariable)}.
+        </div>
+    );
+}
+
+ReactDOM.render(
+    <Test />,
+    document.getElementById('app')
+);
 
 
 
