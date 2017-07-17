@@ -933,49 +933,783 @@ componentDidMount() {
 
 
 /**
+ * @desc 防止组件呈现.
+ */
+// function WarningBanner(props) {
+//     if (!props.warn) {
+//         return null;
+//     }
+// 
+//     return (
+//         <div className="warning">
+//             Warning!
+//         </div>
+//     );
+// }
+// 
+// class Page extends React.Component {
+//     constructor(props) {
+//         super(props);
+//         this.state = {showWarning: true}
+//         this.handleToggleClick = this.handleToggleClick.bind(this);
+//     }
+// 
+//     handleToggleClick() {
+//         this.setState(prevState => ({
+//             showWarning: !prevState.showWarning
+//         }));
+//     }
+// 
+//     render() {
+//         return (
+//             <div>
+//                 <WarningBanner warn={this.state.showWarning} />
+//                 <button onClick={this.handleToggleClick}>
+//                     {this.state.showWarning ? 'Hide' : 'Show'}
+//                 </button>
+//             </div>
+//         );
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <Page />,
+//     document.getElementById('app')
+// );
+
+
+/*---------- QUICK START - Lists and Keys ----------*/
+
+/**
  * @desc
  */
-function WarningBanner(props) {
-    if (!props.warn) {
-        return null;
-    }
+// const numbers = [1, 2, 3, 4, 5];
+// const doubled = numbers.map(number => number * 2);
+// console.log(numbers, doubled);
 
-    return (
-        <div className="warning">
-            Warning!
-        </div>
-    );
-}
 
-class Page extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {showWarning: true}
-        this.handleToggleClick = this.handleToggleClick.bind(this);
-    }
 
-    handleToggleClick() {
-        this.setState(prevState => ({
-            showWarning: !prevState.showWarning
-        }));
-    }
+/**
+ * @desc 显示多个组件.
+ */
+// const numbers = [1, 2, 3, 4, 5];
+// const listItems = numbers.map((number) =>
+//     <li>{number}</li>
+// );
+// 
+// ReactDOM.render(
+//     <ul>{listItems}</ul>,
+//     document.getElementById('app')
+// );
 
-    render() {
-        return (
-            <div>
-                <WarningBanner warn={this.state.showWarning} />
-                <button onClick={this.handleToggleClick}>
-                    {this.state.showWarning ? 'Hide' : 'Show'}
-                </button>
-            </div>
-        );
-    }
-}
 
-ReactDOM.render(
-    <Page />,
-    document.getElementById('app')
-);
+
+/**
+ * @desc 基础列表组件: 给列表设置key来区别他们的身份.
+ */
+// function NumberList(props) {
+//     const numbers = props.numbers;
+//     const listItems = numbers.map(number => 
+//         <li key={number.toString()}>
+//             {number}
+//         </li>
+//     );
+// 
+//     return (
+//         <ul>{listItems}</ul>
+//     );
+// }
+// 
+// const numbers = [1, 2, 3, 4, 5];
+// ReactDOM.render(
+//     <NumberList numbers={numbers} />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc 不正确的key使用.
+ */
+// function ListItem(props) {
+//     const value = props.value;
+//     return (
+//         // Wrong! There is no need to specify the key here:
+//         <li key={value.toString()}>
+//             {value}
+//         </li>
+//     );
+// }
+// 
+// function NumberList(props) {
+//     const numbers = props.numbers;
+//     const listItems = numbers.map((number) =>
+//         // Wrong! The key should have been specified here:
+//         <ListItem value={number} />
+//     );
+// 
+//     return (
+//         <ul>
+//             {listItems}
+//         </ul>
+//     );
+// }
+// 
+// const numbers = [1, 2, 3, 4, 5];
+// ReactDOM.render(
+//     <NumberList numbers={numbers} />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc 正确的key使用.
+ */
+// function ListItem(props) {
+//     // Correct! There is no need to specify the key here:
+//     return <li>{props.value}</li>;
+// }
+// 
+// function NumberList(props) {
+//     const numbers = props.numbers;
+//     const listItems = numbers.map((number) =>
+//         // Correct! Key should be specified inside the array.
+//         <ListItem key={number.toString()} 
+//             value={number} />
+//     );
+// 
+//     return (
+//         <ul>
+//             {listItems}
+//         </ul>
+//     );
+// }
+// 
+// const numbers = [1, 2, 3, 4, 5];
+// ReactDOM.render(
+//     <NumberList numbers={numbers} />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc Keys Must Only Be Unique Among Siblings.
+ * @other Keys used within arrays should be unique among their siblings. However they don't need to be globally unique.
+ *        We can use the same keys when we produce two different arrays.
+ */
+// function Blog(props) {
+//     const sidebar = (
+//         <ul>
+//             {props.posts.map((post) =>
+//                 <li key={post.id}>
+//                     {post.title}
+//                 </li>
+//             )}
+//         </ul>
+//     );
+// 
+//     const content = props.posts.map((post) =>
+//         <div key={post.id}>
+//             <h3>{post.title}</h3>
+//             <p>{post.content}</p>
+//         </div>
+//     );
+// 
+//     return (
+//         <div>
+//             {sidebar}
+//             <hr />
+//             {content}
+//         </div>
+//     );
+// }
+// 
+// const posts = [
+//     {id: 1, title: 'Hello World', content: 'Welcome to learning React!'},
+//     {id: 2, title: 'Installation', content: 'You can install React from npm.'}
+// ];
+// 
+// ReactDOM.render(
+//     <Blog posts={posts} />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc key不会传递给组件, 如果你想使用key中的值请赋给其他属性，例如下面的id.
+ */
+// const content = posts.map((post) =>
+//         <Post
+//             key={post.id}
+//             id={post.id}
+//             title={post.title} />
+// );
+
+
+
+/**
+ * @desc JSX允许在花括号中嵌入表达式及map.
+ */
+// function ListItem(props) {
+//     return <li>{props.value}</li>;
+// }
+// 
+// function NumberList(props) {
+//     const numbers = props.numbers;
+//     return (
+//         <ul>
+//             {
+//                 numbers.map((number) =>
+//                     <ListItem key={number.toString()} value={number} />
+//                 )
+//             }
+//         </ul>
+//     );
+// }
+// 
+// const numbers = [1, 2, 3, 4, 5];
+// ReactDOM.render(
+//     <NumberList numbers={numbers} />,
+//     document.getElementById('app')
+// );
+
+
+
+
+/*---------- QUICK START - Forms ----------*/
+
+/**
+ * @desc Controlled Components.
+ */
+// class NameForm extends React.Component {
+//     constructor(props) {
+//         super(props);
+//         this.state = {value: ''};
+// 
+//         this.handleChange = this.handleChange.bind(this);
+//         this.handleSubmit = this.handleSubmit.bind(this);
+//     }
+// 
+//     handleChange(event) {
+//         this.setState({value: event.target.value});
+//     }
+// 
+//     handleSubmit(event) {
+//         console.log('A name was submitted: ' + this.state.value);
+//         event.preventDefault();
+//     }
+// 
+//     render() {
+//         return (
+//             <form onSubmit={this.handleSubmit}>
+//                 <label>
+//                     Name:
+//                     <input type="text" value={this.state.value} onChange={this.handleChange} />
+//                 </label>
+//                 <input type="submit" value="Submit" />
+//             </form>
+//        );
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <NameForm />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc textarea.
+ */
+// class EssayForm extends React.Component {
+//     constructor(props) {
+//         super(props);
+//         this.state = {
+//             value: 'Please write an essay about your favorite DOM element.'
+//         };
+// 
+//         this.handleChange = this.handleChange.bind(this);
+//         this.handleSubmit = this.handleSubmit.bind(this);
+//     }
+// 
+//     handleChange(event) {
+//         this.setState({value: event.target.value});
+//     }
+// 
+//     handleSubmit(event) {
+//         console.log('An essay was submitted: ' + this.state.value);
+//         event.preventDefault();
+//     }
+// 
+//     render() {
+//         return (
+//             <form onSubmit={this.handleSubmit}>
+//                 <label>
+//                     Name:
+//                     <textarea value={this.state.value} onChange={this.handleChange} />
+//                 </label>
+//                 <input type="submit" value="Submit" />
+//             </form>
+//        );
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <EssayForm />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc select.
+ */
+// class FlavorForm extends React.Component {
+//     constructor(props) {
+//         super(props);
+//         this.state = {value: 'coconut'};
+// 
+//         this.handleChange = this.handleChange.bind(this);
+//         this.handleSubmit = this.handleSubmit.bind(this);
+//     }
+// 
+//     handleChange(event) {
+//         this.setState({value: event.target.value});
+//     }
+// 
+//     handleSubmit(event) {
+//         console.log('Your favorite flavor is: ' + this.state.value);
+//         event.preventDefault();
+//     }
+// 
+//     render() {
+//         return (
+//             <form onSubmit={this.handleSubmit}>
+//                 <label>
+//                    Pick your favorite La Croix flavor:
+//                     <select value={this.state.value} onChange={this.handleChange}>
+//                         <option value="grapefruit">Grapefruit</option>
+//                         <option value="lime">Lime</option>
+//                         <option value="coconut">Coconut</option>
+//                         <option value="mango">Mango</option>
+//                     </select>
+//                 </label>
+//                 <input type="submit" value="Submit" />
+//             </form>
+//         );
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <FlavorForm />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc 处理多个input.
+ */
+// class Reservation extends React.Component {
+//     constructor(props) {
+//         super(props);
+//         this.state = {
+//             isGoing: true,
+//             numberOfGuests: 2
+//         };
+// 
+//         this.handleInputChange = this.handleInputChange.bind(this);
+//     }
+// 
+//     handleInputChange(event) {
+//         const target = event.target;
+//         const value = target.type === 'checkbox' ? target.checked : target.value;
+//         const name = target.name;
+// 
+//         // ES6计算属性(https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer#Computed_property_names).
+//         this.setState({
+//             [name]: value
+//         });
+// 
+//         // ES5.
+//         // var partialState = {};
+//         // partialState[name] = value;
+//         // this.setState(partialState);
+//     }
+// 
+//     render() {
+//         return (
+//             <form>
+//                 <label>
+//                     Is going:
+//                     <input
+//                         name="isGoing"
+//                         type="checkbox"
+//                         checked={this.state.isGoing}
+//                         onChange={this.handleInputChange} />
+//                 </label>
+//                 <br />
+//                 <label>
+//                     Number of guests:
+//                     <input
+//                         name="numberOfGuests"
+//                         type="number"
+//                         value={this.state.numberOfGuests}
+//                         onChange={this.handleInputChange} />
+//                 </label>
+//             </form>
+//         );
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <Reservation />,
+//     document.getElementById('app')
+// );
+
+
+
+/*---------- QUICK START - Lifting State Up ----------*/
+
+/**
+ * @desc 简单实例：水温计算器.
+ */
+// function BoilingVerdict(props) {
+//     if (props.celsius >= 100) {
+//         return <p>The water would boil.</p>;
+//     }
+//     return <p>The water would not boil.</p>;
+// }
+// 
+// class Calculator extends React.Component {
+//     constructor(props) {
+//         super(props);
+//         this.handleChange = this.handleChange.bind(this);
+//         this.state = {temperature: ''};
+//     }
+// 
+//     handleChange(e) {
+//         this.setState({temperature: e.target.value});
+//     }
+// 
+//     render() {
+//         const temperature = this.state.temperature;
+//         return (
+//             <fieldset>
+//                 <legend>Enter temperature in Celsius:</legend>
+//                 <input
+//                     value={temperature}
+//                     onChange={this.handleChange} />
+//                 <BoilingVerdict
+//                     celsius={parseFloat(temperature)} />
+//             </fieldset>
+//        );
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <Calculator />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc 计算摄氏、华氏.
+ */
+// const scaleNames = {
+//     c: 'Celsius',
+//     f: 'Fahrenheit'
+// };
+// 
+// // 摄氏度.
+// function toCelsius(fahrenheit) {
+//     return (fahrenheit - 32) * 5 / 9;
+// }
+// 
+// // 华氏.
+// function toFahrenheit(celsius) {
+//     return (celsius * 9 / 5) + 32;
+// }
+// 
+// function tryConvert(temperature, convert) {
+//     const input = parseFloat(temperature);
+//     if (Number.isNaN(input)) {
+//         return '';
+//     }
+//     const output = convert(input);
+//     const rounded = Math.round(output * 1000) / 1000;
+//     return rounded.toString();
+// }
+// 
+// // 是否沸腾.
+// function BoilingVerdict(props) {
+//     if (props.celsius >= 100) {
+//         return <p>The water would boil.</p>;
+//     }
+//     return <p>The water would not boil.</p>;
+// }
+// 
+// class TemperatureInput extends React.Component {
+//     constructor(props) {
+//         super(props);
+//         this.handleChange = this.handleChange.bind(this);
+//     }
+// 
+//     handleChange(e) {
+//         this.props.onTemperatureChange(e.target.value);
+//     }
+// 
+//     render() {
+//         const temperature = this.props.temperature;
+//         const scale = this.props.scale;
+//         return (
+//             <fieldset>
+//                 <legend>Enter temperature in {scaleNames[scale]}:</legend>
+//                 <input value={temperature}
+//                     onChange={this.handleChange} />
+//             </fieldset>
+//        );
+//     }
+// }
+// 
+// // 计算器.
+// class Calculator extends React.Component {
+//     constructor(props) {
+//         super(props);
+//         this.handleCelsiusChange = this.handleCelsiusChange.bind(this);
+//         this.handleFahrenheitChange = this.handleFahrenheitChange.bind(this);
+//         this.state = {temperature: '', scale: 'c'};
+//     }
+// 
+//     handleCelsiusChange(temperature) {
+//         this.setState({scale: 'c', temperature});
+//     }
+// 
+//     handleFahrenheitChange(temperature) {
+//         this.setState({scale: 'f', temperature});
+//     }
+// 
+//     render() {
+//         const scale = this.state.scale;
+//         const temperature = this.state.temperature;
+//         const celsius = scale === 'f' ? tryConvert(temperature, toCelsius) : temperature;
+//         const fahrenheit = scale === 'c' ? tryConvert(temperature, toFahrenheit) : temperature;
+// 
+//         return (
+//             <div>
+//                 <TemperatureInput
+//                     scale="c"
+//                     temperature={celsius}
+//                     onTemperatureChange={this.handleCelsiusChange} />
+// 
+//                 <TemperatureInput
+//                     scale="f"
+//                     temperature={fahrenheit}
+//                     onTemperatureChange={this.handleFahrenheitChange} />
+// 
+//                 <BoilingVerdict
+//                     celsius={parseFloat(celsius)} />
+//             </div>
+//         );
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <Calculator />,
+//     document.getElementById('app')
+// );
+
+
+
+/*---------- QUICK START - Composition vs Inheritance ----------*/
+
+/**
+ * @desc props.children.
+ */
+// function FancyBorder(props) {
+//     return (
+//         <div className={'FancyBorder FancyBorder-' + props.color}>
+//             {props.children}
+//         </div>
+//    );
+// }
+// 
+// function WelcomeDialog() {
+//     return (
+//         <FancyBorder color="blue">
+//             <h1 className="Dialog-title">
+//                 Welcome1
+//             </h1>
+//             <p className="Dialog-message">
+//                 Thank you for visiting our spacecraft!
+//             </p>
+//         </FancyBorder>
+//     );
+// }
+// 
+// ReactDOM.render(
+//     <WelcomeDialog />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc 不使用props.children, 使用组件组合.
+ */
+// function Contacts() {
+//     return <div className="Contacts" />;
+// }
+// 
+// function Chat() {
+//     return <div className="Chat">chat</div>;
+// }
+// 
+// function SplitPane(props) {
+//     return (
+//         <div className="SplitPane">
+//             <div className="SplitPane-left">
+//                 {props.left}
+//             </div>
+//             <div className="SplitPane-right">
+//                 {props.right}
+//             </div>
+//         </div>
+//     );
+// }
+// 
+// function App() {
+//     return (
+//         <SplitPane left={<Contacts />} right={<Chat />} />
+//     );
+// }
+// 
+// ReactDOM.render(
+//     <App />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc In React, this is also achieved by composition, where a more "specific" component renders a more "generic" one and configures it with props
+ */
+// function FancyBorder(props) {
+//     return (
+//         <div className={'FancyBorder FancyBorder-' + props.color}>
+//             {props.children}
+//         </div>
+//    );
+// }
+// 
+// function Dialog(props) {
+//     return (
+//         <FancyBorder color="blue">
+//             <h1 className="Dialog-title">
+//                 {props.title}
+//             </h1>
+//             <p className="Dialog-message">
+//                 {props.message}
+//             </p>
+//         </FancyBorder>
+//     );
+// }
+// 
+// function WelcomeDialog() {
+//     return (
+//         <Dialog
+//             title="Welcome"
+//             message="Thank you for visiting our spacecraft!" />
+//     );
+// }
+// 
+// ReactDOM.render(
+//     <WelcomeDialog />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc 组合对于定义为类的组件同样有效.
+ */
+// function FancyBorder(props) {
+//     return (
+//         <div className={'FancyBorder FancyBorder-' + props.color}>
+//             {props.children}
+//         </div>
+//     );
+// }
+// 
+// function Dialog(props) {
+//     return (
+//         <FancyBorder color="blue">
+//             <h1 className="Dialog-title">
+//                 {props.title}
+//             </h1>
+//             <p className="Dialog-message">
+//                 {props.message}
+//             </p>
+//             {props.children}
+//         </FancyBorder>
+//     );
+// }
+// 
+// class SignUpDialog extends React.Component {
+//     constructor(props) {
+//         super(props);
+//         this.handleChange = this.handleChange.bind(this);
+//         this.handleSignUp = this.handleSignUp.bind(this);
+//         this.state = {login: ''};
+//     }
+// 
+//     render() {
+//         return (
+//             <Dialog title="Mars Exploration Program" message="How should we refer to you?">
+//                 <input value={this.state.login} onChange={this.handleChange} />
+//                 <button onClick={this.handleSignUp}>
+//                     Sign Me Up!
+//                 </button>
+//             </Dialog>
+//         );
+//     }
+// 
+//     handleChange(e) {
+//         this.setState({login: e.target.value});
+//     }
+// 
+//     handleSignUp() {
+//         console.log(`Welcome aboard, ${this.state.login}!`);
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <SignUpDialog />,
+//     document.getElementById('app')
+// );
+
+
+
+/*---------- QUICK START -  ----------*/
+
+/**
+ * @desc
+ */
+
+
+
+
+
+
+
+
+
+
 
 
 
