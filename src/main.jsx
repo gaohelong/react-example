@@ -1701,8 +1701,327 @@ componentDidMount() {
 /*---------- ADVANCED GUIDES - JSX In Depth ----------*/
 
 /**
- * @desc
+ * @desc 创建元素.
+ * @other React.createElement(component, props, ...children)
  */
+// JSX.
+// function MyButton(props) {
+//     return (
+//         <div className={props.color} data-shadow={props.shadowSize}>
+//             {props.children}
+//         </div>
+//     ); 
+// }
+// 
+// ReactDOM.render(
+//     <MyButton color="blue" shadowSize={2}>
+//         Click Me
+//     </MyButton>,
+//     document.getElementById('app')
+// );
+
+// compiles.
+// const myButtonEle = React.createElement(
+//     'div',
+//     {color: 'blue', 'data-shadow': 2},
+//     'Click Me'
+// );
+// 
+// function App() {
+//     return (
+//         <div>
+//             {myButtonEle}
+//         </div>
+//     );
+// }
+// 
+// ReactDOM.render(
+//     <App />,
+//     document.getElementById('app')
+// );
+
+// JSX.
+// function Test() {
+//     return <div className="sidebar" />;
+// }
+// 
+// ReactDOM.render(
+//     <Test />,
+//     document.getElementById('app')
+// );
+
+// compiles.
+// const testEle = React.createElement(
+//     'div',
+//     {className: 'sidebar'},
+//     null
+// );
+// 
+// function Test() {
+//     return <div>{testEle}</div>;
+// }
+// 
+// ReactDOM.render(
+//     <Test />,
+//     document.getElementById('app')
+// );
+
+// 综合实例.
+// function Test(props) {
+//     return <div>{props.title}</div>
+// }
+// 
+// ReactDOM.render(
+//     // <Test title="hello" />,
+//     React.createElement(Test, {title: 'hello world'}, null),
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc Using Dot Notation for JSX Type.
+ */
+// const MyComponents = {
+//     DatePicker: function DatePicker(props) {
+//         return <div>Imagine a {props.color} datepicker here.</div>;
+//     }
+// }
+// 
+// function BlueDatePicker() {
+//     return <MyComponents.DatePicker color="blue" />;
+// }
+// 
+// 
+// ReactDOM.render(
+//     <BlueDatePicker />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc 组件首字母必须大写.
+ */
+// Wrong! This is a component and should have been capitalized:
+// function hello(props) {
+//     // Correct! This use of <div> is legitimate because div is a valid HTML tag:
+//     return <div>Hello {props.toWhat}</div>;
+// }
+// 
+// function HelloWorld() {
+//     // Wrong! React thinks <hello /> is an HTML tag because it's not capitalized:
+//     return <hello toWhat="World" />;
+// }
+
+// Correct! This is a component and should be capitalized:
+// function Hello(props) {
+//     // Correct! This use of <div> is legitimate because div is a valid HTML tag:
+//     return <div>Hello {props.toWhat}</div>;
+// }
+// 
+// function HelloWorld() {
+//     // Correct! React knows <Hello /> is a component because it's capitalized.
+//     return <Hello toWhat="World" />;
+// }
+// 
+// ReactDOM.render(
+//     <HelloWorld />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc Choosing the Type at Runtime.
+ */
+// import { PhotoStory, VideoStory } from './components/test/stories';
+// 
+// const components = {
+//     photo: PhotoStory,
+//     video: VideoStory
+// };
+// 
+// function Story(props) {
+//     // Wrong! JSX type can't be an expression.
+//     // return <components[props.storyType] story={props.story} />;
+// 
+//     // Correct! JSX type can be a capitalized variable.
+//     const SpecificStory = components[props.storyType];
+//     return <SpecificStory story={props.story} />;
+// }
+// 
+// ReactDOM.render(
+//     <Story storyType="photo" story="my is photo story" />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc Props in JSX.
+ */
+// function NumberDescriber(props) {
+//     let description;
+//     if (props.number % 2 == 0) {
+//         description = <strong>even</strong>;
+//     } else {
+//         description = <i>odd</i>;
+//     }
+//     return <div>{props.number} is an {description} number</div>;
+// }
+// 
+// ReactDOM.render(
+//     <NumberDescriber number={1 + 2 + 3 + 4} />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc 字面量.
+ */
+// function MyComponent(props) {
+//     return <div>{props.message}</div>;
+// }
+// 
+// ReactDOM.render(
+//     // You can pass a string literal as a prop. These two JSX expressions are equivalent.
+//     // <MyComponent message="hello world" />,
+//     // <MyComponent message={'hello world'} />,
+// 
+//     // When you pass a string literal, its value is HTML-unescaped. So these two JSX expressions are equivalent
+//     // <MyComponent message="&lt;3" />,
+//     // <MyComponent message={'<3'} />,
+// 
+//     <MyComponent message={"<a href='http://www.react.com'>react</a>"} />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc Props Default to "True"
+ */
+// function MyTextBox(props) {
+//     return <div className={props.autocomplete}>{props.autocomplete}</div>;
+// }
+// 
+// ReactDOM.render(
+//     <MyTextBox autocomplete />,
+//     // <MyTextBox autocomplete={true} />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc Spread Attributes.
+ */
+// function Greeting(props) {
+//     return <div>{props.firstName} - {props.lastName}</div>;
+// }
+// 
+// function App1() {
+//     return <Greeting firstName="Ben" lastName="Hector" />;
+// }
+// 
+// function App2() {
+//     const props = {firstName: 'Ben', lastName: 'Hector'};
+//     return <Greeting {...props} />;
+// }
+// 
+// ReactDOM.render(
+//     <App2 />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc Children in JSX.
+ */
+/* 实例1 */
+// function MyComponent(props) {
+//     return <div>{props.children}</div>;
+// }
+// 
+// ReactDOM.render(
+//     <MyComponent>Hello world!</MyComponent>,
+//     document.getElementById('app')
+// );
+
+/* 实例2 */
+// function MyComponent(props) {
+//     return <div>This is valid HTML &amp; JSX at the same time.</div>;
+// }
+// 
+// ReactDOM.render(
+//     <MyComponent />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc JSX Children
+ */
+// function MyContainer(props) {
+//     return <div>{props.children}</div>;
+// }
+// 
+// function MyFirstComponent(props) {
+//     return <div>my is MyFirstComponent</div>;
+// }
+// 
+// function MySecondComponent(props) {
+//     return <div>my is MySecondComponent</div>;
+// }
+// 
+// ReactDOM.render(
+//     <MyContainer>
+//         <MyFirstComponent />
+//         <MySecondComponent />
+//     </MyContainer>,
+//     document.getElementById('app')
+// );
+
+
+/**
+ * @desc JavaScript Expressions as Children.
+ */
+// 实例1.
+// function MyComponent(props) {
+//     return <div>{props.children}</div>;
+// }
+// 
+// ReactDOM.render(
+//     // <MyComponent>foo</MyComponent>,
+//     <MyComponent>{'foo'}</MyComponent>,
+//     document.getElementById('app')
+// );
+
+// 实例2.
+// function Item(props) {
+//     return <li>{props.message}</li>;
+// }
+// 
+// function TodoList() {
+//     const todos = ['finish doc', 'submit pr', 'nag dan to review'];
+//     return (
+//         <ul>
+//             {
+//                 todos.map((msg) => <Item key={msg} message={msg} />)
+//             }
+//         </ul>
+//    );
+// }
+// 
+// ReactDOM.render(
+//     <TodoList />,
+//     document.getElementById('app')
+// );
+
 
 
 /**
@@ -1808,17 +2127,58 @@ componentDidMount() {
 /**
  * @desc 如果希望在输出中出现false、true、null或undefined的值，则必须首先将其转换为字符串
  */
-function Test(props) {
-    const myVariable = undefined;
-    return (
-        <div>
-             My JavaScript variable is {String(myVariable)}.
-        </div>
-    );
+// function Test(props) {
+//     const myVariable = undefined;
+//     return (
+//         <div>
+//              My JavaScript variable is {String(myVariable)}.
+//         </div>
+//     );
+// }
+// 
+// ReactDOM.render(
+//     <Test />,
+//     document.getElementById('app')
+// );
+
+
+
+
+
+
+/*---------- ADVANCED GUIDES - Typechecking With PropTypes ----------*/
+
+/* 注: 由于性能原因prop-types只是在开发模式下检查. */
+
+/**
+ * @desc 基础实例.
+ */
+import PropTypes from 'prop-types';
+
+class Greeting extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <h1>Hello, {this.props.name}</h1>
+        );
+    }
 }
 
+Greeting.propTypes = {
+    name: PropTypes.string
+};
+
+// Type Wrong.
+// const obj = {name: '123'}
 ReactDOM.render(
-    <Test />,
+    // Type Wrong.
+    // <Greeting name={obj} />,
+
+    // Correct.
+    <Greeting name="Long Cloud" />,
     document.getElementById('app')
 );
 
