@@ -2330,6 +2330,316 @@ componentDidMount() {
 
 
 
+/*---------- ADVANCED GUIDES - Refs and the DOM ----------*/
+
+/* 
+ * @desc When to Use Refs
+ *       1) Managing focus, text selection, or media playback.
+ *       2) Triggering imperative animations.
+ *       3) Integrating with third-party DOM libraries.
+ */
+
+
+
+/*
+ * @desc Legacy API: String Refs
+ *
+ *       If you worked with React before, you might be familiar with an older API where the ref attribute is a string, like "textInput", 
+ *       and the DOM node is accessed as this.refs.textInput. We advise against it because string refs have some issues, are considered legacy, 
+ *       and are likely to be removed in one of the future releases. If you're currently using this.refs.textInput to access refs, we recommend the callback pattern instead
+ */
+
+
+
+/**
+ * @desc Adding a Ref to a DOM Element.
+ */
+// class CustomTextInput extends React.Component {
+//     constructor(props) {
+//         super(props);
+//         this.focus = this.focus.bind(this);
+//     }
+// 
+//     focus() {
+//         // Explicitly focus the text input using the raw DOM API
+//         this.textInput.focus();
+//     }
+// 
+//     render() {
+//         // Use the `ref` callback to store a reference to the text input DOM
+//         // element in an instance field (for example, this.textInput).
+//         return (
+//             <div>
+//                 <input
+//                     type="text"
+//                     ref={
+//                         (input) => {
+//                             console.log(input);
+//                             this.textInput = input; 
+//                         }
+//                     }
+//                 />
+// 
+//                 <input
+//                     type="button"
+//                     value="Focus the text input"
+//                     onClick={this.focus} />
+//             </div>
+//         );
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <CustomTextInput />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc Adding a Ref to a Class Component
+ */
+// class CustomTextInput extends React.Component {
+//     render() {
+//         return <input ref="inputTest" type="text" />;
+//     }
+// }
+// 
+// class AutoFocusTextInput extends React.Component {
+//     componentDidMount() {
+//         this.textInput.focus();
+//     }
+// 
+//     render() {
+//         return (
+//             <CustomTextInput ref={
+//                     (input) => {
+//                         this.textInput = input.refs.inputTest;
+//                     }
+//                 } 
+//             />
+//         );
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <AutoFocusTextInput />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc Refs and Functional Components.
+ */
+/* 实例1 */
+// function MyFunctionalComponent() {
+//     return <input />;
+// }
+// 
+// class Parent extends React.Component {
+//     render() {
+//         // This will *not* work!
+//         return (
+//             <MyFunctionalComponent ref={
+//                 (input) => {
+//                     console.log(input);
+//                     this.textInput = input;
+//                 }
+//             } />
+//         );
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <Parent />,
+//     document.getElementById('app')
+// );
+
+/* 实例2 */
+// function CustomTextInput(props) {
+//     // textInput must be declared here so the ref callback can refer to it
+//     let textInput = null;
+// 
+//     function handleClick() {
+//         textInput.focus();
+//     }
+// 
+//     return (
+//         <div>
+//             <input
+//                 type="text"
+//                 ref={(input) => { textInput = input; }} />
+// 
+//             <input
+//                 type="button"
+//                 value="Focus the text input"
+//                 onClick={handleClick}
+//             />
+//         </div>
+//     );
+// }
+// 
+// ReactDOM.render(
+//     <CustomTextInput />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc Exposing DOM Refs to Parent Components.
+ */
+/* 写法1 */
+// function CustomTextInput(props) {
+//     return (
+//         <div>
+//             <input type="text" ref={props.inputRef} />
+//         </div>
+//     );
+// }
+// 
+// class Parent extends React.Component {
+//     componentDidMount() {
+//         console.log('------didmount', this.inputElement);
+//     }
+// 
+//     render() {
+//         return (
+//             <CustomTextInput inputRef={el => {
+//                     console.log(el);
+//                     this.inputElement = el;
+//                 }
+//             } />
+//         );
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <Parent />,
+//     document.getElementById('app')
+// );
+
+/* 写法2与写法1相等 */
+// function CustomTextInput(props) {
+//     return (
+//         <div>
+//             <input type="text" ref={props.inputRef} />
+//         </div>
+//     );
+// }
+// 
+// class Parent extends React.Component {
+//     constructor(props) {
+//         super(props);
+//         this.inputRefFun = this.inputRefFun.bind(this);
+//     }
+// 
+//     componentDidMount() {
+//         console.log('------didmount', this.inputElement);
+//     }
+// 
+//     inputRefFun(el) {
+//         console.log(el);
+//         this.inputElement = el;
+//     }
+// 
+//     render() {
+//         return (
+//             <CustomTextInput inputRef={this.inputRefFun} />
+//         );
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <Parent />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc
+ */
+// function CustomTextInput(props) {
+//     return (
+//         <div>
+//             <input ref={props.inputRef} />
+//         </div>
+//     );
+// }
+// 
+// function Parent(props) {
+//     return (
+//         <div>
+//             My input: <CustomTextInput inputRef={props.inputRef} />
+//         </div>
+//     );
+// }
+// 
+// 
+// class Grandparent extends React.Component {
+//     componentDidMount() {
+//         console.log(this.inputElement);
+//     }
+// 
+//     render() {
+//         return (
+//             <Parent inputRef={el => this.inputElement = el} />
+//         );
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <Grandparent />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc
+ */
+class CustomTextInput extends React.Component {
+    constructor(props) {
+        super(props);
+        this.handleClick = this.handleClick.bind(this);
+    }
+
+    componentDidMount() {
+        this.handleClick();
+        // this.textInput.focus();
+    }
+
+    handleClick() {
+        this.textInput.focus();
+    }
+
+    render() {
+        return (
+            <div>
+                <input
+                    type="text"
+                    ref={(input) => { this.textInput = input; }} />
+
+                <input
+                    type="button"
+                    value="Focus the text input"
+                    onClick={ this.handleClick }
+                />
+            </div>
+        );
+    }
+}
+
+ReactDOM.render(
+    <CustomTextInput />,
+    document.getElementById('app')
+);
+
+
+
+
 
 
 
