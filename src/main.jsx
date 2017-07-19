@@ -1701,8 +1701,327 @@ componentDidMount() {
 /*---------- ADVANCED GUIDES - JSX In Depth ----------*/
 
 /**
- * @desc
+ * @desc 创建元素.
+ * @other React.createElement(component, props, ...children)
  */
+// JSX.
+// function MyButton(props) {
+//     return (
+//         <div className={props.color} data-shadow={props.shadowSize}>
+//             {props.children}
+//         </div>
+//     ); 
+// }
+// 
+// ReactDOM.render(
+//     <MyButton color="blue" shadowSize={2}>
+//         Click Me
+//     </MyButton>,
+//     document.getElementById('app')
+// );
+
+// compiles.
+// const myButtonEle = React.createElement(
+//     'div',
+//     {color: 'blue', 'data-shadow': 2},
+//     'Click Me'
+// );
+// 
+// function App() {
+//     return (
+//         <div>
+//             {myButtonEle}
+//         </div>
+//     );
+// }
+// 
+// ReactDOM.render(
+//     <App />,
+//     document.getElementById('app')
+// );
+
+// JSX.
+// function Test() {
+//     return <div className="sidebar" />;
+// }
+// 
+// ReactDOM.render(
+//     <Test />,
+//     document.getElementById('app')
+// );
+
+// compiles.
+// const testEle = React.createElement(
+//     'div',
+//     {className: 'sidebar'},
+//     null
+// );
+// 
+// function Test() {
+//     return <div>{testEle}</div>;
+// }
+// 
+// ReactDOM.render(
+//     <Test />,
+//     document.getElementById('app')
+// );
+
+// 综合实例.
+// function Test(props) {
+//     return <div>{props.title}</div>
+// }
+// 
+// ReactDOM.render(
+//     // <Test title="hello" />,
+//     React.createElement(Test, {title: 'hello world'}, null),
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc Using Dot Notation for JSX Type.
+ */
+// const MyComponents = {
+//     DatePicker: function DatePicker(props) {
+//         return <div>Imagine a {props.color} datepicker here.</div>;
+//     }
+// }
+// 
+// function BlueDatePicker() {
+//     return <MyComponents.DatePicker color="blue" />;
+// }
+// 
+// 
+// ReactDOM.render(
+//     <BlueDatePicker />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc 组件首字母必须大写.
+ */
+// Wrong! This is a component and should have been capitalized:
+// function hello(props) {
+//     // Correct! This use of <div> is legitimate because div is a valid HTML tag:
+//     return <div>Hello {props.toWhat}</div>;
+// }
+// 
+// function HelloWorld() {
+//     // Wrong! React thinks <hello /> is an HTML tag because it's not capitalized:
+//     return <hello toWhat="World" />;
+// }
+
+// Correct! This is a component and should be capitalized:
+// function Hello(props) {
+//     // Correct! This use of <div> is legitimate because div is a valid HTML tag:
+//     return <div>Hello {props.toWhat}</div>;
+// }
+// 
+// function HelloWorld() {
+//     // Correct! React knows <Hello /> is a component because it's capitalized.
+//     return <Hello toWhat="World" />;
+// }
+// 
+// ReactDOM.render(
+//     <HelloWorld />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc Choosing the Type at Runtime.
+ */
+// import { PhotoStory, VideoStory } from './components/test/stories';
+// 
+// const components = {
+//     photo: PhotoStory,
+//     video: VideoStory
+// };
+// 
+// function Story(props) {
+//     // Wrong! JSX type can't be an expression.
+//     // return <components[props.storyType] story={props.story} />;
+// 
+//     // Correct! JSX type can be a capitalized variable.
+//     const SpecificStory = components[props.storyType];
+//     return <SpecificStory story={props.story} />;
+// }
+// 
+// ReactDOM.render(
+//     <Story storyType="photo" story="my is photo story" />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc Props in JSX.
+ */
+// function NumberDescriber(props) {
+//     let description;
+//     if (props.number % 2 == 0) {
+//         description = <strong>even</strong>;
+//     } else {
+//         description = <i>odd</i>;
+//     }
+//     return <div>{props.number} is an {description} number</div>;
+// }
+// 
+// ReactDOM.render(
+//     <NumberDescriber number={1 + 2 + 3 + 4} />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc 字面量.
+ */
+// function MyComponent(props) {
+//     return <div>{props.message}</div>;
+// }
+// 
+// ReactDOM.render(
+//     // You can pass a string literal as a prop. These two JSX expressions are equivalent.
+//     // <MyComponent message="hello world" />,
+//     // <MyComponent message={'hello world'} />,
+// 
+//     // When you pass a string literal, its value is HTML-unescaped. So these two JSX expressions are equivalent
+//     // <MyComponent message="&lt;3" />,
+//     // <MyComponent message={'<3'} />,
+// 
+//     <MyComponent message={"<a href='http://www.react.com'>react</a>"} />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc Props Default to "True"
+ */
+// function MyTextBox(props) {
+//     return <div className={props.autocomplete}>{props.autocomplete}</div>;
+// }
+// 
+// ReactDOM.render(
+//     <MyTextBox autocomplete />,
+//     // <MyTextBox autocomplete={true} />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc Spread Attributes.
+ */
+// function Greeting(props) {
+//     return <div>{props.firstName} - {props.lastName}</div>;
+// }
+// 
+// function App1() {
+//     return <Greeting firstName="Ben" lastName="Hector" />;
+// }
+// 
+// function App2() {
+//     const props = {firstName: 'Ben', lastName: 'Hector'};
+//     return <Greeting {...props} />;
+// }
+// 
+// ReactDOM.render(
+//     <App2 />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc Children in JSX.
+ */
+/* 实例1 */
+// function MyComponent(props) {
+//     return <div>{props.children}</div>;
+// }
+// 
+// ReactDOM.render(
+//     <MyComponent>Hello world!</MyComponent>,
+//     document.getElementById('app')
+// );
+
+/* 实例2 */
+// function MyComponent(props) {
+//     return <div>This is valid HTML &amp; JSX at the same time.</div>;
+// }
+// 
+// ReactDOM.render(
+//     <MyComponent />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc JSX Children
+ */
+// function MyContainer(props) {
+//     return <div>{props.children}</div>;
+// }
+// 
+// function MyFirstComponent(props) {
+//     return <div>my is MyFirstComponent</div>;
+// }
+// 
+// function MySecondComponent(props) {
+//     return <div>my is MySecondComponent</div>;
+// }
+// 
+// ReactDOM.render(
+//     <MyContainer>
+//         <MyFirstComponent />
+//         <MySecondComponent />
+//     </MyContainer>,
+//     document.getElementById('app')
+// );
+
+
+/**
+ * @desc JavaScript Expressions as Children.
+ */
+// 实例1.
+// function MyComponent(props) {
+//     return <div>{props.children}</div>;
+// }
+// 
+// ReactDOM.render(
+//     // <MyComponent>foo</MyComponent>,
+//     <MyComponent>{'foo'}</MyComponent>,
+//     document.getElementById('app')
+// );
+
+// 实例2.
+// function Item(props) {
+//     return <li>{props.message}</li>;
+// }
+// 
+// function TodoList() {
+//     const todos = ['finish doc', 'submit pr', 'nag dan to review'];
+//     return (
+//         <ul>
+//             {
+//                 todos.map((msg) => <Item key={msg} message={msg} />)
+//             }
+//         </ul>
+//    );
+// }
+// 
+// ReactDOM.render(
+//     <TodoList />,
+//     document.getElementById('app')
+// );
+
 
 
 /**
@@ -1808,19 +2127,522 @@ componentDidMount() {
 /**
  * @desc 如果希望在输出中出现false、true、null或undefined的值，则必须首先将其转换为字符串
  */
-function Test(props) {
-    const myVariable = undefined;
-    return (
-        <div>
-             My JavaScript variable is {String(myVariable)}.
-        </div>
-    );
+// function Test(props) {
+//     const myVariable = undefined;
+//     return (
+//         <div>
+//              My JavaScript variable is {String(myVariable)}.
+//         </div>
+//     );
+// }
+// 
+// ReactDOM.render(
+//     <Test />,
+//     document.getElementById('app')
+// );
+
+
+
+
+
+
+/*---------- ADVANCED GUIDES - Typechecking With PropTypes ----------*/
+
+/* 注: 由于性能原因prop-types只是在开发模式下检查. */
+
+/**
+ * @desc 基础实例.
+ */
+// import PropTypes from 'prop-types';
+// 
+// class Greeting extends React.Component {
+//     constructor(props) {
+//         super(props);
+//     }
+// 
+//     render() {
+//         return (
+//             <h1>Hello, {this.props.name}</h1>
+//         );
+//     }
+// }
+// 
+// Greeting.propTypes = {
+//     name: PropTypes.string
+// };
+// 
+// // Type Wrong.
+// // const obj = {name: '123'}
+// ReactDOM.render(
+//     // Type Wrong.
+//     // <Greeting name={obj} />,
+// 
+//     // Correct.
+//     <Greeting name="Long Cloud" />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc 官方示例.
+ */
+// import PropTypes from 'prop-types';
+// MyComponent.propTypes = {
+//     // You can declare that a prop is a specific JS primitive. By default, these
+//     // are all optional.
+//     optionalArray: PropTypes.array,
+//     optionalBool: PropTypes.bool,
+//     optionalFunc: PropTypes.func,
+//     optionalNumber: PropTypes.number,
+//     optionalObject: PropTypes.object,
+//     optionalString: PropTypes.string,
+//     optionalSymbol: PropTypes.symbol,
+// 
+//     // Anything that can be rendered: numbers, strings, elements or an array
+//     // (or fragment) containing these types.
+//     optionalNode: PropTypes.node,
+// 
+//     // A React element.
+//     optionalElement: PropTypes.element,
+// 
+//     // You can also declare that a prop is an instance of a class. This uses
+//     // JS's instanceof operator.
+//     optionalMessage: PropTypes.instanceOf(Message),
+// 
+//     // You can ensure that your prop is limited to specific values by treating
+//     // it as an enum.
+//     optionalEnum: PropTypes.oneOf(['News', 'Photos']),
+// 
+//     // An object that could be one of many types
+//     optionalUnion: PropTypes.oneOfType([
+//         PropTypes.string,
+//         PropTypes.number,
+//         PropTypes.instanceOf(Message)
+//     ]),
+// 
+//     // An array of a certain type
+//     optionalArrayOf: PropTypes.arrayOf(PropTypes.number),
+// 
+//     // An object with property values of a certain type
+//     optionalObjectOf: PropTypes.objectOf(PropTypes.number),
+// 
+//     // An object taking on a particular shape
+//     optionalObjectWithShape: PropTypes.shape({
+//         color: PropTypes.string,
+//         fontSize: PropTypes.number
+//     }),
+// 
+//     // You can chain any of the above with `isRequired` to make sure a warning
+//     // is shown if the prop isn't provided.
+//     requiredFunc: PropTypes.func.isRequired,
+// 
+//     // A value of any data type
+//     requiredAny: PropTypes.any.isRequired,
+// 
+//     // You can also specify a custom validator. It should return an Error
+//     // object if the validation fails. Don't `console.warn` or throw, as this
+//     // won't work inside `oneOfType`.
+//     customProp: function(props, propName, componentName) {
+//         if (!/matchme/.test(props[propName])) {
+//             return new Error(
+//                     'Invalid prop `' + propName + '` supplied to' +
+//                     ' `' + componentName + '`. Validation failed.'
+//                     );
+//         }
+//     },
+// 
+//     // You can also supply a custom validator to `arrayOf` and `objectOf`.
+//     // It should return an Error object if the validation fails. The validator
+//     // will be called for each key in the array or object. The first two
+//     // arguments of the validator are the array or object itself, and the
+//     // current item's key.
+//     customArrayProp: PropTypes.arrayOf(function(propValue, key, componentName, location, propFullName) {
+//         if (!/matchme/.test(propValue[key])) {
+//             return new Error(
+//                     'Invalid prop `' + propFullName + '` supplied to' +
+//                     ' `' + componentName + '`. Validation failed.'
+//                     );
+//         }
+//     })
+// };
+// 
+// ReactDOM.render(
+//     <Greeting name="Long Cloud" />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc PropTypes.element.isRequired.
+ */
+// import PropTypes from 'prop-types';
+// 
+// class MyComponent extends React.Component {
+//     render() {
+//         // 这一定是一个元素, 如果不是会发出警告.
+//         const children = this.props.children;
+//         return (
+//            <div>
+//                 {children}
+//            </div>
+//         );
+//     }
+// }
+// 
+// MyComponent.propTypes = {
+//     children: PropTypes.element.isRequired
+// };
+// 
+// ReactDOM.render(
+//     <MyComponent>
+//         <div>PropTypes.element.isRequired</div>
+//     </MyComponent>,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc 默认值.
+ */
+// class Greeting extends React.Component {
+//     render() {
+//         return (
+//             <h1>Hello, {this.props.name}</h1>
+//         );
+//     }
+// }
+// 
+// // 给props设置默认值.
+// Greeting.defaultProps = {
+//     name: 'Stranger'
+// };
+// 
+// ReactDOM.render(
+//     <Greeting />,
+//     document.getElementById('app')
+// );
+
+
+
+
+
+
+/*---------- ADVANCED GUIDES - Refs and the DOM ----------*/
+
+/* 
+ * @desc When to Use Refs
+ *       1) Managing focus, text selection, or media playback.
+ *       2) Triggering imperative animations.
+ *       3) Integrating with third-party DOM libraries.
+ */
+
+
+
+/*
+ * @desc Legacy API: String Refs
+ *
+ *       If you worked with React before, you might be familiar with an older API where the ref attribute is a string, like "textInput", 
+ *       and the DOM node is accessed as this.refs.textInput. We advise against it because string refs have some issues, are considered legacy, 
+ *       and are likely to be removed in one of the future releases. If you're currently using this.refs.textInput to access refs, we recommend the callback pattern instead
+ */
+
+
+
+/**
+ * @desc Adding a Ref to a DOM Element.
+ */
+// class CustomTextInput extends React.Component {
+//     constructor(props) {
+//         super(props);
+//         this.focus = this.focus.bind(this);
+//     }
+// 
+//     focus() {
+//         // Explicitly focus the text input using the raw DOM API
+//         this.textInput.focus();
+//     }
+// 
+//     render() {
+//         // Use the `ref` callback to store a reference to the text input DOM
+//         // element in an instance field (for example, this.textInput).
+//         return (
+//             <div>
+//                 <input
+//                     type="text"
+//                     ref={
+//                         (input) => {
+//                             console.log(input);
+//                             this.textInput = input; 
+//                         }
+//                     }
+//                 />
+// 
+//                 <input
+//                     type="button"
+//                     value="Focus the text input"
+//                     onClick={this.focus} />
+//             </div>
+//         );
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <CustomTextInput />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc Adding a Ref to a Class Component
+ */
+// class CustomTextInput extends React.Component {
+//     render() {
+//         return <input ref="inputTest" type="text" />;
+//     }
+// }
+// 
+// class AutoFocusTextInput extends React.Component {
+//     componentDidMount() {
+//         this.textInput.focus();
+//     }
+// 
+//     render() {
+//         return (
+//             <CustomTextInput ref={
+//                     (input) => {
+//                         this.textInput = input.refs.inputTest;
+//                     }
+//                 } 
+//             />
+//         );
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <AutoFocusTextInput />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc Refs and Functional Components.
+ */
+/* 实例1 */
+// function MyFunctionalComponent() {
+//     return <input />;
+// }
+// 
+// class Parent extends React.Component {
+//     render() {
+//         // This will *not* work!
+//         return (
+//             <MyFunctionalComponent ref={
+//                 (input) => {
+//                     console.log(input);
+//                     this.textInput = input;
+//                 }
+//             } />
+//         );
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <Parent />,
+//     document.getElementById('app')
+// );
+
+/* 实例2 */
+// function CustomTextInput(props) {
+//     // textInput must be declared here so the ref callback can refer to it
+//     let textInput = null;
+// 
+//     function handleClick() {
+//         textInput.focus();
+//     }
+// 
+//     return (
+//         <div>
+//             <input
+//                 type="text"
+//                 ref={(input) => { textInput = input; }} />
+// 
+//             <input
+//                 type="button"
+//                 value="Focus the text input"
+//                 onClick={handleClick}
+//             />
+//         </div>
+//     );
+// }
+// 
+// ReactDOM.render(
+//     <CustomTextInput />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc Exposing DOM Refs to Parent Components.
+ */
+/* 写法1 */
+// function CustomTextInput(props) {
+//     return (
+//         <div>
+//             <input type="text" ref={props.inputRef} />
+//         </div>
+//     );
+// }
+// 
+// class Parent extends React.Component {
+//     componentDidMount() {
+//         console.log('------didmount', this.inputElement);
+//     }
+// 
+//     render() {
+//         return (
+//             <CustomTextInput inputRef={el => {
+//                     console.log(el);
+//                     this.inputElement = el;
+//                 }
+//             } />
+//         );
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <Parent />,
+//     document.getElementById('app')
+// );
+
+/* 写法2与写法1相等 */
+// function CustomTextInput(props) {
+//     return (
+//         <div>
+//             <input type="text" ref={props.inputRef} />
+//         </div>
+//     );
+// }
+// 
+// class Parent extends React.Component {
+//     constructor(props) {
+//         super(props);
+//         this.inputRefFun = this.inputRefFun.bind(this);
+//     }
+// 
+//     componentDidMount() {
+//         console.log('------didmount', this.inputElement);
+//     }
+// 
+//     inputRefFun(el) {
+//         console.log(el);
+//         this.inputElement = el;
+//     }
+// 
+//     render() {
+//         return (
+//             <CustomTextInput inputRef={this.inputRefFun} />
+//         );
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <Parent />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc
+ */
+// function CustomTextInput(props) {
+//     return (
+//         <div>
+//             <input ref={props.inputRef} />
+//         </div>
+//     );
+// }
+// 
+// function Parent(props) {
+//     return (
+//         <div>
+//             My input: <CustomTextInput inputRef={props.inputRef} />
+//         </div>
+//     );
+// }
+// 
+// 
+// class Grandparent extends React.Component {
+//     componentDidMount() {
+//         console.log(this.inputElement);
+//     }
+// 
+//     render() {
+//         return (
+//             <Parent inputRef={el => this.inputElement = el} />
+//         );
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <Grandparent />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc
+ */
+class CustomTextInput extends React.Component {
+    constructor(props) {
+        super(props);
+        this.handleClick = this.handleClick.bind(this);
+    }
+
+    componentDidMount() {
+        this.handleClick();
+        // this.textInput.focus();
+    }
+
+    handleClick() {
+        this.textInput.focus();
+    }
+
+    render() {
+        return (
+            <div>
+                <input
+                    type="text"
+                    ref={(input) => { this.textInput = input; }} />
+
+                <input
+                    type="button"
+                    value="Focus the text input"
+                    onClick={ this.handleClick }
+                />
+            </div>
+        );
+    }
 }
 
 ReactDOM.render(
-    <Test />,
+    <CustomTextInput />,
     document.getElementById('app')
 );
+
+
+
+
+
+
+
 
 
 

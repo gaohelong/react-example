@@ -44,6 +44,9 @@
 ## 【npm】
 [English](https://www.npmjs.com)
 
+### 【npm-package】
+[react prop-types](https://www.npmjs.com/package/prop-types)
+
 ## 【react在线转换成ES6代码】
 [react bable](http://babeljs.io/repl/)
 
@@ -70,7 +73,7 @@ $ npm install babel-loader babel-core --save-dev
 $ npm install babel-preset-env --save-dev
 $ npm install babel-plugin-transform-class-properties babel-plugin-transform-decorators-legacy --save-dev
 $ npm install babel-preset-react-hmre babel-preset-stage-0 --save-dev
-
+$ npm install prop-types --save
 .babelrc
 {
     "presets": [
