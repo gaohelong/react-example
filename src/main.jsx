@@ -2559,7 +2559,7 @@ componentDidMount() {
 
 
 /**
- * @desc
+ * @desc Exposing DOM Refs to Parent Components.
  */
 // function CustomTextInput(props) {
 //     return (
@@ -2598,44 +2598,725 @@ componentDidMount() {
 
 
 /**
+ * @desc 事件实例.
+ */
+// class CustomTextInput extends React.Component {
+//     constructor(props) {
+//         super(props);
+//         this.handleClick = this.handleClick.bind(this);
+//     }
+// 
+//     componentDidMount() {
+//         this.handleClick();
+//         // this.textInput.focus();
+//     }
+// 
+//     handleClick() {
+//         this.textInput.focus();
+//     }
+// 
+//     render() {
+//         return (
+//             <div>
+//                 <input
+//                     type="text"
+//                     ref={(input) => { this.textInput = input; }} />
+// 
+//                 <input
+//                     type="button"
+//                     value="Focus the text input"
+//                     onClick={ this.handleClick }
+//                 />
+//             </div>
+//         );
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <CustomTextInput />,
+//     document.getElementById('app')
+// );
+
+
+
+
+
+
+/*---------- ADVANCED GUIDES - Uncontrolled Components ----------*/
+
+/*
+ * Likewise, <input type="checkbox"> and <input type="radio"> support defaultChecked, and <select> and <textarea> supports defaultValue
+ */
+
+/**
+ * @desc this code accepts a single name in an uncontrolled component.
+ */
+// class NameForm extends React.Component {
+//     constructor(props) {
+//         super(props);
+//         this.handleSubmit = this.handleSubmit.bind(this);
+//     }
+// 
+//     handleSubmit(event) {
+//         console.log('A name was submitted: ' + this.input.value);
+//         event.preventDefault();
+//     }
+// 
+//     render() {
+//         return (
+//             <form onSubmit={this.handleSubmit}>
+//                 <label>
+//                     Name:
+//                     <input type="text" ref={(input) => this.input = input} />
+//                 </label>
+//                 <input type="submit" value="Submit" />
+//             </form>
+//         );
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <NameForm />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc Default Values.
+ */
+// class Age extends React.Component {
+//     constructor(props) {
+//         super(props);
+//     }
+// 
+//     render() {
+//         let result = '';
+// 
+//         result = this.props.list.map((obj) => {
+//             return <AgeItem data={obj} key={'age_' + obj.age} />;
+//         });
+// 
+//         return <div>{result}</div>;
+//     }
+// };
+// 
+// class AgeItem extends React.Component {
+//     constructor(props) {
+//         super(props);
+// 
+//         this.handleRadio = this.handleRadio.bind(this);
+//     }
+// 
+//     handleRadio(event) {
+//         // 在子组件内获取值.
+//         console.log(this.ageEle.value);
+//     }
+// 
+//     render() {
+//         let show = this.props.data.age == 20 ? true : false;
+// 
+//         return (
+//             <div>
+//                 <input type="radio" name="age" defaultValue={this.props.data.age} 
+//                     defaultChecked={show} onClick={this.handleRadio} ref={(input) => {this.ageEle = input;}} />{this.props.data.age}
+//             </div>
+//         );
+//     }
+// };
+// 
+// class LoginForm extends React.Component {
+//     constructor(props) {
+//         super(props);
+//         this.handleSubmit = this.handleSubmit.bind(this);
+//     }
+// 
+//     handleSubmit(event) {
+//         console.log('A name was submitted: ' + this.input.value);
+//     }
+// 
+//     render() {
+//         let ageList = [{name: 'long', age: 18}, {name: 'cloud', age: 20}];
+// 
+//         return (
+//             <form onSubmit={this.handleSubmit}>
+//                 <label>
+//                     Name:
+//                     <input
+//                         defaultValue="Bob"
+//                         type="text"
+//                         ref={(input) => this.input = input} />
+//                 </label>
+//                 <input type="submit" value="Submit" />
+//                 <Age list={ageList} />
+//             </form>
+//         );
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <LoginForm />,
+//     document.getElementById('app')
+// );
+
+
+
+
+
+
+/*---------- ADVANCED GUIDES - Optimizing Performance ----------*/
+
+/**
+ * @desc The problem is that PureComponent will do a simple comparison between the old and new values of this.props.words.
+ *       Since this code mutates the words array in the handleClick method of WordAdder, the old and new values of this.props.
+ *       words will compare as equal, even though the actual words in the array have changed.
+ *       The ListOfWords will thus not update even though it has new words that should be rendered
+ */
+
+/* 不能正常运行 */
+// class ListOfWords extends React.PureComponent {
+//     render() {
+//         return <div>{this.props.words.join(',')}</div>;
+//     }
+// }
+// 
+// class WordAdder extends React.Component {
+//     constructor(props) {
+//         super(props);
+//         this.state = {
+//             words: ['marklar']
+//         };
+//         this.handleClick = this.handleClick.bind(this);
+//     }
+// 
+//     handleClick() {
+//         // This section is bad style and causes a bug
+//         const words = this.state.words;
+//         words.push('marklar');
+//         this.setState({words: words});
+//     }
+//     render() {
+//         return (
+//             <div>
+//                 <button onClick={this.handleClick}>add</button>
+//                 <ListOfWords words={this.state.words} />
+//             </div>
+//         );
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <WordAdder />,
+//     document.getElementById('app')
+// );
+
+/* 可以正常运行 */
+// class ListOfWords extends React.PureComponent {
+//     render() {
+//         return <div>{this.props.words.join(',')}</div>;
+//     }
+// }
+// 
+// class WordAdder extends React.Component {
+//     constructor(props) {
+//         super(props);
+// 
+//         // state.
+//         this.state = {
+//             words: ['marklar']
+//         };
+// 
+//         // func.
+//         this.handleClick = this.handleClick.bind(this);
+//     }
+// 
+//     handleClick() {
+//         /* 可以使用如下两种方式更新状态并防止->The Power Of Not Mutating Data */
+// 
+//         // The simplest way to avoid this problem is to avoid mutating values that you are using as props or state.
+//         // For example, the handleClick method above could be rewritten using concat as:
+//         this.setState(prevState => ({
+//             words: prevState.words.concat(['test'])
+//         }));
+// 
+//         // ES6 supports a spread syntax for arrays which can make this easier. If you're using Create React App, this syntax is available by default.
+//         // this.setState(prevState => ({
+//         //     words: [...prevState.words, 'marklar1'],
+//         // }));
+//     }
+// 
+//     render() {
+//         return (
+//             <div>
+//                 <button onClick={this.handleClick}>add</button>
+//                 <ListOfWords words={this.state.words} />
+//             </div>
+//         );
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <WordAdder />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc The Power Of Not Mutating Data.
+ */
+// function updateColorMap1(colormap) {
+//     colormap.right = 'blue';
+//     return colormap;
+// }
+// 
+// // To write this without mutating the original object, we can use Object.assign method
+// function updateColorMap2(colormap) {
+//     return Object.assign({}, colormap, {right: 'blue'});
+// }
+// 
+// // updateColorMap now returns a new object, rather than mutating the old one. Object.assign is in ES6 and requires a polyfill.
+// // There is a JavaScript proposal to add object spread properties to make it easier to update objects without mutation as well:
+// function updateColorMap3(colormap) {
+//     return {...colormap, right: 'blue'};
+// }
+// 
+// let testObj1 = updateColorMap1({title: 'updateColorMap1'});
+// console.log(testObj1);
+// let testObj2 = updateColorMap2({title: 'updateColorMap2'});
+// console.log(testObj2);
+// let testObj3 = updateColorMap3({title: 'updateColorMap3'});
+// console.log(testObj3);
+
+
+
+
+
+
+/*---------- ADVANCED GUIDES - React Without ES6 ----------*/
+
+/**
+ * @desc ES6
+ */
+// class Greeting extends React.Component {
+//     render() {
+//         return <h1>Hello, {this.props.name}</h1>;
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <Greeting name="ES6" />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc 类似ES6的API.
+ */
+// var createReactClass = require('create-react-class');
+// var Greeting = createReactClass({
+//     render: function() {
+//         return <h1>Hello, {this.props.name}</h1>;
+//     }
+// });
+// 
+// ReactDOM.render(
+//     <Greeting name="similar ES6" />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc Declaring Default Props.
+ */
+/* ES6 */
+// class Greeting extends React.Component {
+//     constructor(props) {
+//         super(props);
+//     }
+// 
+//     render() {
+//         return <div>{this.props.name}</div>
+//     }
+// }
+// 
+// Greeting.defaultProps = {
+//     name: 'Mary'
+// };
+// 
+// ReactDOM.render(
+//     <Greeting />,
+//     document.getElementById('app')
+// );
+
+
+
+// var createReactClass = require('create-react-class');
+// var Greeting = createReactClass({
+//     getDefaultProps: function() {
+//         return {
+//             name: 'Mary-1'
+//         };
+//     },
+//     render: function() {
+//         return <h1>{this.props.name}</h1>;
+//     },
+// });
+// 
+// ReactDOM.render(
+//     <Greeting />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc Setting the Initial State.
+ */
+/* ES6 */
+// class Counter extends React.Component {
+//     constructor(props) {
+//         super(props);
+//         this.state = {count: props.initialCount};
+//     }
+// 
+//     render() {
+//         return <div>initialCount: {this.state.count}</div>
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <Counter initialCount="1" />,
+//     document.getElementById('app')
+// );
+
+
+
+// var createReactClass = require('create-react-class');
+// var Counter = createReactClass({
+//     getInitialState: function() {
+//         return {count: this.props.initialCount};
+//     },
+//     render: function() {
+//         return <div>initialCount:{this.state.count}</div>;
+//     }
+// });
+// 
+// ReactDOM.render(
+//     <Counter initialCount="100" />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc Autobinding.
+ *       In React components declared as ES6 classes, methods follow the same semantics as regular ES6 classes.
+ *       This means that they don't automatically bind this to the instance. You'll have to explicitly use .bind(this) in the constructor
+ */
+/* ES6 */
+// class SayHello extends React.Component {
+//     constructor(props) {
+//         super(props);
+// 
+//         // state.
+//         this.state = {message: 'Hello!'};
+// 
+//         // This line is important!
+//         this.handleClick = this.handleClick.bind(this);
+//     }
+// 
+//     handleClick() {
+//         alert(this.state.message);
+//     }
+// 
+//     render() {
+//         // Because `this.handleClick` is bound, we can use it as an event handler.
+//         return (
+//             <button onClick={this.handleClick}>
+//                 Say hello
+//             </button>
+//         );
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <SayHello />,
+//     document.getElementById('app')
+// );
+
+
+
+/* not ES6 */
+// var createReactClass = require('create-react-class');
+// var SayHello = createReactClass({
+//     getInitialState: function() {
+//         return {message: 'Hello!'};
+//     },
+// 
+//     handleClick: function() {
+//         alert(this.state.message);
+//     },
+// 
+//     render: function() {
+//         return (
+//             <button onClick={this.handleClick}>
+//                 Say hello
+//             </button>
+//         );
+//     }
+// });
+// 
+// ReactDOM.render(
+//     <SayHello />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc Mixins.
+ */
+
+
+
+
+
+
+/*---------- ADVANCED GUIDES - React Without JSX ----------*/
+
+/*
+ * @desc the online Babel compiler -> https://babeljs.io/repl/#?babili=false&evaluate=true&lineWrap=false&presets=es2015%2Creact%2Cstage-0&targets=&browsers=&builtIns=false&debug=false&code_lz=GYVwdgxgLglg9mABACwKYBt1wBQEpEDeAUIogE6pQhlIA8AJjAG4B8AEhlogO5xnr0AhLQD0jVgG4iAXyA
+ */
+
+/**
+ * @desc React Without JSX.
+ */
+/* JSX语法编写的代码 */
+// class Hello extends React.Component {
+//     render() {
+//         return <div>Hello {this.props.toWhat}</div>;
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <Hello toWhat="World" />,
+//     document.getElementById('app')
+// );
+
+
+
+/* 不使用JSX语法编写代码 */
+// class Hello extends React.Component {
+//     render() {
+//         return React.createElement('div', null, `Hello ${this.props.toWhat}`);
+//     }
+// }
+// 
+// ReactDOM.render(
+//     React.createElement(Hello, {toWhat: 'World'}, null),
+//     document.getElementById('app')
+// );
+
+
+
+/* 不使用JSX语法编写代码 */
+// ReactDOM.render(
+//     React.createElement('div', {className: 'test'}, 'Hello world!'),
+//     document.getElementById('app')
+// );
+
+
+
+/* 简写 */
+// const e = React.createElement;
+// 
+// ReactDOM.render(
+//     e('div', null, 'Hello World'),
+//     document.getElementById('app')
+// );
+
+
+
+
+
+
+/*---------- ADVANCED GUIDES - ----------*/
+
+/**
+ * @desc resize event
+ */
+// class Login extends React.Component {
+//     constructor(props) {
+//         super(props);
+// 
+//         // func.
+//         this.resize = this.resize.bind(this);
+//         this.resizeProc = this.resizeProc.bind(this);
+//     }
+// 
+//     resize() {
+//         window.addEventListener('resize', this.resizeProc);
+//     }
+// 
+//     resizeProc() {
+//         var bodyEle = document.querySelector('body');
+//         console.log('window-height:', window.innerHeight);
+//         console.log('body', bodyEle);
+//     }
+// 
+//     render() {
+//         this.resize();
+// 
+//         return <div></div>;
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <Login />,
+//     document.getElementById('app')
+// );
+
+
+
+
+
+
+/*---------- ADVANCED GUIDES - Web Components ----------*/
+
+/**
+ * @desc Using Web Components in React.
+ */
+// class HelloMessage extends React.Component {
+//     render() {
+//         return <div>Hello <x-search>{this.props.name}</x-search>!</div>;
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <HelloMessage name="Long" />,
+//     document.getElementById('app')
+// );
+
+
+/**
+ * @desc Using React in your Web Components.
+ */
+
+
+
+
+
+
+/*---------- ADVANCED GUIDES - Higher-Order Components ----------*/
+
+/**
+ * @desc 一个高阶组件是一个函数,接受一个组件并返回一个新组件.
+ */
+// const EnhancedComponent = higherOrderComponent(WrappedComponent);
+
+
+
+/**
+ * @desc 例如: 假设你有一个CommentList组件,订阅外部数据源来呈现一个评论列表.
+ */
+// // 数据源.
+// let DataSource = {
+//     getComments() {
+//         return [
+//             {id: 1, title: '我是title1'},
+//             {id: 2, title: '我是title2'},
+//             {id: 3, title: '我是title3'},
+//             {id: 4, title: '我是title4'},
+//             {id: 5, title: '我是title5'},
+//             {id: 6, title: '我是title6'},
+//         ];
+//     },
+//     addChangeListener(handleChange) {
+//     
+//     },
+//     removeChangeListener(handleChange) {
+//     
+//     }
+// };
+// 
+// // 评论项.
+// class Comment extends React.Component {
+//     constructor(props) {
+//         super(props);
+//     }
+// 
+//     render() {
+//         return (
+//             <div>
+//                 {this.props.comment.id}-{this.props.comment.title}
+//             </div>
+//         );
+//     }
+// }
+// 
+// // 评论列表.
+// class CommentList extends React.Component {
+//     constructor() {
+//         super();
+// 
+//         // func.
+//         this.handleChange = this.handleChange.bind(this);
+// 
+//         // state.
+//         this.state = {
+//             // "DataSource" is some global data source
+//             comments: DataSource.getComments()
+//         };
+//     }
+// 
+//     componentDidMount() {
+//         // Subscribe to changes
+//         DataSource.addChangeListener(this.handleChange);
+//     }
+// 
+//     componentWillUnmount() {
+//         // Clean up listener
+//         DataSource.removeChangeListener(this.handleChange);
+//     }
+// 
+//     handleChange() {
+//         // Update component state whenever the data source changes
+//         this.setState({
+//             comments: DataSource.getComments()
+//         });
+//     }
+// 
+//     render() {
+//         return (
+//             <div>
+//                 {
+//                     this.state.comments.map((comment) => (
+//                         <Comment comment={comment} key={comment.id} />
+//                     ))
+//                 }
+//             </div>
+//         );
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <CommentList />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
  * @desc
  */
-class CustomTextInput extends React.Component {
-    constructor(props) {
-        super(props);
-        this.handleClick = this.handleClick.bind(this);
-    }
 
-    componentDidMount() {
-        this.handleClick();
-        // this.textInput.focus();
-    }
 
-    handleClick() {
-        this.textInput.focus();
-    }
 
-    render() {
-        return (
-            <div>
-                <input
-                    type="text"
-                    ref={(input) => { this.textInput = input; }} />
 
-                <input
-                    type="button"
-                    value="Focus the text input"
-                    onClick={ this.handleClick }
-                />
-            </div>
-        );
-    }
-}
 
-ReactDOM.render(
-    <CustomTextInput />,
-    document.getElementById('app')
-);
 
 
 
