@@ -4,6 +4,9 @@ import React from 'react';
 // import ReactDOM, {render} from 'react-dom';
 import ReactDOM from 'react-dom';
 
+/* jquery */
+import $ from 'jquery';
+
 /* sass */
 // require('./sass/main');
 import './sass/main';
@@ -3310,8 +3313,437 @@ componentDidMount() {
 
 
 /**
+ * @desc 博客文章评论完整实例.
+ */
+// /* 数据源 */
+// let DataSource = {
+//     idInc: 6,
+//     commentData: [
+//         {id: 1, content: '这条评论很好1'},
+//         {id: 2, content: '这条评论很好2'},
+//         {id: 3, content: '这条评论很好3'},
+//         {id: 4, content: '这条评论很好4'},
+//         {id: 5, content: '这条评论很好5'},
+//         {id: 6, content: '这条评论很好6'},
+//     ],
+//     getComments() {
+//         return this.commentData;
+//     },
+//     getBlogPost(id) {
+//         return {time: '2017-07-20 12:00:00', text: '谁看这篇文章都说好!'};
+//     },
+//     addComment(data) {
+//         this.idInc += 1;
+//         this.commentData.push({id: this.idInc, content: data});
+//     },
+//     addChangeListener(handleFunc) {
+//         handleFunc();
+//     },
+//     removeChangeListener(handleFunc) {
+//         handleFunc();
+//     }
+// };
+// 
+// /* 评论列表 */
+// class CommentList extends React.Component {
+//     constructor() {
+//         super();
+//         this.handleChange = this.handleChange.bind(this);
+//         this.state = {
+//             // "DataSource" is some global data source
+//             comments: DataSource.getComments()
+//         };
+//     }
+// 
+//     componentDidMount() {
+//         // Subscribe to changes
+//         DataSource.addChangeListener(this.handleChange);
+//     }
+// 
+//     componentWillUnmount() {
+//         // Clean up listener
+//         DataSource.removeChangeListener(this.handleChange);
+//     }
+// 
+//     handleChange() {
+//         // Update component state whenever the data source changes
+//         this.setState({
+//             comments: DataSource.getComments()
+//         });
+//     }
+// 
+//     render() {
+//         return (
+//             <div>
+//                 {
+//                     this.state.comments.map((comment) => (
+//                         <Comment comment={comment} key={comment.id} />
+//                     ))
+//                 }
+// 
+//                 <AddComment addHandleFunc={this.handleChange} />
+//             </div>
+//         );
+//     }
+// }
+// 
+// class Comment extends React.Component {
+//     constructor(props) {
+//         super(props);
+//     }
+// 
+//     render() {
+//         return <div>{this.props.comment.id}-{this.props.comment.content}</div>;
+//     }
+// }
+// 
+// /* 添加评论 */
+// class AddComment extends React.Component {
+//     constructor(props) {
+//         super(props);
+// 
+//         // func.
+//         this.addHandleFunc = this.addHandleFunc.bind(this);
+//     }
+// 
+//     addHandleFunc() {
+//         DataSource.addComment(this.addInputEle.value);
+//         this.props.addHandleFunc();
+//         this.addInputEle.value = '';
+//     }
+// 
+//     render() {
+//         return (
+//             <div>
+//                 <input type="text" placeholder="请输入评论内容" ref={input => this.addInputEle = input} />
+//                 <button type="button" onClick={this.addHandleFunc}>add</button>
+//             </div>
+//         );
+//     }
+// }
+// 
+// /* 博客文章详情 */
+// class BlogPost extends React.Component {
+//     constructor(props) {
+//         super(props);
+// 
+//         // func.
+//         this.handleChange = this.handleChange.bind(this);
+// 
+//         // state.
+//         this.state = {
+//             blogPost: DataSource.getBlogPost(props.id)
+//         };
+//     }
+// 
+//     componentDidMount() {
+//         DataSource.addChangeListener(this.handleChange);
+//     }
+// 
+//     componentWillUnmount() {
+//         DataSource.removeChangeListener(this.handleChange);
+//     }
+// 
+//     handleChange() {
+//         this.setState({
+//             blogPost: DataSource.getBlogPost(this.props.id)
+//         });
+//     }
+// 
+//     render() {
+//         return <TextBlock data={this.state.blogPost} />;
+//     }
+// }
+// 
+// class TextBlock extends React.Component {
+//     constructor(props) {
+//         super(props);
+//     }
+// 
+//     render() {
+//         return <div>{this.props.data.time} - {this.props.data.text}</div>;
+//     }
+// }
+// 
+// /* */
+// const CommentListWithSubscription = withSubscription(
+//     CommentList,
+//     (DataSource) => DataSource.getComments()
+// );
+// 
+// const BlogPostWithSubscription = withSubscription(
+//     BlogPost,
+//     (DataSource, props) => DataSource.getBlogPost(props.id)
+// );
+// 
+// /* This function takes a component... */
+// function withSubscription(WrappedComponent, selectData) {
+//     // ...and returns another component...
+//     return class extends React.Component {
+//         constructor(props) {
+//             super(props);
+//             this.handleChange = this.handleChange.bind(this);
+//             this.state = {
+//                 data: selectData(DataSource, props)
+//             };
+//         }
+//         componentDidMount() {
+//             // ... that takes care of the subscription...
+//             DataSource.addChangeListener(this.handleChange);
+//         }
+//         componentWillUnmount() {
+//             DataSource.removeChangeListener(this.handleChange);
+//         }
+//         handleChange() {
+//             this.setState({
+//                 data: selectData(DataSource, this.props)
+//             });
+//         }
+//         render() {
+//             // ... and renders the wrapped component with the fresh data!
+//             // Notice that we pass through any additional props
+//             return <WrappedComponent data={this.state.data} {...this.props} />;
+//         }
+//     };
+// }
+// 
+// class App extends React.Component {
+//     render() {
+//         return (
+//             <div>
+//                 <BlogPostWithSubscription />
+//                 <CommentListWithSubscription />
+//             </div>
+//         );
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <App />,
+//     document.getElementById('app')
+// );
+
+
+
+
+
+
+/*---------- ADVANCED GUIDES - Integrating with Other Libraries ----------*/
+
+/**
+ * @desc jquery实例.
+ */
+// class SomePlugin extends React.Component {
+//     componentDidMount() {
+//         this.$el = $(this.el);
+//         console.log(this.$el);
+//         // this.$el.somePlugin();
+//     }
+// 
+//     componentWillUnmount() {
+//         // this.$el.somePlugin('destroy');
+//     }
+// 
+//     render() {
+//         return <div ref={el => this.el = el} />;
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <SomePlugin />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc jquery实例.
+ */
+// class Chosen extends React.Component {
+//     constructor(props) {
+//         super(props);
+// 
+//         // func.
+//         this.handleChange = this.handleChange.bind(this);
+//     }
+// 
+//     componentDidMount() {
+//         this.$el = $(this.el);
+//         // this.$el.chosen();
+// 
+//         this.$el.on('change', this.handleChange);
+//     }
+// 
+//     componentWillUnmount() {
+//         this.$el.off('change', this.handleChange);
+//         // this.$el.chosen('destroy');
+//     }
+// 
+//     handleChange(e) {
+//         this.props.onChange(e.target.value);
+//     }
+// 
+//     render() {
+//         return (
+//             <div>
+//                 <select className="Chosen-select" ref={el => this.el = el}>
+//                     {this.props.children}
+//                 </select>
+//             </div>
+//         );
+//     }
+// }
+// 
+// function Example() {
+//     return (
+//         <Chosen onChange={value => console.log(value)}>
+//             <option>vanilla</option>
+//             <option>chocolate</option>
+//             <option>strawberry</option>
+//         </Chosen>
+//     );
+// }
+// 
+// ReactDOM.render(
+//     <Example />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc jquery实例.
+ */
+// class Chosen extends React.Component {
+//     constructor(props) {
+//         super(props);
+// 
+//         // func.
+//         this.handleChange = this.handleChange.bind(this);
+//     }
+// 
+//     componentDidMount() {
+//         this.$el = $(this.el);
+//         // this.$el.chosen();
+// 
+//         this.$el.on('change', this.handleChange);
+//     }
+// 
+//     componentDidUpdate(prevProps) {
+//         console.log(prevProps, this.props);
+//         if (prevProps.children !== this.props.children) {
+//             // this.$el.trigger("chosen:updated");
+//         }
+//     }
+// 
+//     componentWillUnmount() {
+//         this.$el.off('change', this.handleChange);
+//         // this.$el.chosen('destroy');
+//     }
+// 
+//     handleChange(e) {
+//         this.props.onChange(e.target.value);
+//     }
+// 
+//     render() {
+//         return (
+//             <div>
+//                 <select className="Chosen-select" ref={el => this.el = el}>
+//                     {this.props.children}
+//                 </select>
+//             </div>
+//         );
+//     }
+// }
+// 
+// function Example() {
+//     return (
+//         <Chosen onChange={value => console.log(value)}>
+//             <option>vanilla</option>
+//             <option>chocolate</option>
+//             <option>strawberry</option>
+//         </Chosen>
+//     );
+// }
+// 
+// ReactDOM.render(
+//     <Example />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc Replacing String-Based Rendering with React.
+ */
+/* jquery */
+// $('#container').html('<button id="btn">Say Hello</button>');
+// $('#btn').click(function() {
+//     alert('Hello!');
+// });
+
+/* react + jquery */
+// function Button() {
+//     return <button id="btn">Say Hello</button>;
+// }
+// 
+// ReactDOM.render(
+//     <Button />,
+//     document.getElementById('app'),
+//     function() {
+//         $('#btn').click(function() {
+//             alert('Hello!');
+//         });
+//     }
+// );
+
+/* react + jquery */
+// function Button(props) {
+//     return <button onClick={props.onClick}>Say Hello</button>;
+// }
+// 
+// function HelloButton() {
+//     function handleClick() {
+//         alert('Hello!');
+//     }
+//     return <Button onClick={handleClick} />;
+// }
+// 
+// ReactDOM.render(
+//     <HelloButton />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc Using Backbone Models in React Components
+ */
+
+
+
+
+
+
+/*---------- ADVANCED GUIDES - Accessibility ----------*/
+
+/**
  * @desc
  */
+
+
+
+
+
+
+/*---------- REFERENCE - React ----------*/
+
+/**
+ * @desc
+ */
+
+
+
 
 
 
