@@ -3738,26 +3738,374 @@ componentDidMount() {
 
 /*---------- REFERENCE - React ----------*/
 
+/*------ Components ------*/
+
 /**
- * @desc
+ * @desc React.Component: 创建组件.
+ * @note is the base class for React components when they are defined using ES6 classes.
  */
 
+/* 实例 */
+// class Greeting extends React.Component {
+//     render() {
+//         return <h1>Hello, {this.props.name}</h1>;
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <Greeting name="Long" />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc React.PureComponent: 创建纯组件
+ */
+
+/* 实例 */
+// class Greeting extends React.PureComponent {
+//     render() {
+//         return <h1>Hello, {this.props.name}</h1>;
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <Greeting name="Long" />,
+//     document.getElementById('app')
+// );
+
+
+
+/*------ Creating React Elements ------*/
+
+/**
+ * @desc createElement(): 使用非JSX创建元素
+ */
+
+/* 语法 */
+// React.createElement(
+//     type,
+//     [props],
+//     [...children]
+// )
+//
+// type: div、span or react component.
+// props: element props.
+// chidlren: children element.
+
+/* 实例1 */
+// ReactDOM.render(
+//     React.createElement('div', {className: 'header'}, 'header'),
+//     document.getElementById('app')
+// );
+
+/* 实例2 */
+// class Header extends React.Component {
+//     render() {
+//         return <div>{this.props.title}</div>;
+//     }
+// }
+// 
+// ReactDOM.render(
+//     React.createElement(Header, {title: 'header-1'}, null),
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc createFactory(): 使用工厂类创建元素.
+ */
+// let factory = React.createFactory("li");
+// let child1 = factory(null, 'First Text Content');
+// let child2 = factory({className: 'type'}, 'Second Text Content');
+// let ulfactory = React.createFactory('ul');
+// let root  = ulfactory({className:'my-list'}, child1, child2);
+// ReactDOM.render(
+//     root,
+//     document.getElementById('app')
+// );
+
+
+
+/*------ Transforming Elements ------*/
+
+/**
+ * @desc cloneElement(): 
+ */
+// class Hello extends React.Component {
+//     componentDidMount() {
+//         console.log(this.span.innerHTML);
+//     }
+// 
+//     render() {
+//         var span = <span data-title="1" ref={el => this.span = el}>VaJoy</span>;
+//         console.log(span.props);
+// 
+//         var newSpan = React.cloneElement(span, {'data-type':'2'}, <em>CNBlog</em>);
+//         console.log(newSpan.props);
+// 
+//         return <div>Hello {span},{newSpan}</div>; // Hello VaJoy,CNBlog
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <Hello />,
+//     document.getElementById('app')
+// );
+
+// class Li extends React.Component {
+//     render() {
+//         return <li data-type="1">{this.props.i}</li>;
+//     }
+// }
+// 
+// class Ul extends React.Component {
+//     constructor(props) {
+//         super(props);
+// 
+//         //func.
+//         this.deal = this.deal.bind(this);
+//     }
+// 
+//     deal(child, index) {
+//         // 注意下面这行换成 createElement 会报错！因为child是ReactElement而不是ReactClass或字符串
+//         return React.cloneElement(child, {i: index, key: index});
+//     }
+// 
+//     render() {
+//         return <ul>{this.props.children.map(this.deal)}</ul>;
+//     }
+// }
+// 
+// ReactDOM.render((
+//         <Ul>
+//             <Li i="9" />
+//             <Li i="8" />
+//             <Li i="7" />
+//         </Ul>
+//     ),
+//     document.getElementById('app')
+// );
+
+
+/**
+ * @desc isValidElement(): 是否是一个有效的元素. 
+ */
+// console.log(React.isValidElement({}));
+// 
+// let ele = <div>1</div>;
+// console.log(React.isValidElement(ele));
+// 
+// class Test extends React.Component {
+//     render() {
+//         return <div>teset</div>;
+//     }
+// }
+// console.log(React.isValidElement(<Test />));
+
+
+
+/**
+ * @desc React.Children.
+ */
+// console.log(React.Children);
+// count: function countChildren(children, context)
+// forEach: function forEachChildren(children, forEachFunc, forEachContext)
+// map: function mapChildren(children, func, context)
+// only: function onlyChild(children)
+// toArray: function toArray(children)
+
+
+
+/**
+ * @desc React.Children.count().
+ */
+// class Test extends React.Component {
+//     render() {
+//         let count = React.Children.count(this.props.children);
+// 
+//         return(
+//             <div>
+//                 <div>count: {count}</div>
+//                 <div>children: {this.props.children}</div>
+//             </div>
+//         );
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <Test>
+//         <div>1</div>
+//         <div>2</div>
+//         <div>3</div>
+//         <div>4</div>
+//         <div>5</div>
+//         <div>6</div>
+//     </Test>,
+//     document.getElementById('app')
+// );
+// 
+// console.log(React.Children.count([1,2,3]));
+// console.log(React.Children.count(<div><div>1</div><div>2</div></div>));
+
+
+
+/**
+ * @desc React.Children.map().
+ */
+// class Test extends React.Component {
+//     render() {
+//         let i = 0;
+//         let map = React.Children.map(this.props.children, (item) => {
+//             // console.log(item);
+//             return <h1 key={'h1_' + i++}>{item}</h1>;
+//         });
+// 
+//         i = 0;
+//         let map1 = this.props.children.map(item => {
+//             // console.log(item);
+//             return <h2 key={'h2_' + i++}>{item}</h2>;
+//         });
+// 
+//         i = 0;
+//         let map2 = [1, 2, 3].map(item => {
+//             return <h3 key={'h3_' + i++}>{item}</h3>;
+//         });
+// 
+//         return(
+//             <div>
+//                 <div>map: {map}</div>
+//                 <div>map1: {map1}</div>
+//                 <div>map2: {map2}</div>
+//                 <div>children: {this.props.children}</div>
+//             </div>
+//         );
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <Test>
+//         <div>1</div>
+//         <div>2</div>
+//         <div>3</div>
+//         <div>4</div>
+//         <div>5</div>
+//         <div>6</div>
+//     </Test>,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc React.Children.forEach().
+ */
+// class Test extends React.Component {
+//     render() {
+//         let i = 0;
+//         let forEach = [];
+//         React.Children.forEach(this.props.children, (item) => {
+//             forEach.push(<h1 key={'h1_' + i++}>{item}</h1>);
+//         });
+// 
+//         i = 0;
+//         let forEach1 = []; 
+//         this.props.children.forEach(item => {
+//             forEach1.push(<h2 key={'h2_' + i++}>{item}</h2>);
+//         });
+// 
+//         i = 0;
+//         let forEach2 = [];
+//         [1, 2, 3].forEach(item => {
+//             forEach2.push(<h3 key={'h3_' + i++}>{item}</h3>);
+//         });
+// 
+//         return(
+//             <div>
+//                 <div>forEach: {forEach}</div>
+//                 <div>forEach1: {forEach1}</div>
+//                 <div>forEach2: {forEach2}</div>
+//                 <div>children: {this.props.children}</div>
+//             </div>
+//         );
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <Test>
+//         <div>1</div>
+//         <div>2</div>
+//         <div>3</div>
+//         <div>4</div>
+//         <div>5</div>
+//         <div>6</div>
+//     </Test>,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc React.Children.only().
+ */
+// class Test extends React.Component {
+//     render() {
+//         // 如果不是只有一个元素则跑出异常，否则返回元素本身.
+//         console.log(React.Children.only(this.props.children));
+// 
+//         return(
+//             <div>
+//                 <div>children: {this.props.children}</div>
+//             </div>
+//         );
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <Test>
+//         <div>1</div>
+//         <div>2</div>
+//         <div>3</div>
+//         <div>4</div>
+//         <div>5</div>
+//         <div>6</div>
+//     </Test>,
+//     document.getElementById('app')
+// );
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+/**
+ * @desc React.Children.toArray().
+ */
+// class Test extends React.Component {
+//     render() {
+//         // 使用React.Children.toArray方法将this.props.children转化成标准的数组格式，然后在进行遍历操作.
+//         console.log(React.Children.toArray(this.props.children));
+//         console.log(React.Children.toArray([1, 2, 3]));
+// 
+//         return(
+//             <div>
+//                 <div>children: {this.props.children}</div>
+//             </div>
+//         );
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <Test>
+//         <div>1</div>
+//         <div>2</div>
+//         <div>3</div>
+//         <div>4</div>
+//         <div>5</div>
+//         <div>6</div>
+//     </Test>,
+//     document.getElementById('app')
+// );
 
 
 
