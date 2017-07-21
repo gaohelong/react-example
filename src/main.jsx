@@ -4112,6 +4112,331 @@ componentDidMount() {
 
 
 
+/*---------- REFERENCE - React.Component ----------*/
+
+/*------ React.Component ------*/
+// 至少包含一个render方法.
+// 如果不喜欢使用ES6, 你可以使用create-react-class，具体的看->React Without ES6.
+
+/* 实例 */
+// class Greeting extends React.Component {
+//     render() {
+//         return <h1>Hello, {this.props.name}</h1>;
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <Greeting name="Long" />,
+//     document.getElementById('app')
+// );
+
+
+
+/*------ Component Lifecycle ------*/
+/* 概述: */
+// 每个组件都有自己的生命周期方法, 只是在不同的时间执行.
+
+/* 名词解释 */
+//   will: 在进入状态之前调用.
+//   did:  在进入状态之后调用.
+
+
+
+/*--- 组件执行分为如下阶段: ---*/
+/*- [Mounting(已插入真实DOM)]: 当一个组件的一个实例被创建和插入到DOM中会执行下面这些方法 -*/
+
+/* constructor(): 构造函数. */
+// 概述:
+//   constructor(props)
+//   1) constructor在mount之前被调用.
+//   2) 在其他声明之前调用super(props), 否则this.props将定义在constructor中, 这可能导致bugs.
+//   3) 在constructor中初始化state是正确的做法, 如果你不初始化state也不绑定方法就不需要使用构造函数了.
+//   4) If you "fork" props by using them for state, you might also want to implement componentWillReceiveProps(nextProps) to keep the state up-to-date with them.
+//      But lifting state up is often easier and less bug-prone
+
+// 实例.
+// class Test extends React.Component {
+//     constructor(props) {
+//         super(props);
+// 
+//         // state.
+//         this.state = {
+//             title: props.name
+//         };
+// 
+//         // func.
+//         this.handleClick = this.handleClick.bind(this);
+//     }
+// 
+//     handleClick(event) {
+//         console.log('你点了我一下^_^');
+//     }
+// 
+//     render() {
+//         return <div onClick={this.handleClick}>{this.state.title} click me !</div>;
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <Test name="please" />,
+//     document.getElementById('app')
+// );
+
+
+
+/* componentWillMount(): 插入真实DOM之前. */
+// 概述:
+//   1) 在插入真实DOM之前调用.
+//   2) 在render之前被调用.
+//   3) 在这个方法里设置state同步不会调用render.
+
+// 实例.
+// class Test extends React.Component {
+//     constructor(props) {
+//         super(props);
+// 
+//         console.log('constructor');
+//     }
+// 
+//     componentWillMount() {
+//         console.log('componentWillMount');
+//     }
+// 
+//     render() {
+//         console.log('render');
+//         return <div>hi!</div>;
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <Test />,
+//     document.getElementById('app')
+// );
+
+
+
+/* render(): 渲染. */
+// 概述: 
+//   1) 每个组件都需要要有render方法. 当被调用时应该检查this.props和this.state并返回一个React元素.
+//   2) 你可以返回null或false表示不想要任何呈现. 当返回null或false, ReactDOM.findDOMNode(this)将返回null.
+//   3) 如果shouldComponentUpdate()返回false, 则不会调用render().
+
+// 实例.
+// class Test extends React.Component {
+//     constructor(props) {
+//         super(props);
+// 
+//         // state.
+//         this.state = {title: '你好'};
+//     }
+// 
+//     componentDidMount() {
+//         this.setState({title: '真的很好'});
+//     }
+// 
+//     shouldComponentUpdate() {
+//         return false; // 如果返回false, componentDidMount中的setState会修改状态，但是不会触发render.
+//     }
+// 
+//     render() {
+//         return <div>{this.state.title} - {this.props.name}</div>;
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <Test name="Long" />,
+//     document.getElementById('app')
+// );
+
+
+
+/* componentDidMount(): 插入真实DOM之后. */
+// 概述:
+//   1) 插入真实DOM之后调用.
+//   2) 应该在这里初始化DOM节点.
+//   3) 如果你需要加载远程数据或者改变state可以放在这里, state改变会调用render.
+
+// 实例.
+// class Test extends React.Component {
+//     constructor(props) {
+//         super(props);
+// 
+//         // state.
+//         this.state = {
+//             title: props.name
+//         }
+// 
+//         console.log('constructor');
+//     }
+// 
+//     componentDidMount() {
+//         console.log(this.state.title);
+// 
+//         // update state.
+//         this.setState({
+//             title: 'componentDidMount update'
+//         });
+// 
+//         console.log('componentDidMount');
+//     }
+// 
+//     render() {
+//         console.log('render');
+//         return <div>hi {this.state.title}!</div>;
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <Test name="componentDidMount" />,
+//     document.getElementById('app')
+// );
+
+
+
+/*- [Updating(正在被重新渲染)]: 当更新props或state后组件会被重新渲染, 会执行下面这些方法 -*/
+
+/* componentWillReceiveProps(): 接收属性. */
+// 概述:
+//   1) 设置state通常不触发componentWillReceiveProps.
+
+// 实例:
+// class Test extends React.Component {
+//     constructor(props) {
+//         super(props);
+// 
+//         // state.
+//         this.state = {
+//             cnt: props.cnt
+//         };
+//     }
+// 
+//     componentWillReceiveProps(nextProps) {
+//         consooe.log(this.props); // 当前props.
+//         console.log(nextProps);  // 新props.
+//     }
+// 
+//     render() {
+//         return <div>{this.state.cnt}</div>;
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <Test cnt="1" />,
+//     document.getElementById('app')
+// );
+
+
+
+/* shouldComponentUpdate(): 组件需要进行更新. */
+// 概述: 
+//   shouldComponentUpdate(nextProps, nextState)
+//   1) 人工干涉是否调用render.
+//   2) 返回true则调用render, 返回false则不调用render.
+//   3) 返回false并不阻止子组件状态改变时重新render.
+
+// 实例.
+// class Test extends React.Component {
+//     constructor(props) {
+//         super(props);
+// 
+//         // state.
+//         this.state = {
+//             cnt: props.zcnt
+//         }
+//     }
+// 
+//     componentDidMount() {
+//         this.setState({
+//             cnt: 6
+//         });
+//     }
+// 
+//     shouldComponentUpdate(nextProps, nextState) {
+//         console.log(this.props);
+//         console.log(nextProps);
+//         console.log(this.state);
+//         console.log(nextState);
+// 
+//         if (this.state.cnt != nextState.cnt) {
+//             console.log(this.state.cnt, nextState.cnt);
+//             return true;
+//         } else {
+//             return false;
+//         }
+//     }
+// 
+//     render() {
+//         return <div>{this.state.cnt}</div>;
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <Test zcnt="1" />,
+//     document.getElementById('app')
+// );
+
+
+
+/* componentWillUpdate(): . */
+
+/* render(): . */
+
+/* componentDidUpdate(): . */
+
+
+
+/*- [Unmounting(已移出真实 DOM)]: 当一个组件从DOM中删除时, 会执行下面这些方法 -*/
+
+/* componentWillUnmount(): . */
+
+
+
+
+/*- [Other APIs]: 每个组件还提供了如下Api -*/
+
+/* setState(): . */
+
+/* forceUpdate(): . */
+
+
+
+
+/*- [Class Properties] -*/
+
+/* defaultProps: . */
+
+/* displayName: . */
+
+
+
+
+/*- [Instance Properties] -*/
+
+/* props: . */
+
+/* state: . */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
