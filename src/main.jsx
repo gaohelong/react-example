@@ -4377,42 +4377,397 @@ componentDidMount() {
 
 
 
-/* componentWillUpdate(): . */
+/* componentWillUpdate(): 组件更新之前. */
+// 概述:
+//   componentWillUpdate(nextProps, nextState)
+//   1) Note that you cannot call this.setState() here. If you need to update state in response to a prop change, use componentWillReceiveProps() instead.
+//   2) shouldComponentUpdate返回false, componentWillUpdate将不会被调用.
+
+// 实例.
+// class Test extends React.Component {
+//     constructor(props) {
+//         super(props);
+// 
+//         // state.
+//         this.state = {
+//             cnt: props.zcnt
+//         }
+//     }
+// 
+//     shouldComponentUpdate(nextProps, nextState) {
+//         console.log('sCU:', this.props);
+//         console.log('sCU:', nextProps);
+//         console.log('sCU:', this.state);
+//         console.log('sCU:', nextState);
+// 
+//         return true;
+//     }
+// 
+//     componentWillUpdate(nextProps, nextState) {
+//         console.log('cWU:', this.props);
+//         console.log('cWU:', nextProps);
+//         console.log('cWU:', this.state);
+//         console.log('cWU:', nextState);
+//     }
+// 
+//     componentDidMount() {
+//         this.setState({
+//             cnt: -1
+//         });
+//     }
+// 
+//     render() {
+//         return <div>{this.state.cnt}</div>;
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <Test zcnt="99" />,
+//     document.getElementById('app')
+// );
+
+
 
 /* render(): . */
 
+
+
 /* componentDidUpdate(): . */
+// 概述:
+//   componentDidUpdate(prevProps, prevState)
+//   1) 
+//   2) 如果shouldComponentUpdate返回false则不调用componentDidUpdate.
+
+// 实例.
+// class Test extends React.Component {
+//     constructor(props) {
+//         super(props);
+// 
+//         // state.
+//         this.state = {
+//             cnt: props.zcnt
+//         }
+//     }
+// 
+//     shouldComponentUpdate(nextProps, nextState) {
+//         console.log('sCU:', this.props);
+//         console.log('sCU:', nextProps);
+//         console.log('sCU:', this.state);
+//         console.log('sCU:', nextState);
+// 
+//         return true;
+//     }
+// 
+//     componentWillUpdate(nextProps, nextState) {
+//         console.log('cWU:', this.props);
+//         console.log('cWU:', nextProps);
+//         console.log('cWU:', this.state);
+//         console.log('cWU:', nextState);
+//     }
+// 
+//     componentDidUpdate(prevProps, prevState) {
+//         console.log('cDU:', prevProps);
+//         console.log('cDU:', this.props);
+//         console.log('cDU:', prevProps);
+//         console.log('cDU:', this.state);
+//     }
+// 
+//     componentDidMount() {
+//         this.setState({
+//             cnt: '2001'
+//         });
+//     }
+// 
+//     render() {
+//         return <div>{this.state.cnt}</div>;
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <Test zcnt="1001" />,
+//     document.getElementById('app')
+// );
 
 
 
 /*- [Unmounting(已移出真实 DOM)]: 当一个组件从DOM中删除时, 会执行下面这些方法 -*/
 
 /* componentWillUnmount(): . */
+// 概述:
+//   1) 在componentDidMount中绑定.
+//   2) 在componentWillUnmount中解绑.
 
+// 实例.
+// class Test extends React.Component {
+//     constructor(props) {
+//         super(props);
+// 
+//         // func.
+//         this.handleClick = this.handleClick.bind(this);
+// 
+//         // state.
+//         this.state = {
+//             time: new Date
+//         };
+//     }
+// 
+//     handleClick() {
+//         // 这样做不会触发componentWillUnmount.
+//         // console.log(this.timeSpan.remove());
+//     }
+// 
+//     componentDidMount() {
+//         this.timeClear = setInterval(() => {
+//             this.setState({
+//                 time: new Date
+//             });
+//         }, 1000);
+//     }
+// 
+//     componentWillUnmount() {
+//         console.log('remove time');
+//         clearInterval(this.timeClear);
+//     }
+// 
+//     render() {
+//         return (
+//             <div>
+//                 <span onClick={this.handleClick} ref={span => {this.timeSpan = span;}}>{this.state.time.toLocaleString()}</span>
+//             </div>
+//         );
+//     }
+// }
+// 
+// class App extends React.Component {
+//     constructor(props) {
+//         super(props);
+// 
+//         // func.
+//         this.handleClick = this.handleClick.bind(this);
+// 
+//         // state.
+//         this.state = {
+//             timeShow: props.timeShow
+//         };
+//     }
+// 
+//     handleClick() {
+//         this.setState({
+//             timeShow: false
+//         });
+//     }
+// 
+//     render() {
+//         return (
+//             <div>
+//                 <span onClick={this.handleClick} >
+//                     {this.state.timeShow && <Test />}
+//                 </span>
+//             </div>
+//         );
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <App timeShow="true" />,
+//     document.getElementById('app')
+// );
 
 
 
 /*- [Other APIs]: 每个组件还提供了如下Api -*/
 
 /* setState(): . */
+// 概述:
+//   setState(updater, [callback])
+//   1) 为了性能, setState可能会有延迟, 然后几个组件一起更新.
+//   2) React不能保证状态改变后就立即应用, 因为可能存在延迟.
+//   3) setState后并不总是立即更新组件.
+
+// 参数说明:
+//   1) 第一个参数是updater:
+//        this.setState((prevState, props) => {
+//            return {counter: prevState.counter + props.step};
+//        });
+//
+//   2) 第二个参数是一个可选的回调函数将执行一次并设置状态.
+//
+//   3) 你也可以选择一个对象做为第一个参数来设置状态, 它会执行一次合并.
+//        this.setState({quantity: 2});
+
+// 实例.
+// class Test extends React.Component {
+//     constructor(props) {
+//         super(props);
+// 
+//         // func.
+//         this.handleClick = this.handleClick.bind(this);
+//         this.setStateCallBack = this.setStateCallback.bind(this);
+// 
+//         // state.
+//         this.state = {
+//             cnt: Number(props.zcnt),
+//             test: 1
+//         };
+//     }
+// 
+//     handleClick() {
+//         /* 方法1: 使用一个对象做为参数来设置状态 */
+//         // 这样做是不安全的，因为setState可能会存在延迟，这时this.state.cnt的值就会存在问题.
+//         // this.setState({
+//         //     cnt: this.state.cnt + 1
+//         // });
+// 
+//         /* 方法2: 使用updater来设置状态 */
+//         // 如果下一个状态依赖前一个状态, 推荐使用updater.
+//         // this.setState((prevState, props) => {
+//         //     let zcnt = Number(props.zcnt);
+//         //     return {
+//         //         cnt: prevState.cnt + zcnt,
+//         //         test: prevState.test + zcnt
+//         //     };
+//         // });
+// 
+//         // 不传递props.
+//         // this.setState((prevState) => {
+//         //     return {
+//         //         cnt: prevState.cnt + 1,
+//         //         test: prevState.test + 1
+//         //     };
+//         // });
+// 
+//         /* 方法3: 使用callback */
+//         // this.setState((prevState, props) => {
+//         //     let zcnt = Number(props.zcnt);
+//         //     return {
+//         //         cnt: prevState.cnt + zcnt,
+//         //         test: prevState.test + zcnt
+//         //     };
+//         // }, () => {
+//         //     this.setStateCallback();
+//         // });
+// 
+//         /* 使用assgin */
+//         this.setState((prevState, props) => {
+//             let zcnt = Number(props.zcnt);
+//             return Object.assign(
+//                 prevState,
+//                 {cnt: prevState.cnt + zcnt},
+//                 {test: prevState.test + zcnt},
+//                 {title: 'Hello'},
+//                 {name: 'Long'}
+//             );
+//         });
+//     }
+// 
+//     setStateCallback() {
+//         console.log(this.state);
+//     }
+// 
+//     render() {
+//         return (
+//             <div>
+//                 <div>{this.state.title}{this.state.name}{this.state.cnt}</div>
+//                 <div>
+//                     <button type="button" onClick={this.handleClick} >add 1</button>
+//                 </div>
+//             </div>
+//         );
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <Test zcnt="1" />,
+//     document.getElementById('app')
+// );
+
+
 
 /* forceUpdate(): . */
+// 概述:
+//   component.forceUpdate(callback)
+//   1) forceUpdate将调用component的render方法并跳过shouldComponentUpdate, 这将触发子组件的正常生命周期方法, 包括每个子子组件的shouldComponentUpdate方法.
+//   2) 正常情况下尽量避免使用forceUpdate.
 
+// 实例.
+// class Test extends React.Component {
+//     constructor(props) {
+//         super(props);
+// 
+//         // func.
+//         this.handleForceUpdate = this.handleForceUpdate.bind(this);
+// 
+//         // state.
+//         this.state = {
+//             time: new Date
+//         };
+//     }
+// 
+//     handleForceUpdate() {
+//         this.setState({
+//             time: new Date
+//         });
+// 
+//         this.forceUpdate();
+//     }
+// 
+//     shouldComponentUpdate(nextProps, nextState) {
+//         return false;
+//     }
+// 
+//     render() {
+//         return (
+//             <div>
+//                 <span onClick={this.handleForceUpdate}>{this.state.time.toLocaleString()}</span>
+//             </div>
+//         );
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <Test />,
+//     document.getElementById('app')
+// );
 
 
 
 /*- [Class Properties] -*/
 
 /* defaultProps: . */
+// 概念: 
+//   1) 设置默认props.
+
+// 实例.
+// class CustomButton extends React.Component {
+//     constructor(props) {
+//         super(props);
+//     }
+// 
+//     render() {
+//         return <div>{this.props.color}</div>;
+//     }
+// }
+// 
+// CustomButton.defaultProps = {
+//     color: 'blue'
+// };
+// 
+// ReactDOM.render(
+//     <CustomButton />,
+//     document.getElementById('app')
+// );
+
+
 
 /* displayName: . */
-
 
 
 
 /*- [Instance Properties] -*/
 
 /* props: . */
+
+
 
 /* state: . */
 
@@ -4421,7 +4776,80 @@ componentDidMount() {
 
 
 
+/*---------- REFERENCE - ReactDOM ----------*/
 
+/*--- 引入ReactDOM ---*/
+// ES6.
+// import ReactDOM from 'react-dom';
+
+// ES5.
+// var ReactDOM = require('react-dom');
+
+
+
+/*--- Browser Support ---*/
+// React supports all popular browsers, including Internet Explorer 9 and above.
+// Note: We don't support older browsers that don't support ES5 methods, but you may find that your apps
+//       do work in older browsers if polyfills such as es5-shim and es5-sham are included in the page. You're on your own if you choose to take this path
+
+
+
+/*--- ReactDOM包含如下方法 ---*/
+
+/* render() */
+// 语法:
+//   ReactDOM.render(element, container, [callback]).
+
+
+
+/* unmountComponentAtNode(): 卸载组件节点. */
+// 概述:
+//   ReactDOM.unmountComponentAtNode(container)
+
+// 实例.
+// function Test() {
+//     return <div>1</div>;
+// }
+// 
+// ReactDOM.render(
+//     <Test />,
+//     document.getElementById('app')
+// );
+// 
+// ReactDOM.unmountComponentAtNode(document.getElementById('app'));
+
+
+
+/* findDOMNode(): . */
+// 概述:
+//   ReactDOM.findDOMNode(component)
+
+// 实例.
+// class Test extends React.Component {
+//     constructor(props) {
+//         super(props);
+//     }
+// 
+//     componentDidMount() {
+//         let ele = ReactDOM.findDOMNode(this);
+//         console.log(ele.innerHTML);
+//         console.log(ele.querySelector('span'));
+//         console.log(document.querySelector('#app div'));
+//     }
+// 
+//     render() {
+//         return (
+//             <div>
+//                 <span data-type="title">title</span>
+//             </div>
+//         );
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <Test name="Long" />,
+//     document.getElementById('app')
+// );
 
 
 
