@@ -5439,6 +5439,145 @@ componentDidMount() {
 
 
 
+/*---------- Other ----------*/
+
+/**
+ * @desc radio.
+ */
+// class Form extends React.Component {
+//     constructor(props) {
+//         super(props);
+// 
+//         // state.
+//         this.state = {
+//             age: 20
+//         }
+// 
+//         // func.
+//         this.handleClick = this.handleClick.bind(this);
+//     }
+// 
+//     handleClick(event) {
+//         let target = event.target;
+//         let name = target.name;
+//         let val = Number(target.value);
+//         if (target.checked) {
+//             this.setState({
+//                 [name]: val
+//             });
+//         }
+//     }
+// 
+//     render() {
+//         return (
+//             <div>
+//                 <div className="test-age">
+//                     <input type="radio" name="age" defaultValue="18" onClick={this.handleClick} />18
+//                     <input type="radio" name="age" defaultValue="20" defaultChecked onClick={this.handleClick} />20
+//                 </div>
+//             </div>
+//         );
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <Form />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc radio组件拆分.
+ */
+// class AgeItem extends React.Component {
+//     constructor(props) {
+//         super(props);
+//     }
+// 
+//     render() {
+//         let checked = this.props.ageDefault == this.props.data.age;
+//         return (
+//             <div>
+//                 <input type="radio" name="age" defaultValue={this.props.data.age} onClick={this.props.handleClick} 
+//                     defaultChecked={checked} />{this.props.data.age}
+//             </div>
+//         );
+//     }
+// }
+// 
+// class Age extends React.Component {
+//     constructor(props) {
+//         super(props);
+//     }
+// 
+//     render() {
+//         let _this = this;
+//         let radioList = this.props.list.map((row) => {
+//             return <AgeItem key={'age_' + row.age}  data={row} handleClick={_this.props.handleClick} ageDefault={_this.props.ageDefault} />
+//         });
+// 
+//         return (
+//             <div>{radioList}</div>
+//         );
+//     }
+// }
+// 
+// class Form extends React.Component {
+//     constructor(props) {
+//         super(props);
+// 
+//         // state.
+//         this.state = {
+//             age: 20
+//         }
+// 
+//         // func.
+//         this.handleClick = this.handleClick.bind(this);
+//     }
+// 
+//     handleClick(event) {
+//         // 常规写法.
+//         // let target = event.target;
+//         // let name = target.name;
+//         // let val = Number(target.value);
+// 
+//         // 解构写法.
+//         let [target, name, val] = [event.target, event.target.name, Number(event.target.value)];
+//         if (target.checked) {
+//             this.setState({
+//                 [name]: val
+//             });
+//         }
+//     }
+// 
+//     render() {
+//         let list = [
+//             {age: 18},
+//             {age: 20},
+//             {age: 23},
+//         ];
+// 
+//         return (
+//             <div>
+//                 <div className="test-age">
+//                     <Age list={list} handleClick={this.handleClick} ageDefault={this.state.age}  />
+//                 </div>
+//             </div>
+//         );
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <Form />,
+//     document.getElementById('app')
+// );
+
+
+
+
+
+
 /* 常量调用 */
 console.log(process.env.NODE_ENV);
 console.log(__PROD__);
