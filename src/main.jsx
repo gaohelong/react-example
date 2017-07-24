@@ -4856,16 +4856,583 @@ componentDidMount() {
 
 
 
+/*---------- REFERENCE - DOM Elements ----------*/
+// 概述:
+//     React实现了一个独立于浏览器的DOM系统和跨浏览器的兼容性, 所有的属性都使用驼峰命名法, 例如: tabindex应该携程tabIndex.
+//     只有data-*、aria-*属性例外, 应该使用小写. 例如: aria-label等...
+
+
+
+/**
+ * @desc checked.
+ */
+// 概述: <input> type checkbox or radio设置默认选中在React中使用defaultChecked.
+
+// 实例.
+// class Test extends React.Component {
+//     render() {
+//         return <div><input type="radio" defaultValue="18" defaultChecked />18岁</div>;
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <Test />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc class.
+ */
+// 概述: 指定css的class使用className, 这适用于所有常规的DOM、SVG元素.
+
+// 实例.
+// class Test extends React.Component {
+//     render() {
+//         return <div className="header">header</div>
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <Test />,
+//     document.getElementById('app')
+// );
+
+/**
+ * @desc dangerouslySetInnerHTML.
+ */
+// 概述：dangerouslySetInnerHTML代替innerHTML.
+
+// 实例.
+// class MyComponent extends React.Component {
+//     constructor(props) {
+//         super(props);
+// 
+//         this.createMarkup = this.createMarkup.bind(this);
+//     }
+// 
+//     createMarkup() {
+//         return {__html: 'First &middot; <a href="http://github.com/gaohelong">Second</a>'};
+//     }
+// 
+//     render() {
+//         return <div dangerouslySetInnerHTML={this.createMarkup()} />;
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <MyComponent />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc htmlFor.
+ */
+// class Test extends React.Component {
+//     render() {
+//         return (
+//             <div>
+//                 <label htmlFor="test">click me</label>
+//                 <input type="text" id="test" />
+//             </div>
+//         );
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <Test />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc selected.
+ */
+// class Test extends React.Component {
+//     render() {
+//         // method one: set selected.
+//         return (
+//             <select>
+//                 <option value="1">one</option>
+//                 <option value="2" selected>two</option>
+//             </select>
+//         );
+// 
+//         // method two: set defaultValue.
+//         // return (
+//         //     <select defaultValue="2">
+//         //         <option value="1">one</option>
+//         //         <option value="2">two</option>
+//         //     </select>
+//         // );
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <Test />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc style.
+ */
+// class Test extends React.Component {
+//     render() {
+//         return <div style={this.props.style}>style</div>;
+//     }
+// }
+// 
+// // style use camelCamed, only ms prefix lowercase.
+// const style = {
+//     color:              'red',
+//     fontSize:           '18px',
+//     MozTransform:       'scale(.5)',  /* Firefox */
+//     msTransform:        'scale(.6)',  /* IE (9+) */
+//     OTransform:         'scale(.7)',  /* Opera */
+//     WebkitTransform:    'scale(.81)', /* Safari and Chrome */
+//     Transform:          'scale(.9)',  /* One day someone will use this so let's keep it future proof */
+// };
+// 
+// ReactDOM.render(
+//     <Test style={style} />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc value.
+ */
+// 概述:
+//     input、textarea set use defaultValue.
+
+// 实例.
+// class Test extends React.Component {
+//     render() {
+//         return (
+//             <div>
+//                 <input type="text" defaultValue="hi" />
+//                 <textarea cols="10" rows="10" defaultValue="textarea" />
+//             </div>
+//         );
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <Test />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc 支持的html属性及data-*、aria-*
+ */
+// accept acceptCharset accessKey action allowFullScreen allowTransparency alt
+// async autoComplete autoFocus autoPlay capture cellPadding cellSpacing challenge
+// charSet checked cite classID className colSpan cols content contentEditable
+// contextMenu controls coords crossOrigin data dateTime default defer dir
+// disabled download draggable encType form formAction formEncType formMethod
+// formNoValidate formTarget frameBorder headers height hidden high href hrefLang
+// htmlFor httpEquiv icon id inputMode integrity is keyParams keyType kind label
+// lang list loop low manifest marginHeight marginWidth max maxLength media
+// mediaGroup method min minLength multiple muted name noValidate nonce open
+// optimum pattern placeholder poster preload profile radioGroup readOnly rel
+// required reversed role rowSpan rows sandbox scope scoped scrolling seamless
+// selected shape size sizes span spellCheck src srcDoc srcLang srcSet start step
+// style summary tabIndex target title type useMap value width wmode wrap
+
+
+
+/**
+ * @desc 支持的svg属性.
+ */
+// accentHeight accumulate additive alignmentBaseline allowReorder alphabetic
+// amplitude arabicForm ascent attributeName attributeType autoReverse azimuth
+// baseFrequency baseProfile baselineShift bbox begin bias by calcMode capHeight
+// clip clipPath clipPathUnits clipRule colorInterpolation
+// colorInterpolationFilters colorProfile colorRendering contentScriptType
+// contentStyleType cursor cx cy d decelerate descent diffuseConstant direction
+// display divisor dominantBaseline dur dx dy edgeMode elevation enableBackground
+// end exponent externalResourcesRequired fill fillOpacity fillRule filter
+// filterRes filterUnits floodColor floodOpacity focusable fontFamily fontSize
+// fontSizeAdjust fontStretch fontStyle fontVariant fontWeight format from fx fy
+// g1 g2 glyphName glyphOrientationHorizontal glyphOrientationVertical glyphRef
+// gradientTransform gradientUnits hanging horizAdvX horizOriginX ideographic
+// imageRendering in in2 intercept k k1 k2 k3 k4 kernelMatrix kernelUnitLength
+// kerning keyPoints keySplines keyTimes lengthAdjust letterSpacing lightingColor
+// limitingConeAngle local markerEnd markerHeight markerMid markerStart
+// markerUnits markerWidth mask maskContentUnits maskUnits mathematical mode
+// numOctaves offset opacity operator order orient orientation origin overflow
+// overlinePosition overlineThickness paintOrder panose1 pathLength
+// patternContentUnits patternTransform patternUnits pointerEvents points
+// pointsAtX pointsAtY pointsAtZ preserveAlpha preserveAspectRatio primitiveUnits
+// r radius refX refY renderingIntent repeatCount repeatDur requiredExtensions
+// requiredFeatures restart result rotate rx ry scale seed shapeRendering slope
+// spacing specularConstant specularExponent speed spreadMethod startOffset
+// stdDeviation stemh stemv stitchTiles stopColor stopOpacity
+// strikethroughPosition strikethroughThickness string stroke strokeDasharray
+// strokeDashoffset strokeLinecap strokeLinejoin strokeMiterlimit strokeOpacity
+// strokeWidth surfaceScale systemLanguage tableValues targetX targetY textAnchor
+// textDecoration textLength textRendering to transform u1 u2 underlinePosition
+// underlineThickness unicode unicodeBidi unicodeRange unitsPerEm vAlphabetic
+// vHanging vIdeographic vMathematical values vectorEffect version vertAdvY
+// vertOriginX vertOriginY viewBox viewTarget visibility widths wordSpacing
+// writingMode x x1 x2 xChannelSelector xHeight xlinkActuate xlinkArcrole
+// xlinkHref xlinkRole xlinkShow xlinkTitle xlinkType xmlns xmlnsXlink xmlBase
+// xmlLang xmlSpace y y1 y2 yChannelSelector z zoomAndPan
 
 
 
 
 
 
+/*---------- REFERENCE - SyntheticEvent ----------*/
+
+/*
+ * @desc 概述
+ *   1) 如果你发现你需要底层浏览器事件由于某种原因,简单地使用nativeEvent属性来得到它。
+ *   2) 每个SyntheticEvent对象有以下属性: 
+ */
+// boolean bubbles
+// boolean cancelable
+// DOMEventTarget currentTarget
+// boolean defaultPrevented
+// number eventPhase
+// boolean isTrusted
+// DOMEvent nativeEvent
+// void preventDefault()
+// boolean isDefaultPrevented()
+// void stopPropagation()
+// boolean isPropagationStopped()
+// DOMEventTarget target
+// number timeStamp
+// string type
 
 
 
+/**
+ * @desc Event Pooling.
+ */
+// class Test extends React.Component {
+//     constructor(props) {
+//         super(props);
+// 
+//         // state.
+//         this.state = {};
+// 
+//         // func.
+//         this.handleClick = this.handleClick.bind(this);
+//     }
+// 
+//     handleClick(event) {
+//         console.log('event:', event);           // => nullified object.
+//         console.log('event.type:', event.type); // => "click"
+//         const eventType = event.type;           // => "click"
+// 
+//         setTimeout(function() {
+//             console.log('st-event:', event.type);       // => null
+//             console.log('st-event.type:', eventType);   // => "click"
+//         }, 1000);
+// 
+//         // Won't work. this.state.clickEvent will only contain null values.
+//         this.setState({clickEvent: event});
+// 
+//         // You can still export event properties.
+//         this.setState({eventType: event.type});
+// 
+//         console.log('state:', this.state);
+//     }
+// 
+//     render() {
+//         return <div onClick={this.handleClick}>click me</div>
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <Test />,
+//     document.getElementById('app')
+// );
 
+
+
+/*------ 支持的事件 ------*/
+
+/**
+ * Clipboard Events:
+ *   1、Event names:
+ *     1) onCopy
+ *     2) onCut
+ *     3) onPaste
+ *
+ *   2、Properties:
+ *     1) DOMDataTransfer
+ *     2) clipboardData
+ */
+
+// 实例.
+// class Test extends React.Component {
+//     constructor(props) {
+//         super(props);
+// 
+//         // func.
+//         this.handleCopy = this.handleCopy.bind(this);
+//         this.handlePaste = this.handlePaste.bind(this);
+//         this.handleCut = this.handleCut.bind(this);
+//     }
+// 
+//     handleCopy() {
+//         console.log('copy');
+//     }
+// 
+//     handlePaste() {
+//         console.log('paste');
+//     }
+// 
+//     handleCut() {
+//         console.log('cut');
+//     }
+// 
+//     render() {
+//         return <div onCopy={this.handleCopy} onPaste={this.handlePaste} onCut={this.handleCut}>hi Cloud long !</div>
+//     }
+// }
+// 
+// ReactDOM.render(
+//     <Test />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * Composition Events
+ *   1、Event names:
+ *     1) onCompositionEnd
+ *     2) onCompositionStart
+ *     3) onCompositionUpdate
+ *
+ *   2、Properties:
+ *     1) string
+ *     2) data
+ */
+
+
+
+/**
+ * Keyboard Events
+ *   1、Event names:
+ *     1) onKeyDown
+ *     2) onKeyPress
+ *     3) onKeyUp
+ *
+ *   2、Properties:
+ *     1)  boolean altKey
+ *     2)  number charCode
+ *     3)  boolean ctrlKey
+ *     4)  boolean getModifierState(key)
+ *     5)  string key
+ *     6)  number keyCode
+ *     7)  string locale
+ *     8)  number location
+ *     9)  boolean metaKey
+ *     10) boolean repeat
+ *     11) boolean shiftKey
+ *     12) number which
+ */
+
+
+
+/**
+ * Focus Events
+ *   0、These focus events work on all elements in the React DOM, not just form elements.
+ *   1、Event names:
+ *     1) onFocus
+ *     2) onBlur
+ *
+ *   2、Properties:
+ *     1) DOMEventTarget
+ *     2) relatedTarget
+ */
+
+
+
+/**
+ * Form Events
+ *   1、Event names:
+ *     1) onChange
+ *     2) onInput
+ *     3) onSubmit
+ */
+
+
+
+/**
+ * Mouse Events
+ *   1、Event names:
+ *     1)  onClick
+ *     2)  onContextMenu
+ *     3)  onDoubleClick
+ *     4)  onDrag
+ *     5)  onDragEnd
+ *     6)  onDragEnter
+ *     7)  onDragExit
+ *     8)  onDragLeave
+ *     9)  onDragOver
+ *     10) onDragStart
+ *     11) onDrop
+ *     12) onMouseDown
+ *     13) onMouseEnter
+ *     14) onMouseLeave
+ *     15) onMouseMove
+ *     16) onMouseOut
+ *     17) onMouseOver
+ *     18) onMouseUp
+ *
+ *   2、Properties:
+ *     boolean altKey
+ *     number button
+ *     number buttons
+ *     number clientX
+ *     number clientY
+ *     boolean ctrlKey
+ *     boolean getModifierState(key)
+ *     boolean metaKey
+ *     number pageX
+ *     number pageY
+ *     DOMEventTarget relatedTarget
+ *     number screenX
+ *     number screenY
+ *     boolean shiftKey
+ */
+
+
+
+/**
+ * Selection Events
+ *   1、Event names:
+ *     1) onSelect
+ */
+
+
+
+/**
+ * Touch Events
+ *   1、Event names:
+ *     1) onTouchCancel
+ *     2) onTouchEnd
+ *     3) onTouchMove
+ *     4) onTouchStart
+ *
+ *   2、Properties:
+ *     boolean altKey
+ *     DOMTouchList changedTouches
+ *     boolean ctrlKey
+ *     boolean getModifierState(key)
+ *     boolean metaKey
+ *     boolean shiftKey
+ *     DOMTouchList targetTouches
+ *     DOMTouchList touches
+ */
+
+
+
+/**
+ * UI Events
+ *   1、Event names:
+ *     1) onScroll
+ *
+ *   2、Properties:
+ *     number detail
+ *     DOMAbstractView view
+ */
+
+
+
+/**
+ * Wheel Events
+ *   1、Event names:
+ *     1) onWheel
+ *
+ *   2、Properties:
+ *     number deltaMode
+ *     number deltaX
+ *     number deltaY
+ *     number deltaZ
+ */
+
+
+
+/**
+ * Media Events
+ *   1、Event names:
+ *     1)  onAbort
+ *     2)  onCanPlay
+ *     3)  onCanPlayThrough
+ *     4)  onDurationChange
+ *     5)  onEmptied
+ *     6)  onEncrypted 
+ *     7)  onEnded
+ *     8)  onError
+ *     9)  onLoadedData
+ *     10) onLoadedMetadata
+ *     11) onLoadStart
+ *     12) onPause
+ *     13) onPlay 
+ *     14) onPlaying
+ *     15) onProgress
+ *     16) onRateChange
+ *     17) onSeeked
+ *     18) onSeeking
+ *     19) onStalled
+ *     20) onSuspend
+ *     21) onTimeUpdate
+ *     22) onVolumeChange
+ *     23) onWaiting
+ */
+
+
+
+/**
+ * Image Events
+ *   1、Event names:
+ *     1) onLoad
+ *     2) onError
+ */
+
+
+
+/**
+ * Animation Events
+ *   1、Event names:
+ *     1) onAnimationStart
+ *     2) onAnimationEnd
+ *     3) onAnimationIteration
+ *
+ *   2、Properties:
+ *     string animationName
+ *     string pseudoElement
+ *     float elapsedTime
+ */
+
+
+
+/**
+ * Transition Events
+ *   1、Event names:
+ *     1) onTransitionEnd
+ *
+ *   2、Properties:
+ *     string propertyName
+ *     string pseudoElement
+ *     float elapsedTime
+ */
 
 
 
