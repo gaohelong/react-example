@@ -1,0 +1,13 @@
+@charset "utf-8";
+@import "../core";
+
+/* layout */
+.#{$prefix}-header {
+    color:      blue;
+    font-size:  20px;
+}
+
+.#{$prefix}-footer {
+    color:      red;
+    font-size:  22px;
+}

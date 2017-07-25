@@ -1,8 +1,11 @@
 import React from 'react';
 
+/* sass */
+import '../../sass/modules/layout/layout';
+
 class Footer extends React.Component {
     render() {
-        return <div>footer</div>;
+        return <div className="hl-footer">footer</div>;
     }
 }
 
