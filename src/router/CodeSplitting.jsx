@@ -17,7 +17,10 @@ import loadFooter from 'bundle-loader?lazy!../components/layout/Footer';
 
 /* 首次访问组件加载它们的模块(自动加载) */
 const Header = (props) => {
-    console.log(props);
+    /* sass */
+    require('../sass/modules/layout/layout');
+
+    /* component */
     return (
         <Bundle load={loadHeader}>
             {(Header) => <Header {...props}/>}
@@ -25,11 +28,17 @@ const Header = (props) => {
     );
 };
 
-const Footer = (props) => (
-    <Bundle load={loadFooter}>
-        {(Footer) => <Footer {...props}/>}
-    </Bundle>
-);
+const Footer = (props) => {
+    /* sass */
+    require('../sass/modules/layout/layout');
+
+    /* component */
+    return (
+        <Bundle load={loadFooter}>
+            {(Footer) => <Footer {...props}/>}
+        </Bundle>
+    );
+};
 
 class CodeSplitting extends React.Component {
     componentDidMount() {

@@ -1,7 +1,7 @@
 import React from 'react';
 
 /* sass */
-import '../../sass/modules/layout/layout';
+// import '../../sass/modules/layout/layout';
 
 class Footer extends React.Component {
     render() {
