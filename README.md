@@ -28,7 +28,7 @@
 
 ## 【react-router】
 [English](https://reacttraining.com/react-router/)
-[Chinease](http://www.uprogrammer.cn/react-router-cn/)
+[Chinease](https://reacttraining.cn/)
 
 ## 【react-redux】
 [English](http://redux.js.org/)
