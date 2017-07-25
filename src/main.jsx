@@ -26,11 +26,134 @@ import './sass/modules/main/main';
 //     document.getElementById('app')
 // );
 
+
+
 /**
  * @desc Redirects(Auth).
  */
-import Redirects from './router/Redirects';
+// import Redirects from './router/Redirects';
+// ReactDOM.render(
+//     <Redirects />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc CustomLinkExample.
+ */
+// import CustomLinkExample from './router/CustomLinkExample';
+// ReactDOM.render(
+//     <CustomLinkExample />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc PreventingTransitionsExample.
+ */
+// import PreventingTransitionsExample from './router/PreventingTransitionsExample';
+// ReactDOM.render(
+//     <PreventingTransitionsExample />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc NoMatchExample.
+ */
+// import NoMatchExample from './router/NoMatchExample';
+// ReactDOM.render(
+//     <NoMatchExample />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc RecursiveExample.
+ */
+// import RecursiveExample from './router/RecursiveExample';
+// ReactDOM.render(
+//     <RecursiveExample />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc SidebarExample.
+ */
+// import SidebarExample from './router/SidebarExample';
+// ReactDOM.render(
+//     <SidebarExample />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc AnimationExample.
+ */
+// import AnimationExample from './router/AnimationExample';
+// ReactDOM.render(
+//     <AnimationExample />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc AmbiguousExample.
+ */
+// import AmbiguousExample from './router/AmbiguousExample';
+// ReactDOM.render(
+//     <AmbiguousExample />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc RouteConfigExample.
+ */
+// import RouteConfigExample from './router/RouteConfigExample';
+// ReactDOM.render(
+//     <RouteConfigExample />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc ModalGallery.
+ */
+// import ModalGallery from './router/ModalGallery';
+// ReactDOM.render(
+//     <ModalGallery />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc StaticRouterExample.
+ */
+// import StaticRouterExample from './router/StaticRouterExample';
+// ReactDOM.render(
+//     <StaticRouterExample />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc CodeSplitting.
+ */
+import CodeSplitting from './router/CodeSplitting';
 ReactDOM.render(
-    <Redirects />,
+    <CodeSplitting />,
     document.getElementById('app')
 );

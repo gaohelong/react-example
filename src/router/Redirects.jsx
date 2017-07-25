@@ -1,11 +1,14 @@
 import React from 'react';
 import {
-    BrowserRouter as Router,
+    BrowserRouter,
+    HashRouter,
     Route,
     Link,
     Redirect,
     withRouter
 } from 'react-router-dom';
+
+let Router = process.env.NODE_ENV == 'production' ? BrowserRouter : HashRouter;
 
 // 1. Click the public page
 // 2. Click the protected page

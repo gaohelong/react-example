@@ -1,5 +1,14 @@
 import React from 'react';
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import {
+    BrowserRouter,
+    HashRouter,
+    Route,
+    Link,
+    Redirect,
+    withRouter
+} from 'react-router-dom';
+
+let Router = process.env.NODE_ENV == 'production' ? BrowserRouter : HashRouter;
 
 const BasicExample = () => (
     <Router>
