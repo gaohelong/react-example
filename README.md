@@ -23,6 +23,9 @@
 [Chinease](http://es6.ruanyifeng.com)
 [Features](http://es6-features.org)
 
+## 【Fetch】
+[fetch](http://github.github.io/fetch/)
+
 ## 【react】
 [English](https://facebook.github.io/react/)
 
@@ -49,7 +52,6 @@
 
 ### 【npm-package】
 [react prop-types](https://www.npmjs.com/package/prop-types)
-[fetch](http://github.github.io/fetch/)
 
 ## 【react在线转换成ES6代码】
 [react bable](http://babeljs.io/repl/)
