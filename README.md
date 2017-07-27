@@ -23,6 +23,9 @@
 [Chinease](http://es6.ruanyifeng.com)
 [Features](http://es6-features.org)
 
+## 【Fetch】
+[fetch](http://github.github.io/fetch/)
+
 ## 【react】
 [English](https://facebook.github.io/react/)
 
