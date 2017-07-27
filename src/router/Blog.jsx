@@ -19,8 +19,19 @@ import Bundle from './Bundle';
 import loadWelcome  from 'bundle-loader?lazy!../containers/blog/Welcome';
 import loadList     from 'bundle-loader?lazy!../containers/blog/List';
 import loadAdd      from 'bundle-loader?lazy!../containers/blog/Add';
+import loadF404     from 'bundle-loader?lazy!../containers/F404';
 
 /* autoload module */
+const F404 = (props) => {
+    document.title = 'blog-404';
+
+    return (
+        <Bundle load={loadF404}>
+            {(F404) => <F404 {...props} />}
+        </Bundle>
+    );
+};
+
 const Welcome = (props) => {
     require('../sass/modules/blog/welcome');
     document.title = 'blog-welcome';
@@ -31,7 +42,7 @@ const Welcome = (props) => {
             {(Welcome) => <Welcome {...props} title={title} />}
         </Bundle>
     );
-}
+};
 
 const List = (props) => {
     require('../sass/modules/blog/list');
@@ -42,7 +53,7 @@ const List = (props) => {
             {(List) => <List {...props} />}
         </Bundle>
     );
-}
+};
 
 const Add = (props) => {
     require('../sass/modules/blog/add');
@@ -53,7 +64,7 @@ const Add = (props) => {
             {(Add) => <Add {...props} />}
         </Bundle>
     );
-}
+};
 
 /* component */
 class Blog extends React.Component {
@@ -77,6 +88,7 @@ class Blog extends React.Component {
                             <Route exact path="/" component={Welcome} />
                             <Route path="/list" component={List} />
                             <Route path="/add" component={Add} />
+                            <Route component={F404}/>
                         </Switch>
                     </div>
                 </div>

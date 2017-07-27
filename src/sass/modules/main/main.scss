@@ -14,4 +14,9 @@ $img-login-url: #{$img-url}#{'login/'}    !default;
     .#{$prefix}-container {
         padding:                10px;
     }
+
+    .#{$prefix}-404 {
+        color:              red;
+        font-size:          20px;
+    }
 }

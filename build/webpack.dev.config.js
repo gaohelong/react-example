@@ -39,7 +39,7 @@ module.exports = function(env) {
     return {
         /* entry */
         entry: {
-            main: ['./src/main.jsx'],
+            main: ['whatwg-fetch', './src/main.jsx'],
         },
 
         /* 输出 */
