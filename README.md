@@ -49,6 +49,7 @@
 
 ### 【npm-package】
 [react prop-types](https://www.npmjs.com/package/prop-types)
+[fetch](http://github.github.io/fetch/)
 
 ## 【react在线转换成ES6代码】
 [react bable](http://babeljs.io/repl/)
