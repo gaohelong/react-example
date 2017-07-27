@@ -13,7 +13,7 @@
 [Chinease](http://www.ruanyifeng.com/blog/javascript/)
 
 ## 【webpack】
-[Englisn](https://webpack.js.org)
+[English](https://webpack.js.org)
 [Chinease](https://doc.webpack-china.org/)
 
 ## 【Babel】
@@ -93,4 +93,8 @@ $ npm install prop-types --save
 # react-router.
 $ npm install react-router --save
 $ npm install react-router-dom --save
+
+# redux.
+$ npm install redux --save
+$ npm install react-redux --save
 ```

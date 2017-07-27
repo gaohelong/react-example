@@ -1,0 +1,8 @@
+@charset "utf-8";
+@import "../core";
+
+/* blog-list */
+.#{$prefix}-list {
+    color:              $black;
+    font-size:          16px;
+}

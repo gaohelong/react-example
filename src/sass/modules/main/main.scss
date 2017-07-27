@@ -5,7 +5,13 @@ $img-nav-url:   #{$img-url}#{'nav/'}      !default;
 $img-login-url: #{$img-url}#{'login/'}    !default;
 
 /* index */
-.#{$prefix}-container {
-    color:              $blue;
-    font-size:          16px;
+#app {
+    .#{$prefix}-header {
+        padding:            10px;
+        border-bottom:      1px #ccc solid;
+    }
+
+    .#{$prefix}-container {
+        padding:                10px;
+    }
 }

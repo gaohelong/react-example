@@ -9,9 +9,9 @@ import {
 let Router = process.env.NODE_ENV == 'production' ? BrowserRouter : HashRouter;
 
 /* Bundle */
-import Bundle from './Bandle';
+import Bundle from './Bundle';
 
-/* layzy */
+/* lazy */
 import loadHeader from 'bundle-loader?lazy!../components/layout/Header';
 import loadFooter from 'bundle-loader?lazy!../components/layout/Footer';
 

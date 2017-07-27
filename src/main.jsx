@@ -152,8 +152,19 @@ import './sass/modules/main/main';
 /**
  * @desc CodeSplitting.
  */
-import CodeSplitting from './router/CodeSplitting';
+// import CodeSplitting from './router/CodeSplitting';
+// ReactDOM.render(
+//     <CodeSplitting />,
+//     document.getElementById('app')
+// );
+
+
+
+/**
+ * @desc example.
+ */
+import Blog from './router/Blog';
 ReactDOM.render(
-    <CodeSplitting />,
+    <Blog />,
     document.getElementById('app')
 );
