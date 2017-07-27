@@ -161,10 +161,20 @@ import './sass/modules/main/main';
 
 
 /**
- * @desc example.
+ * @desc react-redux example.
  */
-import Blog from './router/Blog';
+import {Provider} from 'react-redux';
+import App from './router/Blog';
+import store from './redux/Store/store';
+
+store.subscribe(() => { // 监听state变化.
+    // console.log('getState', store.getState());
+});
+
+let rootEle = document.getElementById('app');
 ReactDOM.render(
-    <Blog />,
-    document.getElementById('app')
+    <Provider store={store}>
+        <App />
+    </Provider>,
+    rootEle
 );
