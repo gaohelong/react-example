@@ -1,7 +1,9 @@
 import {BLOG_LIST_LOAD, BLOG_LIST_ADD, BLOG_LIST_SHOW} from '../Actions';
 
 const initState = {
-    list: {}
+    list:       {},
+    loading:    true,
+    isFetching: false
 };
 
 export const blogList = (state = initState, action = {}) => {

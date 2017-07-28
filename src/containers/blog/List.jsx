@@ -40,6 +40,7 @@ const selectTodos = (todos, filter) => {
 // 基于全局 state ，哪些是我们想注入的 props ?
 // 注意：使用 https://github.com/reactjs/reselect 效果更佳。
 const mapStateToProps = (state, ownProps = {}) => {
+    console.log(state, ownProps);
     return {
         list: selectTodos(state.blogList, BLOG_LIST_LOAD)
     };
