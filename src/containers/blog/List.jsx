@@ -10,8 +10,11 @@ class List extends React.Component {
 
     componentDidMount() {
         // 通过调用 connect() 注入:
-        const {dispatch} = this.props;
-        dispatch(blogListLoad(dispatch, './api/blog/list.json'));
+        // const {dispatch} = this.props;
+        // dispatch(blogListLoad(dispatch, './api/blog/list.json'));
+
+        // 通过mapDispatchToProps.
+        this.props.blogListLoad('./api/blog/list.json');
     }
 
     render() {
@@ -46,5 +49,13 @@ const mapStateToProps = (state, ownProps = {}) => {
     };
 }
 
-// 包装 component ，注入 dispatch 和 state 到其默认的 connect(mapStateToProps)(List) 中；
-export default connect(mapStateToProps)(List);
+const mapDispatchToProps = (dispatch, ownProps = {}) => {
+    return {
+        blogListLoad: (url) => {
+            dispatch(blogListLoad(dispatch, url));
+        }
+    };
+};
+
+// 包装 component ，注入 dispatch 和 state 到其默认的 connect(mapStateToProps, mapDispatchToProps)(List) 中；
+export default connect(mapStateToProps, mapDispatchToProps)(List);
