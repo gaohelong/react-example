@@ -10,7 +10,8 @@ import {
     Redirect,
     Switch
 } from 'react-router-dom';
-let Router = process.env.NODE_ENV == 'production' ? BrowserRouter : HashRouter;
+// let Router = process.env.NODE_ENV == 'production' ? BrowserRouter : HashRouter;
+let Router = BrowserRouter;
 
 /* Bundle */
 import Bundle from './Bundle';
@@ -69,6 +70,7 @@ const Add = (props) => {
 /* component */
 class Blog extends React.Component {
     render() {
+        // 注意Route匹配url的前后顺序.
         return (
             <Router>
                 <div>
@@ -86,7 +88,8 @@ class Blog extends React.Component {
                     <div className="hl-container">
                         <Switch>
                             <Route exact path="/" component={Welcome} />
-                            <Route path="/list" component={List} />
+                            <Route path="/list/:id/:type" component={List} />
+                            <Route path="/list/" component={List} />
                             <Route path="/add" component={Add} />
                             <Route component={F404}/>
                         </Switch>

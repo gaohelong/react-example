@@ -7,7 +7,7 @@ class ListItem extends React.Component {
 
     render() {
         let row = this.props.resRow;
-        let url = "#/detail/" + row.id;
+        let url = "./detail/" + row.id;
 
         return (
             <dl className="hl-mgn-b-10">

@@ -6,15 +6,21 @@ import ListItem from '../../components/blog/ListItem';
 class List extends React.Component {
     constructor(props) {
         super(props);
+
+        // get url params.
+        // console.log(props.match.params);
     }
 
     componentDidMount() {
         // 通过调用 connect() 注入:
         // const {dispatch} = this.props;
-        // dispatch(blogListLoad(dispatch, './api/blog/list.json'));
+        // dispatch(blogListLoad(dispatch, '/api/blog/list.json'));
 
         // 通过mapDispatchToProps.
-        this.props.blogListLoad('./api/blog/list.json');
+        this.props.blogListLoad('/api/blog/list.json');
+
+        // get url params.
+        console.log('params:', this.props.match.params);
     }
 
     render() {
