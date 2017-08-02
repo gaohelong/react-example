@@ -163,12 +163,33 @@ import './sass/modules/main/main';
 /**
  * @desc react-redux example.
  */
-import {Provider} from 'react-redux';
-import App from './router/Blog';
-import store from './redux/Store/store';
+// import {Provider} from 'react-redux';
+// import App from './router/Blog';
+// import store from './redux/Store/Blog/store';
+// 
+// store.subscribe(() => { // 监听state变化.
+//     // console.log('getState', store.getState());
+// });
+// 
+// let rootEle = document.getElementById('app');
+// ReactDOM.render(
+//     <Provider store={store}>
+//         <App />
+//     </Provider>,
+//     rootEle
+// );
+
+
+
+/**
+ * @desc admin example.
+ */
+import {Provider} from  'react-redux';
+import App from         './router/Admin';
+import store from       './redux/Store/Admin/store';
 
 store.subscribe(() => { // 监听state变化.
-    // console.log('getState', store.getState());
+
 });
 
 let rootEle = document.getElementById('app');

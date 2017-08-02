@@ -1,4 +1,4 @@
-import {BLOG_LIST_LOAD, BLOG_LIST_ADD, BLOG_LIST_SHOW} from '../Actions';
+import {BLOG_LIST_LOAD, BLOG_LIST_ADD, BLOG_LIST_SHOW} from '../../Actions/Blog';
 
 const initState = {
     list:       {},

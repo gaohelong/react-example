@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {blogListLoad, BLOG_LIST_LOAD} from '../../redux/Actions/index';
-import ListItem from '../../components/blog/ListItem';
+import {blogListLoad, BLOG_LIST_LOAD} from '../../redux/Actions/Blog/index';
+import ListItem from '../../components/Blog/ListItem';
 
 class List extends React.Component {
     constructor(props) {

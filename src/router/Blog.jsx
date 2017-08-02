@@ -17,9 +17,9 @@ let Router = BrowserRouter;
 import Bundle from './Bundle';
 
 /* lazy container */
-import loadWelcome  from 'bundle-loader?lazy!../containers/blog/Welcome';
-import loadList     from 'bundle-loader?lazy!../containers/blog/List';
-import loadAdd      from 'bundle-loader?lazy!../containers/blog/Add';
+import loadWelcome  from 'bundle-loader?lazy!../containers/Blog/Welcome';
+import loadList     from 'bundle-loader?lazy!../containers/Blog/List';
+import loadAdd      from 'bundle-loader?lazy!../containers/Blog/Add';
 import loadF404     from 'bundle-loader?lazy!../containers/F404';
 
 /* autoload module */
