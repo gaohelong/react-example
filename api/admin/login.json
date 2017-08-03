@@ -1,0 +1,9 @@
+{
+    "code": 0,
+    "msg": "登录成功!",
+    "token": "s76189djkvzxoak198232",
+    "userinfo": {
+        "name": "longCloud",
+        "age": 18
+    }
+}

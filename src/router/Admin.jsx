@@ -48,9 +48,10 @@ const Main = (props) => {
     require('../sass/modules/admin/main');
     document.title = 'admin-main';
 
+    let title = 'admin main';
     return (
         <Bundle load={loadMain}>
-            {(Main) => <Main {...props} />}
+            {(Main) => <Main {...props} title={title} />}
         </Bundle>
     );
 };

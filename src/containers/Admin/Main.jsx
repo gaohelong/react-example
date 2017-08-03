@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import {withRouter} from 'react-router';
 
 class Main extends React.Component {
     constructor(props) {
@@ -14,4 +16,4 @@ class Main extends React.Component {
     }
 }
 
-export default Main;
+export default withRouter(connect()(Main));

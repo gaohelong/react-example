@@ -100,4 +100,5 @@ $ npm install react-router-dom --save
 # redux.
 $ npm install redux --save
 $ npm install react-redux --save
+$ npm install react-router-redux --save
 ```

@@ -3,6 +3,26 @@
 
 /* admin-login */
 .#{$prefix}-login {
-    color:          red;
-    font-size:      18px;
+    position:           absolute;
+    left:               50%;
+    top:                50%;
+    margin-top:         -150px;
+    margin-left:        -150px;
+    color:              $black;
+    font-size:          14px;
+    width:              300px;
+
+    span {
+        float:              left;
+        width:              60px;
+        line-height:        28px;
+        text-align:         right;
+    }
+
+    #user, #pwd {
+        float:              left;
+        padding:            3px;
+        margin-left:        10px;
+        line-height:        18px;
+    }
 }
