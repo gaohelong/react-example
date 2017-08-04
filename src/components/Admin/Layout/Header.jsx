@@ -14,7 +14,7 @@ class Header extends React.Component {
     }
 
     render() {
-        const backText = "<< 返回";
+        const backText = "<< Back";
 
         return (
             <div className="hl-back">

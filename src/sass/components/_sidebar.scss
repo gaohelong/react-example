@@ -1,0 +1,22 @@
+@charset    'utf-8';
+
+/* admin sidebar */
+.#{$prefix}-sidebar {
+    position:           absolute;
+    top:                40px;
+    left:               0;
+    bottom:             0;
+    width:              100px;
+    min-height:         200px;
+    background-color:   rgba(#0275d8, 0.8);
+
+    a {
+        display:        block;
+        padding:        10px;
+        color:          $white;
+    }
+
+    .active {
+        background-color:           rgba($black, 0.6);
+    }
+}

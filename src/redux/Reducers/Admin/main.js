@@ -12,3 +12,7 @@ export const getMainList = (state = initState, action = {}) => {
             return state;
     }
 };
+
+export const descChange = (state = {desc: ''}, action = {}) => {
+    return Object.assign({}, state, {desc: action.desc});
+};

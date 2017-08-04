@@ -21,6 +21,9 @@ import loadLogin    from 'bundle-loader?lazy!../containers/Admin/Login';
 import loadMain     from 'bundle-loader?lazy!../containers/Admin/Main';
 import loadF404     from 'bundle-loader?lazy!../containers/F404';
 
+/* layout */
+import Layout from '../components/Admin/Layout/Layout';
+
 /* autoload module */
 const F404 = (props) => {
     document.title = 'blog-404';
@@ -51,7 +54,15 @@ const Main = (props) => {
     let title = 'admin main';
     return (
         <Bundle load={loadMain}>
-            {(Main) => <Main {...props} title={title} />}
+            {
+                (Main) => {
+                    return (
+                        <Layout {...props} sel='Main'>
+                            <Main {...props} title={title} />
+                        </Layout>
+                    );
+                }
+            }
         </Bundle>
     );
 };
@@ -62,15 +73,11 @@ class Admin extends React.Component {
         // 注意Route匹配url的前后顺序.
         return (
             <Router>
-                <div>
-                    <div className="hl-container">
-                        <Switch>
-                            <Route exact path="/" component={Login} />
-                            <Route path="/main" component={Main} />
-                            <Route component={F404}/>
-                        </Switch>
-                    </div>
-                </div>
+                <Switch>
+                    <Route exact path="/" component={Login} />
+                    <Route path="/main" component={Main} />
+                    <Route component={F404}/>
+                </Switch>
             </Router>
         );
     }

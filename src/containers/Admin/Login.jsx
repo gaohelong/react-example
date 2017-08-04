@@ -39,14 +39,14 @@ class Login extends React.Component {
         return(
             <div className="hl-login">
                 <div className="hl-clearfix">
-                   <span>用户名:</span>
-                   <input type="text" id="user" ref={input => this.userInputEle = input} />
+                   <span>Username:</span>
+                   <input type="text" id="user" ref={input => this.userInputEle = input} placeholder="Username" />
                 </div>
                 <div className="hl-clearfix hl-mgn-t-10">
-                    <span>密码:</span>
-                    <input type="password" id="pwd" ref={input => this.pwdInputEle = input} />
+                    <span>Password:</span>
+                    <input type="password" id="pwd" ref={input => this.pwdInputEle = input} placeholder="Password" />
                 </div>
-                <button type="button" className="hl-btn" onClick={this.loginHandle}>登录</button>
+                <button type="button" className="hl-btn" onClick={this.loginHandle}>Login</button>
             </div>
         );
     }
