@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 
 /* sass */
 import './sass/main';
-import './sass/modules/main/main';
+// import './sass/modules/main/main';
 
 /**
  * @desc BasicExample.
@@ -184,6 +184,7 @@ import './sass/modules/main/main';
 /**
  * @desc admin example.
  */
+import './sass/modules/admin/public';
 import {Provider} from  'react-redux';
 import App from         './router/Admin';
 import store from       './redux/Store/Admin/store';

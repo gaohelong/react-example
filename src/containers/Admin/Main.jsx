@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {withRouter} from 'react-router';
+
+/* component */
+import Header from '../../components/Admin/Layout/Header';
 
 class Main extends React.Component {
     constructor(props) {
@@ -8,12 +10,20 @@ class Main extends React.Component {
     }
 
     render() {
-        return(
-            <div className="hl-main">
-                {this.props.title}
+        return (
+            <div>
+                <Header history={this.props.history} />
+                <div className="hl-main">
+                    {this.props.title}
+                </div>
             </div>
         );
     }
 }
 
-export default withRouter(connect()(Main));
+const mapStateToProps = (state) => {
+    return {
+    };
+};
+
+export default connect(mapStateToProps)(Main);

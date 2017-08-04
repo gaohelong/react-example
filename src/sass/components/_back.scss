@@ -1,0 +1,16 @@
+@charset 'utf-8';
+
+/* back */
+.#{$prefix}-back {
+    position:           absolute;
+    top:                0;
+    left:               0;
+    width:              calc(100% - 10px);
+    line-height:        40px;
+    padding-left:       10px;
+    background-color:   #0275d8;
+
+    a {
+        color:          #fff;
+    }
+}
