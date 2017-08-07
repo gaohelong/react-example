@@ -3,9 +3,9 @@
 /* 遮罩 */
 .#{$prefix}-mask {
     position:           absolute;
-    z-index:            3;
+    z-index:            998;
     width:              100%;
     height:             100%;
     overflow:           hidden;
-    background-color:   rgba(247, 247, 248, .85);
+    background-color:   rgba($black, .65);
 }

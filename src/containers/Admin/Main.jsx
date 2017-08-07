@@ -5,7 +5,9 @@ import { connect } from 'react-redux';
 // import Header from '../../components/Admin/Layout/Header';
 
 /* action */
-import {MAIN_DESC, descChange} from '../../redux/Actions/Admin';
+import {
+    MAIN_DESC, descChange, layoutLoading, layoutMask
+} from '../../redux/Actions/Admin';
 
 class Main extends React.Component {
     constructor(props) {
@@ -18,6 +20,23 @@ class Main extends React.Component {
     descHandle(e) {
         const { dispatch } = this.props;
         dispatch(descChange());
+    }
+
+    componentWillMount() {
+        const { dispatch } = this.props;
+        dispatch(layoutLoading(true));
+        dispatch(layoutMask(true));
+    }
+
+    componentDidMount() {
+        const { dispatch } = this.props;
+        setTimeout(
+            () => {
+                dispatch(layoutLoading(false));
+                dispatch(layoutMask(false));
+            }
+            , 3000
+        );
     }
 
     render() {

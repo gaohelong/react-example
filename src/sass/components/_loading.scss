@@ -1,0 +1,86 @@
+@charset "utf-8";
+
+// compass
+@import "compass/css3/animation";
+
+/* admin loading */
+.#{$prefix}-loadEffect {
+    position:           fixed;
+    top:                50%;
+    left:               50%;
+    width:              100px;
+    height:             100px;
+    z-index:            999;
+    @include            create-transform($trans-x: -50%, $trans-y: -50%);
+
+    span {
+        position:           absolute;
+        float:              left;
+        width:              16px;
+        height:             16px;
+        border-radius:      50%;
+        background:         #02ff02;
+        @include            animation(load 1.04s ease infinite);
+    }
+
+    span:nth-child(1) {
+        left:               0;
+        top:                50%;
+        margin-top:         -8px;
+        @include            animation-delay(0.13s);
+    }
+
+    span:nth-child(2) {
+        left:               14px;
+        top:                14px;
+        @include            animation-delay(0.26s);
+    }
+
+    span:nth-child(3) {
+        left:               50%;
+        top:                0;
+        margin-left:        -8px;
+        @include            animation-delay(0.39s);
+    }
+
+    span:nth-child(4) {
+        top:                14px;
+        right:              14px;
+        @include            animation-delay(0.52s);
+    }
+
+    span:nth-child(5) {
+        right:              0;
+        top:                50%;
+        margin-top:         -8px;
+        @include            animation-delay(0.65s);
+    }
+
+    span:nth-child(6) {
+        right:              14px;
+        bottom:             14px;
+        @include            animation-delay(0.78s);
+    }
+
+    span:nth-child(7) {
+        bottom:             0;
+        left:               50%;
+        margin-left:        -8px;
+        @include            animation-delay(0.91s);
+    }
+
+    span:nth-child(8) {
+        bottom:             14px;
+        left:               14px;
+        @include            animation-delay(1.04s);
+    }
+}
+
+@include keyframes(load) {
+    0%{
+        opacity:    1;
+    }
+    100%{
+        opacity:    0.2;
+    }
+}

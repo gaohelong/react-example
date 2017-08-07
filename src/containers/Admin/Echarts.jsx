@@ -2,6 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ReactEcharts from 'echarts-for-react';
 
+/* action */
+import { layoutLoading, layoutMask } from '../../redux/Actions/Admin';
+
 class Echarts extends React.Component {
     constructor(props) {
         super(props);
@@ -10,6 +13,23 @@ class Echarts extends React.Component {
         this.getOtion = this.getOtion.bind(this);
     }
     
+    componentWillMount() {
+        const { dispatch } = this.props;
+        dispatch(layoutLoading(true));
+        dispatch(layoutMask(true));
+    }
+
+    componentDidMount() {
+        const { dispatch } = this.props;
+        setTimeout(
+            () => {
+                dispatch(layoutLoading(false));
+                dispatch(layoutMask(false));
+            }
+            , 3000
+        );
+    }
+
     getOtion() {
         return {
             backgroundColor: '#faf6f3',
