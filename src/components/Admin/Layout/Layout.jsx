@@ -7,13 +7,26 @@ import Sidebar  from    './Sidebar';
 import Loading  from    '../Loading/Loading';
 import Mask     from    '../Mask/Mask';
 
+/* action */
+import { layoutLoading, layoutMask } from '../../../redux/Actions/Admin';
+
 class Layout extends React.Component {
     constructor(props) {
         super(props);
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (this.props.sel != nextProps.sel) {
+            const { dispatch } = this.props;
+            dispatch(layoutLoading(true));
+            dispatch(layoutMask(true));
+
+        }
+    }
+
     render() {
         // console.log('layout-render:', this.props);
+
         return (
             <div>
                 <Header history={this.props.history} />

@@ -13,6 +13,8 @@ import {
 // let Router = process.env.NODE_ENV == 'production' ? BrowserRouter : HashRouter;
 let Router = BrowserRouter;
 
+import Config from '../config/config';
+
 /* Bundle */
 import Bundle from './Bundle';
 
@@ -58,9 +60,7 @@ const Main = (props) => {
             {
                 (Main) => {
                     return (
-                        <Layout {...props} sel='Main'>
-                            <Main {...props} title={title} />
-                        </Layout>
+                        <Main {...props} title={title} Config={Config} />
                     );
                 }
             }
@@ -77,9 +77,7 @@ const Echarts = (props) => {
             {
                 (Echarts) => {
                     return (
-                        <Layout {...props} sel='Echarts'>
-                            <Echarts {...props} />
-                        </Layout>
+                        <Echarts {...props} Config={Config} />
                     );
                 }
             }
@@ -95,8 +93,16 @@ class Admin extends React.Component {
             <Router>
                 <Switch>
                     <Route exact path="/" component={Login} />
-                    <Route path="/main" component={Main} />
-                    <Route path="/echarts" component={Echarts} />
+                    <Route path="/main" render={(props) => (
+                        <Layout {...props} sel='Main'>
+                            <Main {...props} />
+                        </Layout>
+                    )} />
+                    <Route path="/echarts" render={(props) => (
+                        <Layout {...props} sel='Echarts'>
+                            <Echarts {...props} />
+                        </Layout>
+                    )} />
                     <Route component={F404}/>
                 </Switch>
             </Router>

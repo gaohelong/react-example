@@ -22,20 +22,14 @@ class Main extends React.Component {
         dispatch(descChange());
     }
 
-    componentWillMount() {
-        const { dispatch } = this.props;
-        dispatch(layoutLoading(true));
-        dispatch(layoutMask(true));
-    }
-
     componentDidMount() {
-        const { dispatch } = this.props;
+        const { dispatch, Config } = this.props;
         setTimeout(
             () => {
                 dispatch(layoutLoading(false));
                 dispatch(layoutMask(false));
             }
-            , 3000
+            , Config.loading.time
         );
     }
 

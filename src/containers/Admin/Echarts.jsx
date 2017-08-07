@@ -13,20 +13,15 @@ class Echarts extends React.Component {
         this.getOtion = this.getOtion.bind(this);
     }
     
-    componentWillMount() {
-        const { dispatch } = this.props;
-        dispatch(layoutLoading(true));
-        dispatch(layoutMask(true));
-    }
-
     componentDidMount() {
-        const { dispatch } = this.props;
+        // console.log('cProps:', this.props);
+        const { dispatch, Config } = this.props;
         setTimeout(
             () => {
                 dispatch(layoutLoading(false));
                 dispatch(layoutMask(false));
             }
-            , 3000
+            , Config.loading.time
         );
     }
 
