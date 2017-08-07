@@ -5,9 +5,22 @@
 .#{$prefix}-main {
     position:           absolute;
     top:                40px;
-    left:               100px;
+    left:               0;
     bottom:             0;
-    width:              calc(100% - 120px);
+    width:              calc(100% - 20px);
     min-height:         200px;
     padding:            10px;
+}
+
+.#{$prefix}-main-sidebar {
+    @include animation(sidebar_main .15s linear 0s forwards);
+}
+
+@include keyframes(sidebar_main) {
+    0% {
+        left:   0;
+    }
+    100% {
+        left:   100px;
+    }
 }

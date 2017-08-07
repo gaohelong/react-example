@@ -1,5 +1,6 @@
 export const LAYOUT_MASK = 'LAYOUT_MASK';
 export const LAYOUT_LOADING = 'LAYOUT_LOADING';
+export const LAYOUT_SIDEBAR = 'LAYOUT_SIDEBAR';
 
 export const layoutMask = (val) => {
     return {
@@ -18,3 +19,12 @@ export const layoutLoading = (val) => {
         }
     };
 };
+
+export const layoutSidebar = (val) => {
+    return {
+        type: LAYOUT_SIDEBAR,
+        data: {
+            sidebar: val
+        }
+    };
+}

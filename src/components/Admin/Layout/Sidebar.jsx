@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 class SideBar extends React.Component {
@@ -14,10 +15,18 @@ class SideBar extends React.Component {
             return <Link to={data.url} key={key} className={cls}>{data.title}</Link>;
         });
 
+        const cls = this.props.sidebar ? "hl-sidebar hl-sidebar-show" : "hl-sidebar";
+
         return (
-            <div className="hl-sidebar">{urlsHtml}</div>
+            <div className={cls}>{urlsHtml}</div>
         );
     }
 }
 
-export default SideBar;
+const mapStateToProps = (state) => {
+    return {
+        sidebar: state.layoutState.sidebar != undefined ? state.layoutState.sidebar : false
+    };
+};
+
+export default connect(mapStateToProps)(SideBar);

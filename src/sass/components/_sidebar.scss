@@ -4,7 +4,7 @@
 .#{$prefix}-sidebar {
     position:           absolute;
     top:                40px;
-    left:               0;
+    left:               -100px;
     bottom:             0;
     width:              100px;
     min-height:         200px;
@@ -18,5 +18,18 @@
 
     .active {
         background-color:           rgba($black, 0.6);
+    }
+}
+
+.#{$prefix}-sidebar-show {
+    @include animation(sidebar_show .15s linear 0s forwards);
+}
+
+@include keyframes(sidebar_show) {
+    0% {
+        left:   -100px;
+    }
+    100% {
+        left:   0;
     }
 }

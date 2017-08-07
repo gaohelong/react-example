@@ -1,5 +1,8 @@
 import React from 'react';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
+
+/* action */
+import { layoutSidebar } from '../../../redux/Actions/Admin';
 
 class Header extends React.Component {
     constructor(props) {
@@ -7,10 +10,16 @@ class Header extends React.Component {
 
         // func.
         this.backHandle = this.backHandle.bind(this);
+        this.sidebarHandle = this.sidebarHandle.bind(this);
     }
 
     backHandle(e) {
         this.props.history.go(-1);
+    }
+
+    sidebarHandle(e) {
+        const { dispatch } = this.props;
+        dispatch(layoutSidebar(!this.props.sidebar));
     }
 
     render() {
@@ -19,10 +28,17 @@ class Header extends React.Component {
         return (
             <div className="hl-back">
                 <a href="javascript:void(0);" onClick={this.backHandle}>{backText}</a>
+                <a href="javascript:void(0);" className="hl-f-r hl-mgn-r-20" onClick={this.sidebarHandle}>sidebar</a>
             </div>
         );
     }
 }
 
-// export default connect()(Header);
-export default Header;
+const mapStateToProps = (state) => {
+    return {
+        sidebar: state.layoutState.sidebar != undefined ? state.layoutState.sidebar : false
+    };
+};
+
+export default connect(mapStateToProps)(Header);
+// export default Header;

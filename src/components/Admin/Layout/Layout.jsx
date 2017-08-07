@@ -27,13 +27,15 @@ class Layout extends React.Component {
     render() {
         // console.log('layout-render:', this.props);
 
+        const cls = this.props.sidebar ? "hl-main hl-main-sidebar" : "hl-main";
+
         return (
             <div>
                 <Header history={this.props.history} />
                 <Sidebar sel={this.props.sel} />
                 {this.props.loading == true && <Loading />}
                 {this.props.mask == true && <Mask />}
-                <div className="hl-main">
+                <div className={cls}>
                     {this.props.children}
                 </div>
             </div>
@@ -45,7 +47,8 @@ const mapStateToProps = (state) => {
     // console.log('layoutSTP:', state);
     return {
         loading: state.layoutState.loading != undefined ? state.layoutState.loading : true,
-        mask: state.layoutState.mask != undefined ? state.layoutState.mask : true
+        mask: state.layoutState.mask != undefined ? state.layoutState.mask : true,
+        sidebar: state.layoutState.sidebar != undefined ? state.layoutState.sidebar: false,
     };
 };
 
