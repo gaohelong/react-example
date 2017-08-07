@@ -19,6 +19,7 @@ import Bundle from './Bundle';
 /* lazy container */
 import loadLogin    from 'bundle-loader?lazy!../containers/Admin/Login';
 import loadMain     from 'bundle-loader?lazy!../containers/Admin/Main';
+import loadEcharts  from 'bundle-loader?lazy!../containers/Admin/Echarts';
 import loadF404     from 'bundle-loader?lazy!../containers/F404';
 
 /* layout */
@@ -67,6 +68,25 @@ const Main = (props) => {
     );
 };
 
+const Echarts = (props) => {
+    require('../sass/modules/admin/echarts');
+    document.title = 'admin-echarts';
+
+    return (
+        <Bundle load={loadEcharts}>
+            {
+                (Echarts) => {
+                    return (
+                        <Layout {...props} sel='Echarts'>
+                            <Echarts {...props} />
+                        </Layout>
+                    );
+                }
+            }
+        </Bundle>
+    );
+};
+
 /* component */
 class Admin extends React.Component {
     render() {
@@ -76,6 +96,7 @@ class Admin extends React.Component {
                 <Switch>
                     <Route exact path="/" component={Login} />
                     <Route path="/main" component={Main} />
+                    <Route path="/echarts" component={Echarts} />
                     <Route component={F404}/>
                 </Switch>
             </Router>
