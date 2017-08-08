@@ -190,7 +190,7 @@ import App from         './router/Admin';
 import store from       './redux/Store/Admin/store';
 
 store.subscribe(() => { // 监听state变化.
-    console.log('getStore:', store.getState());
+    // console.log('getStore:', store.getState());
 });
 
 let rootEle = document.getElementById('app');
