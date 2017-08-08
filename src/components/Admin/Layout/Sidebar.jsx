@@ -7,6 +7,7 @@ class SideBar extends React.Component {
         const urls = [
             {url: '/main', title: 'Main'},
             {url: '/echarts', title: 'Echarts'},
+            {url: '/list', title: 'List'},
         ];
 
         const urlsHtml = urls.map((data, i) => {
