@@ -19,8 +19,10 @@
 @include keyframes(sidebar_main) {
     0% {
         left:   0;
+        width:  calc(100% - 20px);
     }
     100% {
         left:   100px;
+        width:  calc(100% - 120px);
     }
 }

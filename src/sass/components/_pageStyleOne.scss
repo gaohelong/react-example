@@ -1,0 +1,24 @@
+@charset    'utf-8';
+
+/* admin-pageStyleOne */
+.#{$prefix}-pageS1 {
+    float:                  right;
+    margin-top:             20px;
+    margin-bottom:          10px;
+
+    .pageItem {
+        float:              left;
+        margin-right:       10px;
+        width:              29px;
+        line-height:        30px;
+        text-align:         center;
+        background-color:   #0275d8;
+        color:              #fff;
+        font-size:          14px;
+        cursor:             pointer;
+    }
+
+    .pageActive {
+        background-color:   #000;
+    }
+}

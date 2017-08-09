@@ -2,11 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ReactEcharts from 'echarts-for-react';
 
+/* tools */
+import { loadCloseTool } from '../../tools/tools';
+
 /* immutable */
 import { Map, List, Stack, is, fromJS, isIndexed, Seq, isImmutable, isCollection } from 'immutable';
 
 /* action */
-import { layoutLoading, layoutMask } from '../../redux/Actions/Admin';
+// import { layoutLoading, layoutMask } from '../../redux/Actions/Admin';
 
 class Echarts extends React.Component {
     constructor(props) {
@@ -17,17 +20,8 @@ class Echarts extends React.Component {
     }
     
     componentDidMount() {
-        // console.log('cProps:', this.props);
         const { dispatch, Config } = this.props;
-        setTimeout(
-            () => {
-                dispatch(layoutLoading(false));
-                dispatch(layoutMask(false));
-            }
-            , Config.loading.time
-        );
-
-
+        loadCloseTool(dispatch, Config);
 
         /****** immutable-Map、is ******/
 

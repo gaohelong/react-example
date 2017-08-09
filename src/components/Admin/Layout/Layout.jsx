@@ -15,12 +15,18 @@ class Layout extends React.Component {
         super(props);
     }
 
+    componentWillMount() {
+        const { dispatch } = this.props;
+        dispatch(layoutLoading(true));
+        dispatch(layoutMask(true));
+    }
+
     componentWillReceiveProps(nextProps) {
+        // console.log(this.props.sel, nextProps.sel);
         if (this.props.sel != nextProps.sel) {
             const { dispatch } = this.props;
             dispatch(layoutLoading(true));
             dispatch(layoutMask(true));
-
         }
     }
 
@@ -28,6 +34,7 @@ class Layout extends React.Component {
         // console.log('layout-render:', this.props);
 
         const cls = this.props.sidebar ? "hl-main hl-main-sidebar" : "hl-main";
+        const style = this.props.loading ? {overflow: 'hidden'} : {};
 
         return (
             <div>
@@ -35,7 +42,7 @@ class Layout extends React.Component {
                 <Sidebar sel={this.props.sel} />
                 {this.props.loading == true && <Loading />}
                 {this.props.mask == true && <Mask />}
-                <div className={cls}>
+                <div className={cls} id="hl-main" style={style}>
                     {this.props.children}
                 </div>
             </div>

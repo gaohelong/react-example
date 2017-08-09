@@ -4,9 +4,12 @@ import { connect } from 'react-redux';
 /* component */
 // import Header from '../../components/Admin/Layout/Header';
 
+/* tools */
+import { loadCloseTool } from '../../tools/tools';
+
 /* action */
 import {
-    MAIN_DESC, descChange, layoutLoading, layoutMask
+    MAIN_DESC, descChange
 } from '../../redux/Actions/Admin';
 
 class Main extends React.Component {
@@ -22,21 +25,9 @@ class Main extends React.Component {
         dispatch(descChange());
     }
 
-    componentWillMount() {
-        const { dispatch } = this.props;
-        dispatch(layoutLoading(true));
-        dispatch(layoutMask(true));
-    }
-
     componentDidMount() {
         const { dispatch, Config } = this.props;
-        setTimeout(
-            () => {
-                dispatch(layoutLoading(false));
-                dispatch(layoutMask(false));
-            }
-            , Config.loading.time
-        );
+        loadCloseTool(dispatch, Config);
     }
 
     render() {

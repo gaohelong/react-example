@@ -1,3 +1,10 @@
 @charset    'utf-8';
+@import     '../core';
 
 /* admin-list */
+.#{$prefix}-list {
+    .list-item {
+        line-height:                40px;
+        border-bottom:              1px #ccc solid;
+    }
+}

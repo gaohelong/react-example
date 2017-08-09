@@ -2,7 +2,7 @@
 
 /* admin sidebar */
 .#{$prefix}-sidebar {
-    position:           absolute;
+    position:           fixed;
     top:                40px;
     left:               -100px;
     bottom:             0;
