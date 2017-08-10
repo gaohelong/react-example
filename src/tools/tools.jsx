@@ -1,5 +1,5 @@
 /* action */
-import { layoutLoading, layoutMask } from '../redux/Actions/Admin';
+import { layoutLoading, layoutMask, layoutContentToggle } from '../redux/Actions/Admin';
 
 export const loadCloseTool = (dispatch, Config, val = false) => {
     setTimeout(
@@ -14,4 +14,8 @@ export const loadCloseTool = (dispatch, Config, val = false) => {
 export const loadOpenTool = (dispatch, val = true) => {
     dispatch(layoutLoading(val));
     dispatch(layoutMask(val));
+};
+
+export const contentToggle = (dispatch, val = true) => {
+    dispatch(layoutContentToggle(val));
 };

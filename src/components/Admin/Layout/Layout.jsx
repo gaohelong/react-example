@@ -31,11 +31,11 @@ class Layout extends React.Component {
     }
 
     render() {
-        // console.log('layout-render:', this.props);
-
-        const cls = this.props.sidebar ? "hl-main hl-main-sidebar" : "hl-main";
-        const style = this.props.loading ? {overflow: 'hidden'} : {};
-
+        // console.log('layout-render:', this.props.contentToggle);
+        let cls = this.props.sidebar ? "hl-main hl-main-sidebar" : "hl-main";
+        let style = this.props.loading ? {overflow: 'hidden'} : {};
+        let fadeCls = this.props.contentToggle ? 'fade-enter' : 'fade-exit';
+        
         return (
             <div>
                 <Header history={this.props.history} />
@@ -43,7 +43,9 @@ class Layout extends React.Component {
                 {this.props.loading == true && <Loading />}
                 {this.props.mask == true && <Mask />}
                 <div className={cls} id="hl-main" style={style}>
-                    {this.props.children}
+                    <div className={fadeCls}>
+                        {this.props.children}
+                    </div>
                 </div>
             </div>
         );
@@ -53,9 +55,11 @@ class Layout extends React.Component {
 const mapStateToProps = (state) => {
     // console.log('layoutSTP:', state);
     return {
-        loading: state.layoutState.loading != undefined ? state.layoutState.loading : true,
-        mask: state.layoutState.mask != undefined ? state.layoutState.mask : true,
-        sidebar: state.layoutState.sidebar != undefined ? state.layoutState.sidebar: false,
+        loading: state.layoutState.loading,
+        mask: state.layoutState.mask,
+        sidebar: state.layoutState.sidebar,
+        // contentToggle: state.layoutState.contentToggle != undefined ? state.layoutState.contentToggle : false
+        contentToggle: state.layoutState.contentToggle
     };
 };
 

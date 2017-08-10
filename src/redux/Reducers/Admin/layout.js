@@ -1,9 +1,10 @@
-import { LAYOUT_MASK, LAYOUT_LOADING, LAYOUT_SIDEBAR } from '../../Actions/Admin/';
+import { LAYOUT_MASK, LAYOUT_LOADING, LAYOUT_SIDEBAR, LAYOUT_CONTENTTOGGLE } from '../../Actions/Admin/';
 
 const initState = {
-    loading:    true,
-    mask:       true,
-    sidebar:    false,
+    loading:        true,
+    mask:           true,
+    sidebar:        false,
+    contentToggle:  false,
 };
 
 export const layoutState = (state = initState, action = {}) => {
@@ -14,6 +15,8 @@ export const layoutState = (state = initState, action = {}) => {
             return Object.assign({}, state, {mask: action.data.loading});
         case LAYOUT_SIDEBAR:
             return Object.assign({}, state, {sidebar: action.data.sidebar});
+        case LAYOUT_CONTENTTOGGLE:
+            return Object.assign({}, state, {contentToggle: !state.contentToggle});
         default:
             return state;
     }

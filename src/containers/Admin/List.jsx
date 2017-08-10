@@ -27,6 +27,7 @@ class List extends React.Component {
         const { dispatch } = this.props;
         Tools.loadOpenTool(dispatch);
         dispatch(listLoad(dispatch, '/api/admin/list.json', { page: e.target.innerHTML }));
+        Tools.contentToggle(dispatch);
     }
 
     componentDidMount() {
