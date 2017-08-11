@@ -24,18 +24,18 @@ class List extends React.Component {
     }
 
     pageClickHandle(e) {
-        const { dispatch } = this.props;
+        const { dispatch, Config } = this.props;
         Tools.loadOpenTool(dispatch);
         dispatch(listLoad(dispatch, '/api/admin/list.json', { page: e.target.innerHTML }, () => {
-            Tools.contentToggle(dispatch);
+            Tools.loadCloseTool(dispatch, Config);
         }));
         // Tools.contentToggle(dispatch);
     }
 
     componentDidMount() {
-        const { dispatch } = this.props;
+        const { dispatch, Config } = this.props;
         dispatch(listLoad(dispatch, '/api/admin/list.json', { page: 1 }, () => {
-            Tools.contentToggle(dispatch);
+            Tools.loadCloseTool(dispatch, Config);
         }));
     }
 
@@ -47,11 +47,6 @@ class List extends React.Component {
     render() {
         console.log('List: render');
         const { dispatch, Config } = this.props;
-
-        /* loading、mask */
-        if (this.props.loading === false) {
-            Tools.loadCloseTool(dispatch, Config);
-        }
 
         /* list */
         let listHtml = '';

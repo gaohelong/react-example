@@ -87,6 +87,7 @@ const Echarts = (props) => {
 };
 
 const List = (props) => {
+    console.log('list-component');
     require('../sass/modules/admin/list');
     document.title = 'admin-list';
 

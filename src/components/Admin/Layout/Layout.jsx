@@ -28,13 +28,15 @@ class Layout extends React.Component {
             dispatch(layoutLoading(true));
             dispatch(layoutMask(true));
         }
+        console.log('ReceiveProps');
     }
 
     render() {
-        // console.log('layout-render:', this.props.contentToggle);
+        console.log('layout-render:');
         let cls = this.props.sidebar ? "hl-main hl-main-sidebar" : "hl-main";
         let style = this.props.loading ? {overflow: 'hidden'} : {};
         let fadeCls = this.props.contentToggle ? 'fade-enter' : 'fade-exit';
+        let fadeStyle = this.props.loading ? {display: 'none'} : {dispatch: 'block'};
         
         return (
             <div>
@@ -43,7 +45,7 @@ class Layout extends React.Component {
                 {this.props.loading == true && <Loading />}
                 {this.props.mask == true && <Mask />}
                 <div className={cls} id="hl-main" style={style}>
-                    <div className={fadeCls}>
+                    <div className={fadeCls} style={fadeStyle}>
                         {this.props.children}
                     </div>
                 </div>

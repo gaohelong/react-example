@@ -2,20 +2,17 @@
 
 /* admin-transition */
 .fade-enter {
-    opacity: 1;
+    opacity: 0;
     @include animation(fade_enter 1s ease 0s forwards );
 }
 
 .fade-exit {
-    opacity: 1;
+    opacity: 0;
     @include animation(fade_exit 1s ease 0s forwards);
 }
 
 @include keyframes(fade_enter) {
     0% {
-        opacity:    1;
-    }
-    20% {
         opacity:    0;
     }
     100% {
@@ -25,9 +22,6 @@
 
 @include keyframes(fade_exit) {
     0% {
-        opacity:    1;
-    }
-    20% {
         opacity:    0;
     }
     100% {
