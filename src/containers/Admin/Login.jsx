@@ -29,7 +29,19 @@ class Login extends React.Component {
 
         // console.log(nextProps, this.props);
         if (nextProps.token) {
+            /* 不带参数 */
             history.push('/main');
+
+            /* 带参数不使用?传递 */
+            // history.push('/main/1/2');
+
+            /* 带参数并且使用?传递 */
+            // history.push('/main?the=query');
+
+            // history.push({
+            //     pathname: '/main',
+            //     search: '?the=query',
+            // });
         }
     }
 
