@@ -1,6 +1,7 @@
 export const LIST_LOAD = 'LIST_LOAD';
+export const LIST_UNMOUNT = 'LIST_UNMOUNT';
 
-export const listLoad = (dispatch, url, params) => {
+export const listLoad = (dispatch, url, params, callback) => {
     return () => {
         fetch(url)
             .then(function(response) {
@@ -17,6 +18,10 @@ export const listLoad = (dispatch, url, params) => {
                             pageSize: json.pageParams.pageSize
                         }
                     });
+
+                    if (typeof callback == 'function') {
+                        callback();
+                    }
                 }
                 console.log('parsed json', json);
             }).catch(function(ex) {
@@ -24,3 +29,9 @@ export const listLoad = (dispatch, url, params) => {
             });
     }
 }
+
+export const listUnmount = () => {
+    return {
+        type: LIST_UNMOUNT
+    };
+};

@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import * as Tools from '../../tools/tools';
 
 /* action */
-import { listLoad } from '../../redux/Actions/Admin';
+import { listLoad, listUnmount } from '../../redux/Actions/Admin';
 
 /* component */
 import ListItems from '../../components/Admin/List/ListItems';
@@ -26,13 +26,22 @@ class List extends React.Component {
     pageClickHandle(e) {
         const { dispatch } = this.props;
         Tools.loadOpenTool(dispatch);
-        dispatch(listLoad(dispatch, '/api/admin/list.json', { page: e.target.innerHTML }));
-        Tools.contentToggle(dispatch);
+        dispatch(listLoad(dispatch, '/api/admin/list.json', { page: e.target.innerHTML }, () => {
+            Tools.contentToggle(dispatch);
+        }));
+        // Tools.contentToggle(dispatch);
     }
 
     componentDidMount() {
         const { dispatch } = this.props;
-        dispatch(listLoad(dispatch, '/api/admin/list.json', { page: 1 }));
+        dispatch(listLoad(dispatch, '/api/admin/list.json', { page: 1 }, () => {
+            Tools.contentToggle(dispatch);
+        }));
+    }
+
+    componentWillUnmount() {
+        const { dispatch } = this.props;
+        dispatch(listUnmount());
     }
 
     render() {

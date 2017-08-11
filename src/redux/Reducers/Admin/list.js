@@ -1,4 +1,4 @@
-import { LIST_LOAD } from '../../Actions/Admin';
+import { LIST_LOAD, LIST_UNMOUNT } from '../../Actions/Admin';
 
 const initState = {
     list: [],
@@ -13,6 +13,10 @@ export const listState = (state = initState, action = {}) => {
                 list: action.data,
                 pageParams: action.pageParams,
                 loading: false
+            });
+        case LIST_UNMOUNT:
+            return Object.assign({}, state, {
+                list: []
             });
         default:
             return state;
