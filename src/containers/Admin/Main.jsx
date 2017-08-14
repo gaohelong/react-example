@@ -18,6 +18,8 @@ class Main extends React.Component {
 
         // func.
         this.descHandle = this.descHandle.bind(this);
+
+        console.log('main->constructor');
     }
 
     descHandle(e) {
@@ -28,9 +30,11 @@ class Main extends React.Component {
     componentDidMount() {
         const { dispatch, Config } = this.props;
         loadCloseTool(dispatch, Config);
+        console.log('main->compoentDidMount');
     }
 
     render() {
+        console.log('main->render');
         const desc = this.props.MainData.desc == '' ? this.props.title : this.props.MainData.desc;
 
         return (

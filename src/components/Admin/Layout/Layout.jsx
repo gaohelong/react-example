@@ -34,9 +34,8 @@ class Layout extends React.Component {
     render() {
         console.log('layout-render:');
         let cls = this.props.sidebar ? "hl-main hl-main-sidebar" : "hl-main";
-        let style = this.props.loading ? {overflow: 'hidden'} : {};
+        let style = this.props.loading ? {overflow: 'hidden', opacity: 0} : {};
         let fadeCls = this.props.contentToggle ? 'fade-enter' : 'fade-exit';
-        let fadeStyle = this.props.loading ? {display: 'none'} : {dispatch: 'block'};
         
         return (
             <div>
@@ -45,7 +44,7 @@ class Layout extends React.Component {
                 {this.props.loading == true && <Loading />}
                 {this.props.mask == true && <Mask />}
                 <div className={cls} id="hl-main" style={style}>
-                    <div className={fadeCls} style={fadeStyle}>
+                    <div className={fadeCls}>
                         {this.props.children}
                     </div>
                 </div>
