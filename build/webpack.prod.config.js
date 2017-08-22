@@ -21,10 +21,14 @@ module.exports = {
     /* entry */
     entry: {
         main: ['./src/main.jsx'],
-        // common: [
-        //     'react',
-        //     'react-dom'
-        // ]
+        vendor: [
+            'react',
+            'react-dom',
+            'redux',
+            'react-redux',
+            'react-router-dom',
+            'echarts-for-react',
+        ]
     },
 
     /* output */
@@ -147,6 +151,11 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: 'react + webpack',
             template: './src/template/app.html',
+        }),
+
+        // 公共文件提取.
+        new webpack.optimize.CommonsChunkPlugin({
+            name: "vendor"
         }),
     ]
 };
