@@ -155,7 +155,7 @@ module.exports = {
 
         // 公共文件提取.
         new webpack.optimize.CommonsChunkPlugin({
-            name: "vendor"
+            name: ['vendor', 'manifest']
         }),
     ]
 };
