@@ -4,17 +4,13 @@ import React from 'react';
 import PageItem from './PageItem';
 
 class PageStyleOne extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         console.log('PageStyleOne: render');
         const { cutPage, totalCnt, pageSize } = this.props.pageParams;
         const pageTotal = Math.ceil(totalCnt / pageSize);
         let i = 1;
         let pageArr = [];
-        for(; i <= pageTotal; ++i) {
+        for (; i <= pageTotal; ++i) {
             pageArr.push(i);
         }
 

@@ -13,7 +13,7 @@ import ListItems from '../../components/Admin/List/ListItems';
 import PageS1 from '../../components/Admin/Page/PageStyleOne';
 
 /* immutable */
-import { Map, is, fromJS } from 'immutable';
+import { Map as imMap, is, fromJS } from 'immutable';
 
 class List extends React.Component {
     constructor(props) {
@@ -55,14 +55,14 @@ class List extends React.Component {
             let list = this.props.list.slice((cutPage - 1) * pageSize, cutPage * pageSize);
             listHtml = list.map((row) => {
                 let key = 'list_' + row.id;
-                return <ListItems key={key} row={row} />
+                return <ListItems key={key} row={row} />;
             });
         }
 
         return (
             <div>
                 <div className="hl-list">{listHtml}</div>
-                { is(Map(this.props.pageParams), Map({})) === false && <PageS1 pageParams={this.props.pageParams} pageClickHandle={this.pageClickHandle} /> }
+                { is(imMap(this.props.pageParams), imMap({})) === false && <PageS1 pageParams={this.props.pageParams} pageClickHandle={this.pageClickHandle} /> }
             </div>
         );
     }

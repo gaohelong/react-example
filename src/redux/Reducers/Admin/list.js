@@ -3,11 +3,11 @@ import { LIST_LOAD, LIST_UNMOUNT } from '../../Actions/Admin';
 const initState = {
     list: [],
     loading: true,
-    pageParams: {},
+    pageParams: {}
 };
 
 export const listState = (state = initState, action = {}) => {
-    switch(action.type) {
+    switch (action.type) {
         case LIST_LOAD:
             return Object.assign({}, state, {
                 list: action.data,

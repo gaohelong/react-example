@@ -14,21 +14,23 @@ class Header extends React.Component {
     }
 
     backHandle(e) {
+        e.preventDefault();
         this.props.history.go(-1);
     }
 
     sidebarHandle(e) {
+        e.preventDefault();
         const { dispatch } = this.props;
         dispatch(layoutSidebar(!this.props.sidebar));
     }
 
     render() {
-        const backText = "<< Back";
+        const backText = '<< Back';
 
         return (
             <div className="hl-back">
-                <a href="javascript:void(0);" onClick={this.backHandle}>{backText}</a>
-                <a href="javascript:void(0);" className="hl-f-r hl-mgn-r-20" onClick={this.sidebarHandle}>sidebar</a>
+                <a href="#" onClick={this.backHandle}>{backText}</a>
+                <a href="#" className="hl-f-r hl-mgn-r-20" onClick={this.sidebarHandle}>sidebar</a>
             </div>
         );
     }
@@ -36,7 +38,7 @@ class Header extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        sidebar: state.layoutState.sidebar != undefined ? state.layoutState.sidebar : false
+        sidebar: state.layoutState.sidebar !== undefined ? state.layoutState.sidebar : false
     };
 };
 

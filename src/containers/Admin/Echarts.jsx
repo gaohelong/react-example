@@ -6,7 +6,7 @@ import ReactEcharts from 'echarts-for-react';
 import { loadCloseTool } from '../../tools/tools';
 
 /* immutable */
-import { Map, List, Stack, is, fromJS, isIndexed, Seq, isImmutable, isCollection } from 'immutable';
+import { Map as imMap, List, Stack, is, fromJS, isIndexed, Seq, isImmutable, isCollection } from 'immutable';
 
 /* action */
 // import { layoutLoading, layoutMask } from '../../redux/Actions/Admin';
@@ -14,20 +14,19 @@ import { Map, List, Stack, is, fromJS, isIndexed, Seq, isImmutable, isCollection
 class Echarts extends React.Component {
     constructor(props) {
         super(props);
-        
+
         // func.
         this.getOtion = this.getOtion.bind(this);
     }
-    
+
     componentDidMount() {
         const { dispatch, Config } = this.props;
         loadCloseTool(dispatch, Config);
 
-        /****** immutable-Map、is ******/
-
+        /* ***** immutable-imMap、is ***** */
         /* 实例1 */
-        // const map1 = Map({ a: 1, b: 1, c: 1 });
-        // const map2 = Map({ a: 1, b: 1, c: 1 });
+        // const map1 = imMap({ a: 1, b: 1, c: 1 });
+        // const map2 = imMap({ a: 1, b: 1, c: 1 });
         // console.log(map1, map2);
         // console.log(map1 !== map2); // ture
         // console.log(Object.is(map1, map2) === false); // true
@@ -42,14 +41,14 @@ class Echarts extends React.Component {
         //     ]
         // };
         //
-        // const map2 = Map({
+        // const map2 = imMap({
         //     list: [
         //         {id: 1, title: '哈哈'},
         //         {id: 2, titile: '不错'}
         //     ]
         // });
         //
-        // const map3 = Map({
+        // const map3 = imMap({
         //     list: [
         //         {id: 1, title: '哈哈'},
         //         {id: 2, titile: '不错'}
@@ -60,13 +59,13 @@ class Echarts extends React.Component {
         // console.log(is(map2, map3)); // false
 
         /* 实例3 */
-        // const map1 = Map({ a: 1, b: 2, c: 3 });
+        // const map1 = imMap({ a: 1, b: 2, c: 3 });
         // const map2 = map1.set('b', 50);
         // console.log(map1.get('b')); // 2
         // console.log(map2.get('b')); // 50
 
         /* 实例4 */
-        // const map1 = Map({a: 1, b: 2, c: 3, list: [{id: 1, title: '你好'}, {id: 2, title: '你好!'}]});
+        // const map1 = imMap({a: 1, b: 2, c: 3, list: [{id: 1, title: '你好'}, {id: 2, title: '你好!'}]});
         // const map2 = map1.set('b', 2);
         // console.log(map1, map2);
         // console.log(map1.equals(map2) === true);
@@ -75,7 +74,7 @@ class Echarts extends React.Component {
         // console.log(map1.equals(map3) === false);
 
         /* 实例5 */
-        // const map1 = Map({ a: 1, b: 2, c: 3, list: [{id: 1, title: '你好'}, {id: 2, title: '你好!'}] });
+        // const map1 = imMap({ a: 1, b: 2, c: 3, list: [{id: 1, title: '你好'}, {id: 2, title: '你好!'}] });
         // console.log(map1);
         //
         // const map2 = map1.map((v, k) => {
@@ -99,15 +98,15 @@ class Echarts extends React.Component {
         // console.log(map3);
 
         /* 实例6 */
-        // const map1 = Map({ a: 1, b: 2, c: 3, d: 4 });
-        // const map2 = Map({ c: 10, a: 20, t: 30 });
+        // const map1 = imMap({ a: 1, b: 2, c: 3, d: 4 });
+        // const map2 = imMap({ c: 10, a: 20, t: 30 });
         // const obj = { d: 100, o: 200, g: 300 };
         // const map3 = map1.merge(map2, obj);
-        // console.log(map3); // Map { a: 20, b: 2, c: 10, d: 100, t: 30, o: 200, g: 300 }
+        // console.log(map3); // imMap { a: 20, b: 2, c: 10, d: 100, t: 30, o: 200, g: 300 }
 
 
 
-        /****** immutable-fromJS ******/
+        /* ***** immutable-fromJS ***** */
 
         /* 实例1 */
         // const map1 = fromJS({
@@ -137,7 +136,7 @@ class Echarts extends React.Component {
 
 
 
-        /****** immutable-Seq ******/
+        /* ***** immutable-Seq ***** */
         /* 实例1 */
         // const square = Seq({ x: 0, y: 1, z: 2 }).map(v => v * 2);
         // console.log('isSeq:', Seq.isSeq(square));
@@ -153,22 +152,22 @@ class Echarts extends React.Component {
 
 
 
-        /****** immutable-isImmutable-v4.0rc ******/
+        /* ***** immutable-isImmutable-v4.0rc ***** */
         /* 实例1 */
         // isImmutable([]);                   // false
         // isImmutable({});                   // false
-        // isImmutable(Map());                // true
+        // isImmutable(imMap());              // true
         // isImmutable(List());               // true
         // isImmutable(Stack());              // true
-        // isImmutable(Map().asMutable());    // false
+        // isImmutable(imMap().asMutable());  // false
 
 
 
-        /****** immutable-isCollection: v4.0.0-rc.2 ******/
+        /* ***** immutable-isCollection: v4.0.0-rc.2 ***** */
         /* 实例1 */
         // isCollection([]);        // false
         // isCollection({});        // false
-        // isCollection(Map());     // true
+        // isCollection(imMap());     // true
         // isCollection(List());    // true
         // isCollection(Stack());   // true
     }
@@ -180,7 +179,7 @@ class Echarts extends React.Component {
             tooltip: {
                 trigger: 'axis',
                 axisPointer: {
-                    type: 'shadow',
+                    type: 'shadow'
                 }
             },
             grid: {
@@ -195,14 +194,14 @@ class Echarts extends React.Component {
                         type: 'solid',
                         color: '#cfc3bd'
                     }
-                },
+                }
             },
             yAxis: {
                 splitNumber: 25,
                 type: 'category',
                 axisLine: {
                     lineStyle: {
-                        type: 'solid',
+                        type: 'solid'
                     }
                 },
                 axisLabel: {
@@ -240,7 +239,7 @@ class Echarts extends React.Component {
                     },
                     itemStyle: {
                         normal: {
-                            color: '#1FBCD2',
+                            color: '#1FBCD2'
                         }
                     },
                     data: [1900, 1029, 1602, 2004, 1100, 1800, 2800, 1407, 2200, 900]
@@ -252,23 +251,21 @@ class Echarts extends React.Component {
                     data: [100, 1000, 800, 1070, 900, 300, 1200, 900, 1200, 200],
                     itemStyle: {
                         normal: {
-                            color: '#FEDC6E',
-
+                            color: '#FEDC6E'
                         }
-                    },
-
+                    }
                 }
             ]
         };
     }
-    
-    render() {        
+
+    render() {
         return (
-            <ReactEcharts 
-                option={this.getOtion()} 
+            <ReactEcharts
+                option={this.getOtion()}
                 lazyUpdate={true}
-                style={{height: '500px', width: '100%'}}  
-                className='react_for_echarts' />
+                style={{height: '500px', width: '100%'}}
+                className="react_for_echarts" />
         );
     }
 }

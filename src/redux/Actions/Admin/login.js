@@ -1,10 +1,10 @@
-export const LOGIN =            'LOGIN';
-export const LOGIN_ERROR =      'LOGIN_ERROR';
-export const LOGIN_SUCCESS =    'LOGIN_SUCCESS';
+export const LOGIN = 'LOGIN';
+export const LOGIN_ERROR = 'LOGIN_ERROR';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 
 export const LOGIN_FILTERS = {
-    USER_INFO:  'USER_INFO',
-    TOKEN:      'TOKEN'
+    USER_INFO: 'USER_INFO',
+    TOKEN: 'TOKEN'
 };
 
 export const loginFetch = (dispatch, data) => {
@@ -13,7 +13,7 @@ export const loginFetch = (dispatch, data) => {
             .then(function(response) {
                 return response.json();
             }).then(function(json) {
-                if (json.code == 0) { // 登录成功.
+                if (json.code === 0) { // 登录成功.
                     dispatch({
                         type: LOGIN,
                         data: {
@@ -29,4 +29,4 @@ export const loginFetch = (dispatch, data) => {
                 dispatch();
             });
     };
-}
+};

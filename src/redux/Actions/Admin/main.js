@@ -1,10 +1,8 @@
 const MAIN_DESC = 'MAIN_DESC';
-const MAIN_LIST = 'MAIN_LIST';
+// const MAIN_LIST = 'MAIN_LIST';
 
 export const getMainList = (dispatch, data) => {
-    return () => {
-    
-    };
+    return () => {};
 };
 
 export const descChange = () => {
@@ -12,4 +10,4 @@ export const descChange = () => {
         type: MAIN_DESC,
         desc: '666 666!'
     };
-}
+};

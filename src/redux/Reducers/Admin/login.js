@@ -1,14 +1,17 @@
 import {LOGIN} from '../../Actions/Admin/';
 
 const initState = {
-    token: "",
+    token: '',
     userinfo: {}
 };
 
 export const loginState = (state = initState, action = {}) => {
-    switch(action.type) {
+    switch (action.type) {
         case LOGIN:
-            return Object.assign({}, state, {userinfo: action.data.userinfo, token: action.data.token});
+            return Object.assign({}, state, {
+                userinfo: action.data.userinfo,
+                token: action.data.token
+            });
         default:
             return state;
     }

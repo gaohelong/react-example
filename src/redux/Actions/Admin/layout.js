@@ -28,7 +28,7 @@ export const layoutSidebar = (val) => {
             sidebar: val
         }
     };
-}
+};
 
 export const layoutContentToggle = (val) => {
     return {
@@ -37,4 +37,4 @@ export const layoutContentToggle = (val) => {
             contentToggle: val
         }
     };
-}
+};

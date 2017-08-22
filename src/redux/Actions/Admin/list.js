@@ -8,7 +8,7 @@ export const listLoad = (dispatch, url, params, callback) => {
                 return response.json();
             })
             .then(function(json) {
-                if (json.code == 0) {
+                if (json.code === 0) {
                     dispatch({
                         type: LIST_LOAD,
                         data: json.list,
@@ -19,7 +19,7 @@ export const listLoad = (dispatch, url, params, callback) => {
                         }
                     });
 
-                    if (typeof callback == 'function') {
+                    if (typeof callback === 'function') {
                         callback();
                     }
                 }
@@ -27,8 +27,8 @@ export const listLoad = (dispatch, url, params, callback) => {
             }).catch(function(ex) {
                 console.log('parsing failed', ex);
             });
-    }
-}
+    };
+};
 
 export const listUnmount = () => {
     return {

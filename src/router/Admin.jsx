@@ -19,11 +19,11 @@ import Config from '../config/config';
 import Bundle from './Bundle';
 
 /* lazy container */
-import loadLogin    from 'bundle-loader?lazy!../containers/Admin/Login';
-import loadMain     from 'bundle-loader?lazy!../containers/Admin/Main';
-import loadEcharts  from 'bundle-loader?lazy!../containers/Admin/Echarts';
-import loadList     from 'bundle-loader?lazy!../containers/Admin/List';
-import loadF404     from 'bundle-loader?lazy!../containers/F404';
+import loadLogin from 'bundle-loader?lazy!../containers/Admin/Login';
+import loadMain from 'bundle-loader?lazy!../containers/Admin/Main';
+import loadEcharts from 'bundle-loader?lazy!../containers/Admin/Echarts';
+import loadList from 'bundle-loader?lazy!../containers/Admin/List';
+import loadF404 from 'bundle-loader?lazy!../containers/F404';
 
 /* layout */
 import Layout from '../components/Admin/Layout/Layout';
@@ -113,12 +113,12 @@ class Admin extends React.Component {
                 <Switch>
                     <Route exact path="/" component={Login} />
                     <Route path="/main" render={(props) => (
-                        <Layout {...props} sel='Main'>
+                        <Layout {...props} sel="Main">
                             <Main {...props} />
                         </Layout>
                     )} />
                     <Route path="/echarts" render={(props) => (
-                        <Layout {...props} sel='Echarts'>
+                        <Layout {...props} sel="Echarts">
                             <Echarts {...props} />
                         </Layout>
                     )} />
@@ -127,7 +127,7 @@ class Admin extends React.Component {
                             <List {...props} />
                         </Layout>
                     )} />
-                    <Route component={F404}/>
+                    <Route component={F404} />
                 </Switch>
             </Router>
         );

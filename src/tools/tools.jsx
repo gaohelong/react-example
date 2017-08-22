@@ -7,7 +7,7 @@ export const loadCloseTool = (dispatch, Config, val = false) => {
             dispatch(layoutLoading(val));
             dispatch(layoutMask(val));
             dispatch(layoutContentToggle(true));
-        }   
+        }
         , Config.loading.time
     );
 };

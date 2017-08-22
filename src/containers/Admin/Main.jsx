@@ -35,7 +35,7 @@ class Main extends React.Component {
 
     render() {
         console.log('main->render');
-        const desc = this.props.MainData.desc == '' ? this.props.title : this.props.MainData.desc;
+        const desc = this.props.MainData.desc === '' ? this.props.title : this.props.MainData.desc;
 
         return (
             <div>

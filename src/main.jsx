@@ -15,8 +15,6 @@ import './sass/main';
 //     document.getElementById('app')
 // );
 
-
-
 /**
  * @desc ParamsExample.
  */
@@ -25,8 +23,6 @@ import './sass/main';
 //     <ParamsExample />,
 //     document.getElementById('app')
 // );
-
-
 
 /**
  * @desc Redirects(Auth).
@@ -37,8 +33,6 @@ import './sass/main';
 //     document.getElementById('app')
 // );
 
-
-
 /**
  * @desc CustomLinkExample.
  */
@@ -47,8 +41,6 @@ import './sass/main';
 //     <CustomLinkExample />,
 //     document.getElementById('app')
 // );
-
-
 
 /**
  * @desc PreventingTransitionsExample.
@@ -59,8 +51,6 @@ import './sass/main';
 //     document.getElementById('app')
 // );
 
-
-
 /**
  * @desc NoMatchExample.
  */
@@ -69,8 +59,6 @@ import './sass/main';
 //     <NoMatchExample />,
 //     document.getElementById('app')
 // );
-
-
 
 /**
  * @desc RecursiveExample.
@@ -81,8 +69,6 @@ import './sass/main';
 //     document.getElementById('app')
 // );
 
-
-
 /**
  * @desc SidebarExample.
  */
@@ -91,8 +77,6 @@ import './sass/main';
 //     <SidebarExample />,
 //     document.getElementById('app')
 // );
-
-
 
 /**
  * @desc AnimationExample.
@@ -103,8 +87,6 @@ import './sass/main';
 //     document.getElementById('app')
 // );
 
-
-
 /**
  * @desc AmbiguousExample.
  */
@@ -113,8 +95,6 @@ import './sass/main';
 //     <AmbiguousExample />,
 //     document.getElementById('app')
 // );
-
-
 
 /**
  * @desc RouteConfigExample.
@@ -125,8 +105,6 @@ import './sass/main';
 //     document.getElementById('app')
 // );
 
-
-
 /**
  * @desc ModalGallery.
  */
@@ -135,8 +113,6 @@ import './sass/main';
 //     <ModalGallery />,
 //     document.getElementById('app')
 // );
-
-
 
 /**
  * @desc StaticRouterExample.
@@ -147,8 +123,6 @@ import './sass/main';
 //     document.getElementById('app')
 // );
 
-
-
 /**
  * @desc CodeSplitting.
  */
@@ -157,8 +131,6 @@ import './sass/main';
 //     <CodeSplitting />,
 //     document.getElementById('app')
 // );
-
-
 
 /**
  * @desc react-redux example.
@@ -179,15 +151,13 @@ import './sass/main';
 //     rootEle
 // );
 
-
-
 /**
  * @desc admin example.
  */
 import './sass/modules/admin/public';
-import {Provider} from  'react-redux';
-import App from         './router/Admin';
-import store from       './redux/Store/Admin/store';
+import { Provider } from 'react-redux';
+import App from './router/Admin';
+import store from './redux/Store/Admin/store';
 
 store.subscribe(() => { // 监听state变化.
     console.log('getStore:', store.getState());

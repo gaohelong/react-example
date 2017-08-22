@@ -1,10 +1,6 @@
 import React from 'react';
 
 class F404 extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         console.log(this.props);
         return (
