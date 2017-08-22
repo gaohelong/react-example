@@ -1,6 +1,14 @@
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var webpack = require('webpack');
 var path = require('path');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+
+// path.
+// const ROOT_PATH = path.resolve(__dirname);
+const ROOT_PATH = path.resolve(__dirname, '../');
+const APP_PATH = path.resolve(ROOT_PATH, 'src');
+const ENTRY_FILE = path.resolve(APP_PATH, 'main');
+const DIST_PATH = path.resolve(ROOT_PATH, 'dist');
 
 // DefinePlugin 允许创建一个在编译时可以配置的全局常量。这可能会对开发模式和发布模式的构建允许不同的行为非常有用。
 var definePluginConfig = new webpack.DefinePlugin({
@@ -20,13 +28,15 @@ const extractSass = new ExtractTextPlugin({
 module.exports = { 
     /* entry */
     entry: {
-        main: ['./src/main.jsx'],
+        // main: ['./src/main.jsx'],
+        main: [ENTRY_FILE],
         vendor: [
             'react',
             'react-dom',
             'redux',
             'react-redux',
             'react-router-dom',
+            'immutable',
             'echarts-for-react',
         ]
     },
@@ -35,7 +45,8 @@ module.exports = {
     output: {
         // filename: 'bundle.js',
         filename: 'assets/js/[name].[chunkhash].js',
-        path: path.resolve(__dirname, '../dist'),
+        // path: path.resolve(__dirname, '../dist'),
+        path: DIST_PATH,
         // chunkFilename: '[name].[chunkhash:5].min.js'
     },
 
@@ -138,10 +149,14 @@ module.exports = {
         definePluginConfig,
 
         // js压缩.
-        new webpack.optimize.UglifyJsPlugin({
+        new UglifyJSPlugin({
             compress: {
-                warnings: false
-            }
+                warnings: false,
+                // drop_console: true
+            },
+            output: {
+                comments: false
+            },
         }),
 
         // 提取成单独的css文件.
