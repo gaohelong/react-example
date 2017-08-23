@@ -103,30 +103,96 @@ const List = (props) => {
     );
 };
 
-/* component */
+// const routerConfig = [
+//     {
+//         exact: true,
+//         path: '/',
+//         component: Login
+//     },
+//     {
+//         path: '/main',
+//         render: (props) => (
+//             <Layout {...props} sel="Main">
+//                 <Main {...props} />
+//             </Layout>
+//         )
+//     },
+//     {
+//         path: '/echarts',
+//         render: (props) => (
+//             <Layout {...props} sel="Echarts">
+//                 <Echarts {...props} />
+//             </Layout>
+//         )
+//     },
+//     {
+//         path: '/list',
+//         render: (props) => (
+//             <Layout {...props} sel="List">
+//                 <List {...props} />
+//             </Layout>
+//         )
+//     },
+//     {
+//         component: F404
+//     }
+// ];
+// 
+// const RouteCreate = (route) => (
+//     <Route path={route.path} exact={route.exact} component={route.component} render={route.render} />
+// );
+
+const routerConfig = [
+    {
+        exact: true,
+        path: '/',
+        component: Login
+    },
+    {
+        path: '/main',
+        sel: 'Main',
+        component: Main
+    },
+    {
+        path: '/echarts',
+        sel: 'Echarts',
+        component: Echarts
+    },
+    {
+        path: '/list',
+        sel: 'List',
+        component: List
+    },
+    {
+        component: F404
+    }
+];
+
+const RouteCreate = (route) => {
+    if (route.path === '/') {
+        return <Route path={route.path} exact={route.exact} component={route.component} />;
+    } else {
+        return (
+            <Route path={route.path} exact={route.exact} render={(props) => (
+                <Layout {...props} sel={route.sel}>
+                    <route.component {...props} />
+                </Layout>
+            )} />
+        );
+    }
+};
+
 class Admin extends React.Component {
     render() {
-        // 注意Route匹配url的前后顺序.
+        // 开发的功能是切换url后局部变动, 但是给RouteCreate加上key={i}则会整体重新加载; 给固定值则不整体重新加载, 例如：key="url"则局部加载.
         return (
             <Router>
                 <Switch>
-                    <Route exact path="/" component={Login} />
-                    <Route path="/main" render={(props) => (
-                        <Layout {...props} sel="Main">
-                            <Main {...props} />
-                        </Layout>
-                    )} />
-                    <Route path="/echarts" render={(props) => (
-                        <Layout {...props} sel="Echarts">
-                            <Echarts {...props} />
-                        </Layout>
-                    )} />
-                    <Route path="/list" render={(props) => (
-                        <Layout {...props} sel="List">
-                            <List {...props} />
-                        </Layout>
-                    )} />
-                    <Route component={F404} />
+                    {
+                        routerConfig.map((route, i) => (
+                            <RouteCreate key="url" {...route} />
+                        ))
+                    }
                 </Switch>
             </Router>
         );

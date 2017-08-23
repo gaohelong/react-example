@@ -156,7 +156,7 @@ import './sass/main';
  */
 import './sass/modules/admin/public';
 import { Provider } from 'react-redux';
-import App from './router/Admin';
+import App from './router/AdminConfig';
 import store from './redux/Store/Admin/store';
 
 store.subscribe(() => { // 监听state变化.
