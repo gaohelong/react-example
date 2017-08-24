@@ -133,7 +133,7 @@ server
         expires 30d;
     }
 
-    # router url rewrite.
+    # react-router: nginx rewrite.
     location ~  .*/assets/js/(.*)\.js
     {
         rewrite .*/assets/(.*)  /assets/$1 break;
@@ -145,14 +145,26 @@ server
         expires 1h;
     }
 
+    # 指定api接口: nginx rewrite.
+    location ~  .*/api/(.*)\.js
+    {
+         rewrite .*/api/(.*)  /api/$1 break;
+         root /var/gaohelong/www/hl-react/dist/;
+    }
 
     location /
     {
-        if (!-e $request_filename) {
-            rewrite ^/(.*)$ /index.php/$1 last;
-            break;
-        }
+        # 指定所有url访问: nginx rewirte.
+        rewrite (.*) /index.html break;
+        root /var/gaohelong/www/hl-react/dist/;
+        index index.html index.htm index.php;
+
+        # if (!-e $request_filename) {
+        #     rewrite ^/(.*)$ /index.php/$1 last;
+        #     break;
+        # }
     }
+
 
     error_log   /var/logs/hl-react/error.log;
     access_log  /var/logs/hl-react/access.log;
