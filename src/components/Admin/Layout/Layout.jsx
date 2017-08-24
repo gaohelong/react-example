@@ -10,6 +10,9 @@ import Mask from '../Mask/Mask';
 /* action */
 import { layoutLoading, layoutMask } from '../../../redux/Actions/Admin';
 
+/* immutable */
+import { Map as imMap, is as imIs } from 'immutable';
+
 class Layout extends React.Component {
     componentWillMount() {
         const { dispatch } = this.props;
@@ -19,11 +22,14 @@ class Layout extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         // console.log(this.props.sel, nextProps.sel);
-        if (this.props.sel !== nextProps.sel) {
+        const prePropsMatch = imMap(this.props.match.params);
+        const nextPropsMatch = imMap(nextProps.match.params);
+        if (this.props.sel !== nextProps.sel || !imIs(prePropsMatch, nextPropsMatch)) {
             const { dispatch } = this.props;
             dispatch(layoutLoading(true));
             dispatch(layoutMask(true));
         }
+
         console.log('ReceiveProps');
     }
 

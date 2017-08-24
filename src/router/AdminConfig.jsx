@@ -23,6 +23,7 @@ import loadLogin from 'bundle-loader?lazy!../containers/Admin/Login';
 import loadMain from 'bundle-loader?lazy!../containers/Admin/Main';
 import loadEcharts from 'bundle-loader?lazy!../containers/Admin/Echarts';
 import loadList from 'bundle-loader?lazy!../containers/Admin/List';
+import loadListDetail from 'bundle-loader?lazy!../containers/Admin/ListDetail';
 import loadF404 from 'bundle-loader?lazy!../containers/F404';
 
 /* layout */
@@ -103,6 +104,23 @@ const List = (props) => {
     );
 };
 
+const ListDetail = (props) => {
+    require('../sass/modules/admin/listDetail');
+    document.title = 'admin-list-detail';
+
+    return (
+        <Bundle load={loadListDetail}>
+            {
+                (ListDetail) => {
+                    return (
+                        <ListDetail {...props} Config={Config} />
+                    );
+                }
+            }
+        </Bundle>
+    );
+};
+
 // const routerConfig = [
 //     {
 //         exact: true,
@@ -159,9 +177,15 @@ const routerConfig = [
         component: Echarts
     },
     {
+        exact: true,
         path: '/list',
         sel: 'List',
         component: List
+    },
+    {
+        path: '/list/:type/:id',
+        sel: 'List',
+        component: ListDetail
     },
     {
         component: F404
@@ -169,7 +193,7 @@ const routerConfig = [
 ];
 
 const RouteCreate = (route) => {
-    if (route.path === '/') {
+    if (route.path === '/' || route.path === undefined) {
         return <Route path={route.path} exact={route.exact} component={route.component} />;
     } else {
         return (

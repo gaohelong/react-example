@@ -1,5 +1,5 @@
 export default {
     loading: {
-        time: 2000
+        time: 1000
     }
 };

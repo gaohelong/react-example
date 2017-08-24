@@ -108,4 +108,12 @@ $ npm install react-router-dom --save
 $ npm install redux --save
 $ npm install react-redux --save
 $ npm install react-router-redux --save
+
+# nginx: router url config
+# 例如:
+location ~  .*/assets/js/(.*)\.js
+{
+    rewrite .*/assets/(.*)  /assets/$1 break;
+    root /var/gaohelong/www/hl-react/dist/;
+}
 ```

@@ -47,7 +47,7 @@ module.exports = {
         filename: 'assets/js/[name].[chunkhash].js',
         // path: path.resolve(__dirname, '../dist'),
         path: DIST_PATH,
-        // chunkFilename: '[name].[chunkhash:5].min.js'
+        // chunkFilename: 'assets/js/[name].[chunkhash:5].min.js'
     },
 
     /* 设置模块如何解析 */
