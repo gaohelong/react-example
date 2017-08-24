@@ -109,11 +109,52 @@ $ npm install redux --save
 $ npm install react-redux --save
 $ npm install react-router-redux --save
 
-# nginx: router url config
-# 例如:
-location ~  .*/assets/js/(.*)\.js
+# nginx: router url rewrite.
+server
 {
-    rewrite .*/assets/(.*)  /assets/$1 break;
-    root /var/gaohelong/www/hl-react/dist/;
+    listen 80;
+    #listen [::]:80 default_server ipv6only=on;
+    server_name hl.react.com;
+    index index.html index.htm index.php;
+    root  /var/gaohelong/www/hl-react/dist/;
+
+    #error_page   404   /404.html;
+    include enable-php-pathinfo.conf;
+    #rewrite ^(.*)$ /index.php last;
+
+    location /nginx_status {
+        stub_status on;
+        access_log   on;
+        deny all;
+    }
+
+    location ~ .*\.(gif|jpg|jpeg|png|bmp|swf)$
+    {
+        expires 30d;
+    }
+
+    # router url rewrite.
+    location ~  .*/assets/js/(.*)\.js
+    {
+        rewrite .*/assets/(.*)  /assets/$1 break;
+        root /var/gaohelong/www/hl-react/dist/;
+    }
+
+    location ~ .*\.(js|css)?$
+    {
+        expires 1h;
+    }
+
+
+    location /
+    {
+        if (!-e $request_filename) {
+            rewrite ^/(.*)$ /index.php/$1 last;
+            break;
+        }
+    }
+
+    error_log   /var/logs/hl-react/error.log;
+    access_log  /var/logs/hl-react/access.log;
 }
 ```
