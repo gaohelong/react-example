@@ -26,7 +26,7 @@
         "brace-style": "error",                                                     // 关键字要与花括号保持在同一行
         "curly": "error",                                                           // 多行 if 语句的的括号不能省
         "handle-callback-err": "error",                                             // 不要丢掉异常处理中err参数
-        "no-undef": "error",                                                        // 使用浏览器全局变量时加上 window. 前缀
+        // "no-undef": "error",                                                     // 使用浏览器全局变量时加上 window. 前缀
         // "no-multiple-empty-lines": ["error", { "max": 2, "maxBOF": 1 }],         // 不允许有连续多行空行
         // "operator-linebreak": [ "error", "after" ],                              // 对于三元运算符 ? 和 : 与他们所负责的代码处于同一行( 所有的运算符必须在同一行 )
         "one-var": [ "error", { var: "never", let: "never", const: "never" } ],     // 每个 var 关键字单独声明一个变量

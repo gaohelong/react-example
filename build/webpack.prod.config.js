@@ -38,6 +38,7 @@ module.exports = {
             'react-router-dom',
             'immutable',
             'echarts-for-react',
+            'axios',
         ]
     },
 

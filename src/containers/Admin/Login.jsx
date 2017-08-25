@@ -16,7 +16,8 @@ class Login extends React.Component {
         const { dispatch } = this.props;
 
         dispatch(loginFetch(dispatch, {
-            url: '/api/admin/login.json',
+            // url: '/api/admin/login.json',
+            url: '/mock/admin/login',
             data: {
                 user: this.userInputEle.value,
                 pwd: this.pwdInputEle.value
