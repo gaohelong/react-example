@@ -26,7 +26,7 @@ class List extends React.Component {
     pageClickHandle(e) {
         const { dispatch, Config } = this.props;
         Tools.loadOpenTool(dispatch);
-        dispatch(listLoad(dispatch, '/api/admin/list.json', { page: e.target.innerHTML }, () => {
+        dispatch(listLoad(dispatch, '/mock/admin/list', { page: e.target.innerHTML }, () => {
             Tools.loadCloseTool(dispatch, Config);
         }));
         // Tools.contentToggle(dispatch);
@@ -34,7 +34,7 @@ class List extends React.Component {
 
     componentDidMount() {
         const { dispatch, Config } = this.props;
-        dispatch(listLoad(dispatch, '/api/admin/list.json', { page: 1 }, () => {
+        dispatch(listLoad(dispatch, '/mock/admin/list', { page: 1 }, () => {
             Tools.loadCloseTool(dispatch, Config);
         }));
     }

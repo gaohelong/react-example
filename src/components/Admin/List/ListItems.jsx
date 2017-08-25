@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 
 class ListItems extends React.Component {
     constructor(props) {
@@ -21,7 +22,7 @@ class ListItems extends React.Component {
 
         return (
             <div className="list-item" onClick={(e) => (this.detailHandle(e, this.props.row.id))}>
-                <Link to={url}>{this.props.row.id}-{this.props.row.title}-{this.props.row.date}</Link>
+                <Link to={url}>{this.props.row.id}-{this.props.row.title}-{moment(this.props.row.date).format('YYYY-MM-DD h:mm:ss')}</Link>
             </div>
         );
     }

@@ -40,6 +40,17 @@ export const loginFetch = (dispatch, data) => {
             pwd: data.data.pwd
         }).then(function (response) {
             console.log(response);
+            if (response.code === 0) { // 登录成功.
+                dispatch({
+                    type: LOGIN,
+                    data: {
+                        token: response.token,
+                        userinfo: response.userinfo
+                    }
+                });
+            } else { // 登录失败.
+                console.log('登录失败');
+            }
         }).catch(function (error) {
             console.log(error);
         });
