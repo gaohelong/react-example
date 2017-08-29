@@ -35,7 +35,7 @@ export const listLoad = (dispatch, url, params, callback) => {
         axiosPost(url, {
             page: params.page
         }).then(function(response) {
-            console.log(response);
+            console.log('aysn-action:', response);
             if (response.code === 0) {
                 dispatch({
                     type: LIST_LOAD,
