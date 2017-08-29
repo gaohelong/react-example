@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Config from '../../config/config.js';
 
 /* action */
 import {LOGIN_FILTERS, loginFetch} from '../../redux/Actions/Admin/';
@@ -17,7 +18,8 @@ class Login extends React.Component {
 
         dispatch(loginFetch(dispatch, {
             // url: '/api/admin/login.json',
-            url: '/mock/admin/login',
+            // url: '/mock/admin/login', // axios
+            url: Config.jsonServerUrl + '/login', // fetch
             data: {
                 user: this.userInputEle.value,
                 pwd: this.pwdInputEle.value

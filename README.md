@@ -169,4 +169,7 @@ server
     error_log   /var/logs/hl-react/error.log;
     access_log  /var/logs/hl-react/access.log;
 }
+
+# 用fetch时使用json-server服务.
+$ json-server --watch api/user.js --port 8081
 ```
