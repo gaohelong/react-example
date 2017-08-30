@@ -173,3 +173,53 @@ server
 # 用fetch时使用json-server服务.
 $ json-server --watch api/user.js --port 8081
 ```
+
+## 【fetch cors】
+```javascript
+[js]
+// post params: php $_POST.
+let formData = new FormData();
+formData.append('user', data.data.user);
+formData.append('pwd', data.data.pwd);
+
+fetch('http://hl.react.com/api/user.php', {
+    method: 'POST',
+    body: formData,
+    mode: 'cors', // 跨域.
+    credential: 'same-origin'
+}).then(function(response) {
+    return response.json();
+}).then(function(json) {
+    if (json.code === 0) { // 登录成功.
+        dispatch({
+            type: LOGIN,
+            data: {
+                token: json.token,
+                userinfo: json.userinfo
+            }
+        });
+    } else { // 登录失败.
+        // dispatch();
+    }
+}).catch(function(ex) {
+    console.log('parsing failed', ex);
+    // dispatch();
+});
+
+[php-api]
+// header("Access-Control-Allow-Origin: *"); // 支持fetch cors请求，不限制请求来源.
+header("Access-Control-Allow-Origin: http://localhost:8080"); // 支持fetch cors请求，并且限制请求来源为http://localhost:8080.
+
+// var_dump($_POST);
+// var_dump($_GET);
+$res = array(
+    'code' => 0,
+    'token' => 'test2017',
+    'userinfo' => array(
+        'name' => 'MsLeannon',
+        'age' => 20
+    )
+);
+
+echo json_encode($res);
+```
