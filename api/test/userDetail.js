@@ -4,6 +4,8 @@ const Random = Mock.Random;
 
 /* faker */
 const faker = require('faker');
+
+/* user detail */
 const userDetail = Mock.mock({
     'list|10': [{
         'id|+1': 1,

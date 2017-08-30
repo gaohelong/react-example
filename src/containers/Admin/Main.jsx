@@ -18,8 +18,31 @@ class Main extends React.Component {
 
         // func.
         this.descHandle = this.descHandle.bind(this);
-
+        this.testAsync = this.testAsync.bind(this);
         console.log('main->constructor');
+    }
+
+    testAsync() {
+        /* 实例1 */
+        // async function timeout(ms) {
+        //     await new Promise((resolve) => {
+        //         setTimeout(resolve, ms);
+        //     });
+        // }
+        //
+        // async function asyncPrint(value, ms) {
+        //     await timeout(ms);
+        //     console.log(value);
+        // }
+        //
+        // asyncPrint('------ hello world ------', 3000);
+
+        /* 实例2: sync函数内部return语句返回的值，会成为then方法回调函数的参数. */
+        async function f() {
+            return '--- hello world ---';
+        }
+
+        f().then(v => console.log(v));
     }
 
     descHandle(e) {
@@ -30,6 +53,8 @@ class Main extends React.Component {
     componentDidMount() {
         const { dispatch, Config } = this.props;
         loadCloseTool(dispatch, Config);
+
+        this.testAsync();
         console.log('main->compoentDidMount');
     }
 
