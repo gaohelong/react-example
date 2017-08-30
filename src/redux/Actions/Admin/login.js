@@ -34,7 +34,7 @@ export const loginFetch = (dispatch, data) => {
         //         dispatch();
         //     });
 
-        // [fetch post]
+        // [fetch cors post]
         // post params: php $_POST.
         let formData = new FormData();
         formData.append('user', data.data.user);
@@ -52,7 +52,8 @@ export const loginFetch = (dispatch, data) => {
             // 'Access-Control-Allow-Origin': '*',
             // 'Content-Type': 'text/plain'
             // },
-            credentials: 'same-origin'
+            // credentials: 'same-origin' // 同源的发送cookie设置为same-orgin.
+            credentials: 'include' // 使用cors跨域发送cookie设置为include
         }).then(function(response) {
             // console.log(response.text());
             // console.log(response.json());
@@ -78,10 +79,33 @@ export const loginFetch = (dispatch, data) => {
         // [fetch get]
         // get params: php $_GET.
         // fetch('http://localhost:8081/login?id=1&type=2', {
-        // fetch('http://hl.react.com/api/user.php?id=1&type=2', {
         // fetch(data.url, {
         //     method: 'get'
-        //     // mode: 'no-cors'
+        // }).then(function(response) {
+        //     console.log(response);
+        //     return response.json();
+        // }).then(function(json) {
+        //     if (json.code === 0) { // 登录成功.
+        //         dispatch({
+        //             type: LOGIN,
+        //             data: {
+        //                 token: json.token,
+        //                 userinfo: json.userinfo
+        //             }
+        //         });
+        //     } else { // 登录失败.
+        //         // dispatch();
+        //     }
+        // }).catch(function(ex) {
+        //     console.log('parsing failed', ex);
+        //     // dispatch();
+        // });
+
+        // [fetch cros get]
+        // get params: php $_GET.
+        // fetch('http://hl.react.com/api/user.php?id=1&type=2', {
+        //     method: 'get',
+        //     mode: 'cors' // 跨域
         // }).then(function(response) {
         //     console.log(response);
         //     return response.json();
