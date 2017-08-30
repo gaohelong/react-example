@@ -169,9 +169,17 @@ server
     error_log   /var/logs/hl-react/error.log;
     access_log  /var/logs/hl-react/access.log;
 }
+```
 
-# 用fetch时使用json-server服务.
+## 【json-server】
+```javascript
+注: 当前项目用fetch时使用json-server服务.
+
+# 启动json-server.
 $ json-server --watch api/user.js --port 8081
+
+# 使用route.
+$ json-server --w api/test/test.js --r api/test/routes.json --p 8081
 ```
 
 ## 【fetch cors】
