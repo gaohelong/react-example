@@ -30,6 +30,9 @@
 [English](https://eslint.org)
 [Chinease](http://eslint.cn/)
 
+## 【Moment】
+[Chinease](http://momentjs.cn/)
+
 ## 【react】
 [English](https://facebook.github.io/react/)
 
