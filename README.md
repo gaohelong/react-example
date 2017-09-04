@@ -53,6 +53,49 @@
 [English](https://quilljs.com/)
 [Example](https://zenoamaro.github.io/react-quill/)
 
+### 【Rich text editor: React Draft Wysiwyg】
+[GitHub](https://github.com/jpuri/react-draft-wysiwyg)
+[English](https://jpuri.github.io/react-draft-wysiwyg)
+
+### 【Rich text editor: React lz editor】
+[GitHub](https://github.com/leejaen/react-lz-editor)
+[Example](https://leejaen.github.io/react-lz-editor/index.html)
+
+### 【ColorSelect: React color】
+[GitHub](https://github.com/casesandberg/react-color)
+[English](http://casesandberg.github.io/react-color/)
+
+### 【Clipboard: react copy to clipboard】
+[GitHub](https://github.com/nkbt/react-copy-to-clipboard)
+
+### 【QR Code: qrcode.react】
+[GitHub](https://github.com/zpao/qrcode.react)
+[Example](http://zpao.github.io/qrcode.react/)
+
+### 【Charts: Recharts】
+[GitHub](https://github.com/recharts/recharts/)
+[Chinese](http://recharts.org/#/zh-CN/)
+
+### 【Charts: Victory】
+[GitHub](https://github.com/FormidableLabs/victory)
+[English](http://formidable.com/open-source/victory/)
+
+### 【Nprogress: Nprogress】
+[GitHub](https://github.com/rstacruz/nprogress)
+[English](http://ricostacruz.com/nprogress/)
+
+### 【Internationalization: React Intl】
+[GitHub](https://github.com/yahoo/react-intl)
+
+### 【Syntaxv Highlighter: react syntax highlighter】
+[GitHub](https://github.com/conorhastings/react-syntax-highlighter)
+
+### 【Mactdown: react markdown】
+[GitHub](https://github.com/rexxars/react-markdown)
+
+### 【Infinite scroll: react virtualized】
+[GitHub](https://github.com/bvaughn/react-virtualized)
+
 ## 【react】
 [English](https://facebook.github.io/react/)
 
