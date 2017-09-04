@@ -23,16 +23,16 @@
 [Chinese](http://es6.ruanyifeng.com)
 [Features](http://es6-features.org)
 
-## 【Ant-Design】
-[PC](https://ant.design)
-[Mobile](https://mobile.ant.design)
-
 ## 【Fetch】
 [fetch](http://github.github.io/fetch/)
 
 ## 【Eslint】
 [English](https://eslint.org)
 [Chinese](http://eslint.cn/)
+
+## 【Ant-Design】
+[PC](https://ant.design)
+[Mobile](https://mobile.ant.design)
 
 ## 【Moment】
 [Chinese](http://momentjs.cn/)
