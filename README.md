@@ -145,6 +145,18 @@ server
         expires 1h;
     }
 
+    location ~  .*/mock/(.*)
+    {
+        rewrite .*/mock/(.*)  /mock/$1 break;
+        root /var/gaohelong/www/hl-react/;
+    }
+
+    location ~ .*/images/(.*)
+    {
+        rewrite .*/images/(.*) /images/$1 break;
+        root /var/gaohelong/www/hl-react/dist/assets/;
+    }
+
     # 指定api接口: nginx rewrite.
     location ~  .*/api/(.*)\.js
     {

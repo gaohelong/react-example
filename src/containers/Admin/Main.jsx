@@ -12,6 +12,9 @@ import {
     MAIN_DESC, descChange
 } from '../../redux/Actions/Admin';
 
+/* image */
+import bossImg from '../../assets/images/global/boss_22x22.png';
+
 class Main extends React.Component {
     constructor(props) {
         super(props);
@@ -64,6 +67,8 @@ class Main extends React.Component {
 
         return (
             <div>
+                <img src={bossImg} style={{width: '200px', height: '200px'}} />
+                <img src={require('../../assets/images/global/boss_blue_22x22.svg')} style={{width: '200px', height: '200px'}} />
                 <button type="button" onClick={this.descHandle}>click me</button>
                 <div>{desc}</div>
             </div>
