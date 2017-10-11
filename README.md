@@ -10,17 +10,17 @@
 [Web-Api](https://developer.mozilla.org/zh-CN/docs/Web/API)
 
 ## 【ruanyifeng】
-[Chinease](http://www.ruanyifeng.com/blog/javascript/)
+[Chinese](http://www.ruanyifeng.com/blog/javascript/)
 
 ## 【webpack】
 [English](https://webpack.js.org)
-[Chinease](https://doc.webpack-china.org/)
+[Chinese](https://doc.webpack-china.org/)
 
 ## 【Babel】
 [English](http://babeljs.io/)
 
 ## 【ES6】
-[Chinease](http://es6.ruanyifeng.com)
+[Chinese](http://es6.ruanyifeng.com)
 [Features](http://es6-features.org)
 
 ## 【Fetch】
@@ -28,18 +28,84 @@
 
 ## 【Eslint】
 [English](https://eslint.org)
-[Chinease](http://eslint.cn/)
+[Chinese](http://eslint.cn/)
+
+## 【Ant-Design】
+[PC](https://ant.design)
+[Mobile](https://mobile.ant.design)
+
+## 【PlugIn】
+### 【Drag: React dnd】
+[GitHub](https://github.com/react-dnd/react-dnd)
+[English](http://react-dnd.github.io/react-dnd/)
+
+### 【Drag: React draggable】
+[GitHub](https://github.com/mzabriskie/react-draggable)
+
+### 【Datepick: momentJs】
+[Chinese](http://momentjs.cn/)
+
+### 【CodeEditor: codemirror】
+[GitHub](https://github.com/JedWatson/react-codemirror)
+
+### 【Rich text editor: quill】
+[GitHub](https://github.com/zenoamaro/react-quill)
+[English](https://quilljs.com/)
+[Example](https://zenoamaro.github.io/react-quill/)
+
+### 【Rich text editor: React Draft Wysiwyg】
+[GitHub](https://github.com/jpuri/react-draft-wysiwyg)
+[English](https://jpuri.github.io/react-draft-wysiwyg)
+
+### 【Rich text editor: React lz editor】
+[GitHub](https://github.com/leejaen/react-lz-editor)
+[Example](https://leejaen.github.io/react-lz-editor/index.html)
+
+### 【ColorSelect: React color】
+[GitHub](https://github.com/casesandberg/react-color)
+[English](http://casesandberg.github.io/react-color/)
+
+### 【Clipboard: react copy to clipboard】
+[GitHub](https://github.com/nkbt/react-copy-to-clipboard)
+
+### 【QR Code: qrcode.react】
+[GitHub](https://github.com/zpao/qrcode.react)
+[Example](http://zpao.github.io/qrcode.react/)
+
+### 【Charts: Recharts】
+[GitHub](https://github.com/recharts/recharts/)
+[Chinese](http://recharts.org/#/zh-CN/)
+
+### 【Charts: Victory】
+[GitHub](https://github.com/FormidableLabs/victory)
+[English](http://formidable.com/open-source/victory/)
+
+### 【Nprogress: Nprogress】
+[GitHub](https://github.com/rstacruz/nprogress)
+[English](http://ricostacruz.com/nprogress/)
+
+### 【Internationalization: React Intl】
+[GitHub](https://github.com/yahoo/react-intl)
+
+### 【Syntaxv Highlighter: react syntax highlighter】
+[GitHub](https://github.com/conorhastings/react-syntax-highlighter)
+
+### 【Mactdown: react markdown】
+[GitHub](https://github.com/rexxars/react-markdown)
+
+### 【Infinite scroll: react virtualized】
+[GitHub](https://github.com/bvaughn/react-virtualized)
 
 ## 【react】
 [English](https://facebook.github.io/react/)
 
 ## 【react-router】
 [English](https://reacttraining.com/react-router/)
-[Chinease](https://reacttraining.cn/)
+[Chinese](https://reacttraining.cn/)
 
 ## 【react-redux】
 [English](http://redux.js.org/)
-[Chinease](http://www.redux.org.cn/)
+[Chinese](http://www.redux.org.cn/)
 
 ## 【react-flux】
 [English](https://github.com/facebook/flux)
@@ -49,7 +115,7 @@
 
 ## 【Nodejs】
 [English](https://nodejs.org)
-[Chinease](http://nodejs.cn/)
+[Chinese](http://nodejs.cn/)
 
 ## 【npm】
 [English](https://www.npmjs.com)
