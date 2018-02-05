@@ -98,6 +98,9 @@
 
 ## 【react】
 [English](https://facebook.github.io/react/)
+[China-url-1](https://doc.react-china.org/)
+[China-url-2](http://wiki.jikexueyuan.com/project/react/)
+[China-url-3](https://discountry.github.io/react/)
 
 ## 【react-router】
 [English](https://reacttraining.com/react-router/)
