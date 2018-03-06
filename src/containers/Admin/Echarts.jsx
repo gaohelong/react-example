@@ -144,7 +144,7 @@ class Echarts extends React.Component {
         // console.log(square.get('z'));        // 4
         // console.log(square.has('z'));        // true
         // console.log(square.toObject());      // Object {x: 0, y: 2, z: 4}
-        // 
+        //
         // const oddSquares = Seq([ 1, 2, 3, 4, 5, 6, 7, 8 ])
         //     .filter(x => x % 2 !== 0)
         //     .map(x => x * x);

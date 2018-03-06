@@ -4,7 +4,7 @@
   "description": "``` English:  https://webpack.js.org Chinease: https://doc.webpack-china.org",
   "main": "index.js",
   "scripts": {
-    "clean": "rimraf dist",
+    "clean": "rm -rf dist",
     "build-prod": "npm run clean && webpack --config build/webpack.prod.config.js --progress --colors",
     "build-dev": "webpack --config build/webpack.dev.config.js --env=dev --progress --colors",
     "dev-server-start": "webpack-dev-server --config build/webpack.dev.config.js --env=dev-server --progress --colors",
@@ -37,7 +37,7 @@
     "css-loader": "^0.28.4",
     "eslint": "^4.5.0",
     "eslint-loader": "^1.9.0",
-    "eslint-plugin-react": "^7.3.0",
+    "eslint-plugin-react": "^7.7.0",
     "exports-loader": "^0.6.4",
     "extract-text-webpack-plugin": "^2.1.2",
     "faker": "^4.1.0",

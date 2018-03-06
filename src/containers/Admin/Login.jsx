@@ -2,20 +2,59 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Config from '../../config/config.js';
 
+// class A extends React.Component {
+//    render() {
+//        console.log('parents');
+//        return (
+//            <div>
+//                <div>china</div>
+//                <div><B /></div>
+//            </div>
+//        );
+//    }
+// }
+//
+// class B extends React.Component {
+//    constructor(props) {
+//        super(props);
+//        this.state = { text: '' };
+//
+//        // this.handleChange = this.handleChange.bind(this); // bind绑定方式(绑定上下文)
+//    }
+//
+//    // bind绑定方式(绑定上下文).
+//    // handleChange(e) {
+//    //     this.setState({ text: e.target.value });
+//    // }
+//
+//    // 箭头函数.
+//    handleChange = (e) => {
+//        this.setState({ text: e.target.value });
+//    }
+//
+//    render() {
+//        console.log('children');
+//        return (
+//            <div>
+//                <input onChange={this.handleChange} />
+//            </div>
+//        );
+//    }
+// }
+//
+// export default connect()(A);
+
 /* action */
 import {LOGIN_FILTERS, loginFetch} from '../../redux/Actions/Admin/';
-
 class Login extends React.Component {
     constructor(props) {
         super(props);
-
         // func.
         this.loginHandle = this.loginHandle.bind(this);
     }
 
     loginHandle(e) {
         const { dispatch } = this.props;
-
         dispatch(loginFetch(dispatch, {
             // url: '/api/admin/login.json',
             // url: '/mock/admin/login', // axios
@@ -29,18 +68,14 @@ class Login extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         const { history } = this.props;
-
         // console.log(nextProps, this.props);
         if (nextProps.token) {
             /* 不带参数 */
             history.push('/main');
-
             /* 带参数不使用?传递 */
             // history.push('/main/1/2');
-
             /* 带参数并且使用?传递 */
             // history.push('/main?the=query');
-
             // history.push({
             //     pathname: '/main',
             //     search: '?the=query',
@@ -50,7 +85,6 @@ class Login extends React.Component {
 
     render() {
         const { dispatch } = this.props;
-
         return (
             <div className="hl-login">
                 <div className="hl-clearfix">
